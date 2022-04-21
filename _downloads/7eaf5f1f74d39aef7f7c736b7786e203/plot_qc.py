@@ -1,6 +1,6 @@
 """
-Example on how to query the ARM DQR webservice
-----------------------------------------------------
+Query the ARM DQR webservice
+----------------------------
 
 Simple example for querying the ARM DQR webservice
 and plotting up the results
@@ -9,8 +9,9 @@ Author: Adam Theisen
 """
 
 
-import act
 from matplotlib import pyplot as plt
+
+import act
 
 # Read in sample AOSMET data
 files = act.tests.sample_files.EXAMPLE_AOSMET

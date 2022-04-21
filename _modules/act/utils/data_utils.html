@@ -1,104 +1,231 @@
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>act.utils.data_utils &mdash; Atmospheric data Community Toolkit 1.1.2.post36+g3e7f957 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/clipboard.min.js"></script>
-        <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/js/theme.js"></script>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>act.utils.data_utils &#8212; Atmospheric data Community Toolkit 0.post1+gb8439fe documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/act-theme.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/doc_shared.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> Atmospheric data Community Toolkit
-          </a>
-              <div class="version">
-                1.1.2.post36+g3e7f957
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Documentation</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../CREATING_ENVIRONMENTS.html">Setting up an Environment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../CONTRIBUTING.html">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../source/auto_examples/index.html">ACT Example Gallery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../API/index.html">API Reference Manual</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Downloads</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference external" href="https://anaconda.org/conda-forge/act-atmos/files">Anaconda Cloud</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/ARM-DOE/ACT">GitHub Repository</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/ARM-DOE/ACT/archive/master.zip">Zip File of Repository</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Getting Help</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/ARM-DOE/ACT/issues">GitHub Issue Tracker</a></li>
-</ul>
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8YN80YZDD8"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-8YN80YZDD8');
+                </script>
+ 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../blog/atom.xml"
+  title="ACT Blog"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
 
-        </div>
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+  <nav class="navbar navbar-dark navbar-expand-lg bg-arm fixed-top bd-navbar shadow" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../../index.html">
+<p class="title">Atmospheric data Community Toolkit</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../userguide/index.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../API/index.html">
+  API Reference Manual
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../source/auto_examples/index.html">
+  ACT Example Gallery
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../blog.html">
+  Blog
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference external nav-link" href="https://github.com/ARM-DOE/ACT/issues">
+  GitHub Issue Tracker
+ </a>
+</li>
+
+    
+</ul>
       </div>
-    </nav>
+      
+    </div>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">Atmospheric data Community Toolkit</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>act.utils.data_utils</li>
-      <li class="wy-breadcrumbs-aside">
-      </li>
-  </ul>
-  <hr/>
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/ARM-DOE/ACT" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
-  <h1>Source code for act.utils.data_utils</h1><div class="highlight"><pre>
+  </nav>
+
+
+    <div class="container-fluid" id="banner"></div>
+
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                 <h1>Source code for act.utils.data_utils</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Module containing utilities for the data.</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">importlib</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pint</span>
 <span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
 <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
-<span class="kn">import</span> <span class="nn">pint</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
 
 <span class="n">spec</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_spec</span><span class="p">(</span><span class="s1">&#39;pyart&#39;</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">spec</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -107,30 +234,36 @@
     <span class="n">PYART_AVAILABLE</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">pkg_resources</span> <span class="kn">import</span> <span class="n">DistributionNotFound</span>
     <span class="kn">import</span> <span class="nn">metpy</span>
+    <span class="kn">from</span> <span class="nn">pkg_resources</span> <span class="kn">import</span> <span class="n">DistributionNotFound</span>
+
     <span class="n">METPY_AVAILABLE</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
     <span class="n">METPY_AVAILABLE</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="k">except</span> <span class="p">(</span><span class="ne">ModuleNotFoundError</span><span class="p">,</span> <span class="n">DistributionNotFound</span><span class="p">):</span>
-    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;MetPy is installed but could not be imported. &quot;</span> <span class="o">+</span>
-                  <span class="s2">&quot;Please check your MetPy installation. Some features &quot;</span> <span class="o">+</span>
-                  <span class="s2">&quot;will be disabled.&quot;</span><span class="p">,</span> <span class="ne">ImportWarning</span><span class="p">)</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+        <span class="s1">&#39;MetPy is installed but could not be imported. &#39;</span>
+        <span class="o">+</span> <span class="s1">&#39;Please check your MetPy installation. Some features &#39;</span>
+        <span class="o">+</span> <span class="s1">&#39;will be disabled.&#39;</span><span class="p">,</span>
+        <span class="ne">ImportWarning</span><span class="p">,</span>
+    <span class="p">)</span>
     <span class="n">METPY_AVAILABLE</span> <span class="o">=</span> <span class="kc">False</span>
 
 
 <div class="viewcode-block" id="ChangeUnits"><a class="viewcode-back" href="../../../API/generated/act.utils.ChangeUnits.html#act.qc.ChangeUnits">[docs]</a><span class="nd">@xr</span><span class="o">.</span><span class="n">register_dataset_accessor</span><span class="p">(</span><span class="s1">&#39;utils&#39;</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">ChangeUnits</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">ChangeUnits</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class for updating units in the object. Data values and units attribute</span>
 <span class="sd">    are updated in place. Coordinate variables can not be updated in place. Must</span>
 <span class="sd">    use new returned dataset when updating coordinage varibles.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xarray_obj</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span> <span class="o">=</span> <span class="n">xarray_obj</span>
 
-<div class="viewcode-block" id="ChangeUnits.change_units"><a class="viewcode-back" href="../../../API/generated/act.utils.ChangeUnits.change_units.html#act.qc.ChangeUnits.change_units">[docs]</a>    <span class="k">def</span> <span class="nf">change_units</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">desired_unit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                     <span class="n">skip_variables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_standard</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="ChangeUnits.change_units"><a class="viewcode-back" href="../../../API/generated/act.utils.ChangeUnits.change_units.html#act.qc.ChangeUnits.change_units">[docs]</a>    <span class="k">def</span> <span class="nf">change_units</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">desired_unit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_variables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_standard</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -161,8 +294,7 @@
             <span class="n">skip_variables</span> <span class="o">=</span> <span class="p">[</span><span class="n">skip_variables</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="n">desired_unit</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;Need to provide &#39;desired_unit&#39; keyword for .change_units() method&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Need to provide &#39;desired_unit&#39; keyword for .change_units() method&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">variables</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">variables</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">data_vars</span><span class="p">)</span>
@@ -180,7 +312,9 @@
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">data</span> <span class="o">=</span> <span class="n">convert_units</span><span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="p">[</span><span class="n">var_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="p">[</span><span class="n">var_name</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">],</span> <span class="n">desired_unit</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="p">[</span><span class="n">var_name</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">],</span>
+                    <span class="n">desired_unit</span><span class="p">,</span>
+                <span class="p">)</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="p">[</span><span class="n">var_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">data</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="p">[</span><span class="n">var_name</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">desired_unit</span>
@@ -189,9 +323,12 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">({</span><span class="n">var_name</span><span class="p">:</span> <span class="n">data</span><span class="p">})</span>
                     <span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">desired_unit</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="p">[</span><span class="n">var_name</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span> <span class="o">=</span> <span class="n">attrs</span>
-            <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="n">pint</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">DimensionalityError</span><span class="p">,</span>
-                    <span class="n">pint</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">UndefinedUnitError</span><span class="p">,</span>
-                    <span class="n">np</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">_exceptions</span><span class="o">.</span><span class="n">UFuncTypeError</span><span class="p">):</span>
+            <span class="k">except</span> <span class="p">(</span>
+                <span class="ne">KeyError</span><span class="p">,</span>
+                <span class="n">pint</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">DimensionalityError</span><span class="p">,</span>
+                <span class="n">pint</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">UndefinedUnitError</span><span class="p">,</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">_exceptions</span><span class="o">.</span><span class="n">UFuncTypeError</span><span class="p">,</span>
+            <span class="p">):</span>
                 <span class="k">continue</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span></div></div>
@@ -222,12 +359,12 @@
 
     <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">coord_list</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">coord</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">coord</span> <span class="o">+</span> <span class="s2">&quot; is not a variable in the Dataset.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">coord</span> <span class="o">+</span> <span class="s1">&#39; is not a variable in the Dataset.&#39;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">ds</span><span class="o">.</span><span class="n">dims</span><span class="p">[</span><span class="n">coord_list</span><span class="p">[</span><span class="n">coord</span><span class="p">]]</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">coord</span><span class="p">]):</span>
-            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">((</span><span class="n">coord</span> <span class="o">+</span> <span class="s2">&quot; must have the same &quot;</span> <span class="o">+</span>
-                              <span class="s2">&quot;value as length of &quot;</span> <span class="o">+</span>
-                              <span class="n">coord_list</span><span class="p">[</span><span class="n">coord</span><span class="p">]))</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span>
+                <span class="n">coord</span> <span class="o">+</span> <span class="s1">&#39; must have the same &#39;</span> <span class="o">+</span> <span class="s1">&#39;value as length of &#39;</span> <span class="o">+</span> <span class="n">coord_list</span><span class="p">[</span><span class="n">coord</span><span class="p">]</span>
+            <span class="p">)</span>
 
     <span class="n">new_ds_dict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
@@ -239,8 +376,7 @@
                     <span class="n">my_coord_dict</span><span class="p">[</span><span class="n">coord_list</span><span class="p">[</span><span class="n">coord</span><span class="p">]]</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="n">coord</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="n">variable</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">my_coord_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="ow">and</span> <span class="n">variable</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">dims</span><span class="p">:</span>
-            <span class="n">the_dataarray</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">dataarray</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">my_coord_dict</span><span class="p">,</span>
-                                         <span class="n">dims</span><span class="o">=</span><span class="n">dataarray</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
+            <span class="n">the_dataarray</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">dataarray</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">my_coord_dict</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="n">dataarray</span><span class="o">.</span><span class="n">dims</span><span class="p">)</span>
             <span class="n">new_ds_dict</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span> <span class="o">=</span> <span class="n">the_dataarray</span>
 
     <span class="n">new_ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">new_ds_dict</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">my_coord_dict</span><span class="p">)</span>
@@ -287,11 +423,11 @@
         <span class="c1"># diff = np.diff(time.astype(&#39;datetime64[s]&#39;), 1)</span>
         <span class="n">diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="n">mode</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span><span class="o">.</span><span class="n">mode</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">diff</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mf">2.</span> <span class="o">*</span> <span class="n">mode</span><span class="p">))</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">diff</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">mode</span><span class="p">))</span>
 
         <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-            <span class="n">time_added</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="mf">2.</span>
+            <span class="n">time_added</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="mf">2.0</span>
             <span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">offset</span><span class="p">,</span> <span class="n">time_added</span><span class="p">)</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">offset</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="n">offset</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -305,9 +441,14 @@
     <span class="k">return</span> <span class="n">time</span><span class="p">,</span> <span class="n">data</span></div>
 
 
-<div class="viewcode-block" id="get_missing_value"><a class="viewcode-back" href="../../../API/generated/act.utils.get_missing_value.html#act.qc.get_missing_value">[docs]</a><span class="k">def</span> <span class="nf">get_missing_value</span><span class="p">(</span><span class="n">data_object</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">default</span><span class="o">=-</span><span class="mi">9999</span><span class="p">,</span>
-                      <span class="n">add_if_missing_in_obj</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                      <span class="n">use_FillValue</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">nodefault</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="get_missing_value"><a class="viewcode-back" href="../../../API/generated/act.utils.get_missing_value.html#act.qc.get_missing_value">[docs]</a><span class="k">def</span> <span class="nf">get_missing_value</span><span class="p">(</span>
+    <span class="n">data_object</span><span class="p">,</span>
+    <span class="n">variable</span><span class="p">,</span>
+    <span class="n">default</span><span class="o">=-</span><span class="mi">9999</span><span class="p">,</span>
+    <span class="n">add_if_missing_in_obj</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">use_FillValue</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">nodefault</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function to get missing value from missing_value or _FillValue attribute.</span>
 <span class="sd">    Works well with catching errors and allows for a default value when a</span>
@@ -346,7 +487,8 @@
 <span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        from act.utils import get_missing_value</span>
-<span class="sd">        missing = get_missing_value(dq_object, &#39;temp_mean&#39;)</span>
+
+<span class="sd">        missing = get_missing_value(dq_object, &quot;temp_mean&quot;)</span>
 <span class="sd">        print(missing)</span>
 <span class="sd">        -9999.0</span>
 
@@ -377,16 +519,22 @@
     <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
         <span class="k">pass</span>
     <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">((</span><span class="s1">&#39;--- AttributeError: Issue trying to get data type &#39;</span> <span class="o">+</span>
-               <span class="s1">&#39;from &quot;</span><span class="si">{}</span><span class="s1">&quot; data ---&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">variable</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="p">(</span><span class="s1">&#39;--- AttributeError: Issue trying to get data type &#39;</span> <span class="o">+</span> <span class="s1">&#39;from &quot;</span><span class="si">{}</span><span class="s1">&quot; data ---&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">variable</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
 
     <span class="c1"># If requested add missing value to object</span>
     <span class="k">if</span> <span class="n">add_if_missing_in_obj</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">in_object</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">data_object</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">missing_atts</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">missing</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">((</span><span class="s1">&#39;---  KeyError: Issue trying to add &quot;</span><span class="si">{}</span><span class="s1">&quot; &#39;</span> <span class="o">+</span>
-                   <span class="s1">&#39;attribute to &quot;</span><span class="si">{}</span><span class="s1">&quot; ---&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">missing_atts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">variable</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="p">(</span><span class="s1">&#39;---  KeyError: Issue trying to add &quot;</span><span class="si">{}</span><span class="s1">&quot; &#39;</span> <span class="o">+</span> <span class="s1">&#39;attribute to &quot;</span><span class="si">{}</span><span class="s1">&quot; ---&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">missing_atts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">variable</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">missing</span></div>
 
@@ -460,10 +608,12 @@
     <span class="c1"># need float precision. If so leave, if not change back to orginal</span>
     <span class="c1"># precision after checking if the precsion is not lost with the orginal</span>
     <span class="c1"># data type.</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">data_type_kind</span> <span class="o">==</span> <span class="s1">&#39;i&#39;</span> <span class="ow">and</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">iinfo</span><span class="p">(</span><span class="n">data_type</span><span class="p">)</span><span class="o">.</span><span class="n">min</span> <span class="ow">and</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">iinfo</span><span class="p">(</span><span class="n">data_type</span><span class="p">)</span><span class="o">.</span><span class="n">max</span> <span class="ow">and</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="n">data_type_kind</span> <span class="o">==</span> <span class="s1">&#39;i&#39;</span>
+        <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">iinfo</span><span class="p">(</span><span class="n">data_type</span><span class="p">)</span><span class="o">.</span><span class="n">min</span>
+        <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">iinfo</span><span class="p">(</span><span class="n">data_type</span><span class="p">)</span><span class="o">.</span><span class="n">max</span>
+        <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">):</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">data_type</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">data</span></div>
@@ -484,12 +634,21 @@
 
 <span class="sd">        .. code-block:: python</span>
 
-<span class="sd">            t_dict = {&#39;sgpvdisC1.b1&#39;: {&#39;variable&#39;: &#39;rain_rate&#39;, &#39;weight&#39;: 0.05,</span>
-<span class="sd">                                       &#39;object&#39;: act_obj}</span>
-<span class="sd">                      &#39;sgpmetE13.b1&#39;: {&#39;variable&#39;: [&#39;tbrg_precip_total&#39;,</span>
-<span class="sd">                                       &#39;org_precip_rate_mean&#39;,</span>
-<span class="sd">                                       &#39;pwd_precip_rate_mean_1min&#39;],</span>
-<span class="sd">                                       &#39;weight&#39;: [0.25, 0.05, 0.0125]}}</span>
+<span class="sd">            t_dict = {</span>
+<span class="sd">                &quot;sgpvdisC1.b1&quot;: {</span>
+<span class="sd">                    &quot;variable&quot;: &quot;rain_rate&quot;,</span>
+<span class="sd">                    &quot;weight&quot;: 0.05,</span>
+<span class="sd">                    &quot;object&quot;: act_obj,</span>
+<span class="sd">                },</span>
+<span class="sd">                &quot;sgpmetE13.b1&quot;: {</span>
+<span class="sd">                    &quot;variable&quot;: [</span>
+<span class="sd">                        &quot;tbrg_precip_total&quot;,</span>
+<span class="sd">                        &quot;org_precip_rate_mean&quot;,</span>
+<span class="sd">                        &quot;pwd_precip_rate_mean_1min&quot;,</span>
+<span class="sd">                    ],</span>
+<span class="sd">                    &quot;weight&quot;: [0.25, 0.05, 0.0125],</span>
+<span class="sd">                },</span>
+<span class="sd">            }</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -500,7 +659,7 @@
 
     <span class="c1"># Run through each datastream/variable and get data</span>
     <span class="n">da_array</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ts_dict</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ts_dict</span><span class="p">[</span><span class="n">d</span><span class="p">][</span><span class="s1">&#39;variable&#39;</span><span class="p">]):</span>
             <span class="n">new_name</span> <span class="o">=</span> <span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">d</span><span class="p">,</span> <span class="n">v</span><span class="p">])</span>
@@ -526,8 +685,11 @@
 
     <span class="c1"># Add data to data array and return</span>
     <span class="n">dims</span> <span class="o">=</span> <span class="n">ts_dict</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">ts_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]][</span><span class="s1">&#39;object&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dims</span>
-    <span class="n">da_xr</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="n">dims</span><span class="p">,</span>
-                         <span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">ts_dict</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">ts_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]][</span><span class="s1">&#39;object&#39;</span><span class="p">][</span><span class="s1">&#39;time&#39;</span><span class="p">]})</span>
+    <span class="n">da_xr</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+        <span class="n">data</span><span class="p">,</span>
+        <span class="n">dims</span><span class="o">=</span><span class="n">dims</span><span class="p">,</span>
+        <span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">ts_dict</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">ts_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]][</span><span class="s1">&#39;object&#39;</span><span class="p">][</span><span class="s1">&#39;time&#39;</span><span class="p">]},</span>
+    <span class="p">)</span>
     <span class="n">da_xr</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;long_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Weighted average of &#39;</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">ts_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
 
     <span class="k">return</span> <span class="n">da_xr</span></div>
@@ -568,9 +730,9 @@
         <span class="n">t_delta</span> <span class="o">=</span> <span class="n">time_delta</span>
 
     <span class="c1"># Calculate the accumulation based on the units</span>
-    <span class="n">t_factor</span> <span class="o">=</span> <span class="n">t_delta</span> <span class="o">/</span> <span class="mf">60.</span>
+    <span class="n">t_factor</span> <span class="o">=</span> <span class="n">t_delta</span> <span class="o">/</span> <span class="mf">60.0</span>
     <span class="k">if</span> <span class="n">units</span> <span class="o">==</span> <span class="s1">&#39;mm/hr&#39;</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span> <span class="o">*</span> <span class="p">(</span><span class="n">t_factor</span> <span class="o">/</span> <span class="mf">60.</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span> <span class="o">*</span> <span class="p">(</span><span class="n">t_factor</span> <span class="o">/</span> <span class="mf">60.0</span><span class="p">)</span>
 
     <span class="n">accum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nancumsum</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 
@@ -578,16 +740,28 @@
     <span class="n">long_name</span> <span class="o">=</span> <span class="s1">&#39;Accumulated precipitation&#39;</span>
     <span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;long_name&#39;</span><span class="p">:</span> <span class="n">long_name</span><span class="p">,</span> <span class="s1">&#39;units&#39;</span><span class="p">:</span> <span class="s1">&#39;mm&#39;</span><span class="p">}</span>
     <span class="n">act_obj</span><span class="p">[</span><span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">variable</span><span class="p">,</span> <span class="s1">&#39;accumulated&#39;</span><span class="p">])]</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
-        <span class="n">accum</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">act_obj</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="n">attrs</span><span class="p">)</span>
+        <span class="n">accum</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="n">act_obj</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="n">attrs</span>
+    <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">act_obj</span></div>
 
 
-<div class="viewcode-block" id="create_pyart_obj"><a class="viewcode-back" href="../../../API/generated/act.utils.create_pyart_obj.html#act.qc.create_pyart_obj">[docs]</a><span class="k">def</span> <span class="nf">create_pyart_obj</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">variables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sweep</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">azimuth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                     <span class="n">elevation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">range_var</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sweep_start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                     <span class="n">sweep_end</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                     <span class="n">sweep_mode</span><span class="o">=</span><span class="s1">&#39;ppi&#39;</span><span class="p">,</span> <span class="n">sweep_az_thresh</span><span class="o">=</span><span class="mf">10.</span><span class="p">,</span>
-                     <span class="n">sweep_el_thresh</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<div class="viewcode-block" id="create_pyart_obj"><a class="viewcode-back" href="../../../API/generated/act.utils.create_pyart_obj.html#act.qc.create_pyart_obj">[docs]</a><span class="k">def</span> <span class="nf">create_pyart_obj</span><span class="p">(</span>
+    <span class="n">obj</span><span class="p">,</span>
+    <span class="n">variables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">sweep</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">azimuth</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">elevation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">range_var</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">sweep_start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">sweep_end</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">lat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">lon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">alt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">sweep_mode</span><span class="o">=</span><span class="s1">&#39;ppi&#39;</span><span class="p">,</span>
+    <span class="n">sweep_az_thresh</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+    <span class="n">sweep_el_thresh</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Produces a Py-ART radar object based on data in the ACT object.</span>
 
@@ -635,8 +809,8 @@
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">PYART_AVAILABLE</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
-            <span class="s2">&quot;Py-ART needs to be installed on your system to convert to &quot;</span>
-            <span class="s2">&quot;Py-ART Object.&quot;</span><span class="p">)</span>
+            <span class="s1">&#39;Py-ART needs to be installed on your system to convert to &#39;</span> <span class="s1">&#39;Py-ART Object.&#39;</span>
+        <span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="kn">import</span> <span class="nn">pyart</span>
     <span class="c1"># Get list of variables if none provided</span>
@@ -657,61 +831,65 @@
 
     <span class="c1"># Get coordinate variables</span>
     <span class="k">if</span> <span class="n">lat</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">lat</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">variables</span> <span class="k">if</span> <span class="s2">&quot;latitude&quot;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
+        <span class="n">lat</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">variables</span> <span class="k">if</span> <span class="s1">&#39;latitude&#39;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">lat</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">variables</span> <span class="k">if</span> <span class="s2">&quot;lat&quot;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
+            <span class="n">lat</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">variables</span> <span class="k">if</span> <span class="s1">&#39;lat&#39;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Latitude variable not set and could not be &quot;</span>
-                             <span class="s2">&quot;discerned from the data.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s1">&#39;Latitude variable not set and could not be &#39;</span> <span class="s1">&#39;discerned from the data.&#39;</span>
+            <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">lat</span> <span class="o">=</span> <span class="n">lat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="k">if</span> <span class="n">lon</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">lon</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">variables</span> <span class="k">if</span> <span class="s2">&quot;longitude&quot;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
+        <span class="n">lon</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">variables</span> <span class="k">if</span> <span class="s1">&#39;longitude&#39;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lon</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">lon</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">variables</span> <span class="k">if</span> <span class="s2">&quot;lon&quot;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
+            <span class="n">lon</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">variables</span> <span class="k">if</span> <span class="s1">&#39;lon&#39;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lon</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Longitude variable not set and could not be &quot;</span>
-                             <span class="s2">&quot;discerned from the data.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s1">&#39;Longitude variable not set and could not be &#39;</span> <span class="s1">&#39;discerned from the data.&#39;</span>
+            <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">lon</span> <span class="o">=</span> <span class="n">lon</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="k">if</span> <span class="n">alt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">alt</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">variables</span> <span class="k">if</span> <span class="s2">&quot;altitude&quot;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
+        <span class="n">alt</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">variables</span> <span class="k">if</span> <span class="s1">&#39;altitude&#39;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">alt</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">alt</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">variables</span> <span class="k">if</span> <span class="s2">&quot;alt&quot;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
+            <span class="n">alt</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">variables</span> <span class="k">if</span> <span class="s1">&#39;alt&#39;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">alt</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Altitude variable not set and could not be &quot;</span>
-                             <span class="s2">&quot;discerned from the data.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s1">&#39;Altitude variable not set and could not be &#39;</span> <span class="s1">&#39;discerned from the data.&#39;</span>
+            <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">alt</span> <span class="o">=</span> <span class="n">alt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="c1"># Get additional variable names if none provided</span>
     <span class="k">if</span> <span class="n">azimuth</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">azimuth</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">variables</span><span class="p">)</span> <span class="k">if</span> <span class="s2">&quot;azimuth&quot;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">azimuth</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">variables</span><span class="p">)</span> <span class="k">if</span> <span class="s1">&#39;azimuth&#39;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">azimuth</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Azimuth variable not set and could not be &quot;</span>
-                             <span class="s2">&quot;discerned from the data.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s1">&#39;Azimuth variable not set and could not be &#39;</span> <span class="s1">&#39;discerned from the data.&#39;</span>
+            <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">elevation</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">elevation</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">variables</span><span class="p">)</span> <span class="k">if</span> <span class="s2">&quot;elevation&quot;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">elevation</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">variables</span><span class="p">)</span> <span class="k">if</span> <span class="s1">&#39;elevation&#39;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">elevation</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Elevation variable not set and could not be &quot;</span>
-                             <span class="s2">&quot;discerned from the data.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s1">&#39;Elevation variable not set and could not be &#39;</span> <span class="s1">&#39;discerned from the data.&#39;</span>
+            <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">range_var</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">range_var</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">variables</span><span class="p">)</span> <span class="k">if</span> <span class="s2">&quot;range&quot;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">range_var</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">variables</span><span class="p">)</span> <span class="k">if</span> <span class="s1">&#39;range&#39;</span> <span class="ow">in</span> <span class="n">s</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">range_var</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Range variable not set and could not be &quot;</span>
-                             <span class="s2">&quot;discerned from the data.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Range variable not set and could not be &#39;</span> <span class="s1">&#39;discerned from the data.&#39;</span><span class="p">)</span>
 
     <span class="c1"># Calculate the sweep indices if not passed in</span>
     <span class="k">if</span> <span class="n">sweep_start</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">sweep_end</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">az_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="n">azimuth</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
-        <span class="n">az_idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">az_diff</span> <span class="o">&gt;</span> <span class="n">sweep_az_thresh</span><span class="p">)</span>
+        <span class="n">az_idx</span> <span class="o">=</span> <span class="n">az_diff</span> <span class="o">&gt;</span> <span class="n">sweep_az_thresh</span>
 
         <span class="n">el_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="n">elevation</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
-        <span class="n">el_idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">el_diff</span> <span class="o">&gt;</span> <span class="n">sweep_el_thresh</span><span class="p">)</span>
+        <span class="n">el_idx</span> <span class="o">=</span> <span class="n">el_diff</span> <span class="o">&gt;</span> <span class="n">sweep_el_thresh</span>
 
         <span class="c1"># Create index list</span>
         <span class="n">az_index</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">az_idx</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -726,16 +904,15 @@
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
             <span class="n">sweep_start_index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
             <span class="n">sweep_end_index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">swp</span><span class="p">[</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span><span class="n">index</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span>
+            <span class="n">swp</span><span class="p">[</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">:</span> <span class="n">index</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">sweep_start_index</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="n">sweep_start</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
         <span class="n">sweep_end_index</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="n">sweep_end</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
         <span class="k">if</span> <span class="n">sweep</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sweep_start_index</span><span class="p">)):</span>
-                <span class="n">swp</span><span class="p">[</span><span class="n">sweep_start_index</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span><span class="n">sweep_end_index</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span>
+                <span class="n">swp</span><span class="p">[</span><span class="n">sweep_start_index</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">:</span> <span class="n">sweep_end_index</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span>
 
-    <span class="n">radar</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">make_empty_ppi_radar</span><span class="p">(</span>
-        <span class="n">obj</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">range_var</span><span class="p">],</span> <span class="n">obj</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">nsweeps</span><span class="p">)</span>
+    <span class="n">radar</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">make_empty_ppi_radar</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="n">range_var</span><span class="p">],</span> <span class="n">obj</span><span class="o">.</span><span class="n">sizes</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">nsweeps</span><span class="p">)</span>
 
     <span class="n">radar</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 
@@ -772,10 +949,15 @@
     <span class="k">return</span> <span class="n">radar</span></div>
 
 
-<span class="k">def</span> <span class="nf">convert_to_potential_temp</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">temp_var_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                              <span class="n">press_var_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                              <span class="n">pressure</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">temp_var_units</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                              <span class="n">press_var_units</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">convert_to_potential_temp</span><span class="p">(</span>
+    <span class="n">obj</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">temp_var_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">press_var_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">pressure</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">temp_var_units</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">press_var_units</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Converts temperature to potential temperature.</span>
@@ -818,8 +1000,9 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">METPY_AVAILABLE</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;MetPy needs to be installed on your system to &quot;</span>
-                          <span class="s2">&quot;convert to potential temperature&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+            <span class="s1">&#39;MetPy needs to be installed on your system to &#39;</span> <span class="s1">&#39;convert to potential temperature&#39;</span>
+        <span class="p">)</span>
 
     <span class="n">potential_temp</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="n">temp_var_units</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">temp_var_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -828,38 +1011,43 @@
         <span class="n">press_var_units</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="n">press_var_name</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span>
 
     <span class="k">if</span> <span class="n">press_var_units</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Need to provide &#39;press_var_units&#39; keyword &quot;</span>
-                         <span class="s2">&quot;when using &#39;pressure&#39; keyword&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Need to provide &#39;press_var_units&#39; keyword &quot;</span> <span class="s2">&quot;when using &#39;pressure&#39; keyword&quot;</span>
+        <span class="p">)</span>
     <span class="k">if</span> <span class="n">temp_var_units</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Need to provide &#39;temp_var_units&#39; keyword &quot;</span>
-                         <span class="s2">&quot;when using &#39;temperature&#39; keyword&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Need to provide &#39;temp_var_units&#39; keyword &quot;</span> <span class="s2">&quot;when using &#39;temperature&#39; keyword&quot;</span>
+        <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">temperature</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">temperature</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">temperature</span><span class="p">,</span> <span class="n">temp_var_units</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">temperature</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="n">temp_var_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-                                                 <span class="n">temp_var_units</span><span class="p">)</span>
+        <span class="n">temperature</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="n">temp_var_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">temp_var_units</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">pressure</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">pressure</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">pressure</span><span class="p">,</span> <span class="n">press_var_units</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">pressure</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="n">press_var_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-                                              <span class="n">press_var_units</span><span class="p">)</span>
+        <span class="n">pressure</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="n">press_var_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">press_var_units</span><span class="p">)</span>
 
     <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">RuntimeWarning</span><span class="p">)</span>
-        <span class="n">potential_temp</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">potential_temperature</span><span class="p">(</span>
-            <span class="n">pressure</span><span class="p">,</span> <span class="n">temperature</span><span class="p">)</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">RuntimeWarning</span><span class="p">)</span>
+        <span class="n">potential_temp</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">potential_temperature</span><span class="p">(</span><span class="n">pressure</span><span class="p">,</span> <span class="n">temperature</span><span class="p">)</span>
     <span class="n">potential_temp</span> <span class="o">=</span> <span class="n">potential_temp</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">temp_var_units</span><span class="p">)</span><span class="o">.</span><span class="n">magnitude</span>
 
     <span class="k">return</span> <span class="n">potential_temp</span>
 
 
-<span class="k">def</span> <span class="nf">height_adjusted_temperature</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">temp_var_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                                <span class="n">height_difference</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">height_units</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span>
-                                <span class="n">press_var_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                                <span class="n">temp_var_units</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pressure</span><span class="o">=</span><span class="mf">101.325</span><span class="p">,</span>
-                                <span class="n">press_var_units</span><span class="o">=</span><span class="s1">&#39;kPa&#39;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">height_adjusted_temperature</span><span class="p">(</span>
+    <span class="n">obj</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">temp_var_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">height_difference</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">height_units</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span>
+    <span class="n">press_var_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">temp_var_units</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">pressure</span><span class="o">=</span><span class="mf">101.325</span><span class="p">,</span>
+    <span class="n">press_var_units</span><span class="o">=</span><span class="s1">&#39;kPa&#39;</span><span class="p">,</span>
+<span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Converts temperature for change in height.</span>
 
@@ -911,46 +1099,52 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">METPY_AVAILABLE</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;MetPy needs to be installed on your system to &quot;</span>
-                          <span class="s2">&quot;convert temperature for height.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+            <span class="s1">&#39;MetPy needs to be installed on your system to &#39;</span> <span class="s1">&#39;convert temperature for height.&#39;</span>
+        <span class="p">)</span>
 
     <span class="n">adjusted_temperature</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="n">temp_var_units</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">temperature</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">temp_var_units</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="n">temp_var_name</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">temp_var_units</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Need to provide &#39;temp_var_units&#39; keyword when &quot;</span>
-                         <span class="s2">&quot;providing temperature keyword values.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Need to provide &#39;temp_var_units&#39; keyword when &quot;</span> <span class="s1">&#39;providing temperature keyword values.&#39;</span>
+        <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">temperature</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">temperature</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">temperature</span><span class="p">,</span> <span class="n">temp_var_units</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">temperature</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="n">temp_var_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-                                                 <span class="n">temp_var_units</span><span class="p">)</span>
+        <span class="n">temperature</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="n">temp_var_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">temp_var_units</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">press_var_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">pressure</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="n">press_var_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-                                              <span class="n">press_var_units</span><span class="p">)</span>
+        <span class="n">pressure</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="n">press_var_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">press_var_units</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">pressure</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">pressure</span><span class="p">,</span> <span class="n">press_var_units</span><span class="p">)</span>
 
     <span class="n">adjusted_pressure</span> <span class="o">=</span> <span class="n">height_adjusted_pressure</span><span class="p">(</span>
-        <span class="n">height_difference</span><span class="o">=</span><span class="n">height_difference</span><span class="p">,</span> <span class="n">height_units</span><span class="o">=</span><span class="n">height_units</span><span class="p">,</span>
-        <span class="n">pressure</span><span class="o">=</span><span class="n">pressure</span><span class="o">.</span><span class="n">magnitude</span><span class="p">,</span> <span class="n">press_var_units</span><span class="o">=</span><span class="n">press_var_units</span><span class="p">)</span>
-    <span class="n">adjusted_pressure</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">adjusted_pressure</span><span class="p">,</span>
-                                                   <span class="n">press_var_units</span><span class="p">)</span>
+        <span class="n">height_difference</span><span class="o">=</span><span class="n">height_difference</span><span class="p">,</span>
+        <span class="n">height_units</span><span class="o">=</span><span class="n">height_units</span><span class="p">,</span>
+        <span class="n">pressure</span><span class="o">=</span><span class="n">pressure</span><span class="o">.</span><span class="n">magnitude</span><span class="p">,</span>
+        <span class="n">press_var_units</span><span class="o">=</span><span class="n">press_var_units</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">adjusted_pressure</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">adjusted_pressure</span><span class="p">,</span> <span class="n">press_var_units</span><span class="p">)</span>
 
     <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">RuntimeWarning</span><span class="p">)</span>
-        <span class="n">adjusted_temperature</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">dry_lapse</span><span class="p">(</span><span class="n">adjusted_pressure</span><span class="p">,</span>
-                                                    <span class="n">temperature</span><span class="p">,</span> <span class="n">pressure</span><span class="p">)</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">RuntimeWarning</span><span class="p">)</span>
+        <span class="n">adjusted_temperature</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">dry_lapse</span><span class="p">(</span><span class="n">adjusted_pressure</span><span class="p">,</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">pressure</span><span class="p">)</span>
     <span class="n">adjusted_temperature</span> <span class="o">=</span> <span class="n">adjusted_temperature</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">temp_var_units</span><span class="p">)</span><span class="o">.</span><span class="n">magnitude</span>
 
     <span class="k">return</span> <span class="n">adjusted_temperature</span>
 
 
-<span class="k">def</span> <span class="nf">height_adjusted_pressure</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">press_var_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                             <span class="n">height_difference</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">height_units</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span>
-                             <span class="n">pressure</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">press_var_units</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">height_adjusted_pressure</span><span class="p">(</span>
+    <span class="n">obj</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">press_var_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">height_difference</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">height_units</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span>
+    <span class="n">pressure</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">press_var_units</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Converts pressure for change in height.</span>
@@ -991,60 +1185,69 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">METPY_AVAILABLE</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;MetPy needs to be installed on your system to &quot;</span>
-                          <span class="s2">&quot;convert to convert pressure for change in height.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+            <span class="s1">&#39;MetPy needs to be installed on your system to &#39;</span>
+            <span class="s1">&#39;convert to convert pressure for change in height.&#39;</span>
+        <span class="p">)</span>
 
     <span class="n">adjusted_pressure</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="n">press_var_units</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">pressure</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">press_var_units</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="n">press_var_name</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span>
 
     <span class="k">if</span> <span class="n">press_var_units</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Need to provide &#39;press_var_units&#39; keyword when &quot;</span>
-                         <span class="s2">&quot;providing pressure keyword values.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Need to provide &#39;press_var_units&#39; keyword when &quot;</span> <span class="s1">&#39;providing pressure keyword values.&#39;</span>
+        <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">pressure</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">pressure</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">pressure</span><span class="p">,</span> <span class="n">press_var_units</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">pressure</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="n">press_var_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-                                              <span class="n">press_var_units</span><span class="p">)</span>
+        <span class="n">pressure</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="n">press_var_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">press_var_units</span><span class="p">)</span>
 
-    <span class="n">height_difference</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">height_difference</span><span class="p">,</span>
-                                                   <span class="n">height_units</span><span class="p">)</span>
+    <span class="n">height_difference</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">height_difference</span><span class="p">,</span> <span class="n">height_units</span><span class="p">)</span>
 
     <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">RuntimeWarning</span><span class="p">)</span>
-        <span class="n">adjusted_pressure</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">add_height_to_pressure</span><span class="p">(</span>
-            <span class="n">pressure</span><span class="p">,</span> <span class="n">height_difference</span><span class="p">)</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">RuntimeWarning</span><span class="p">)</span>
+        <span class="n">adjusted_pressure</span> <span class="o">=</span> <span class="n">metpy</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">add_height_to_pressure</span><span class="p">(</span><span class="n">pressure</span><span class="p">,</span> <span class="n">height_difference</span><span class="p">)</span>
     <span class="n">adjusted_pressure</span> <span class="o">=</span> <span class="n">adjusted_pressure</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">press_var_units</span><span class="p">)</span><span class="o">.</span><span class="n">magnitude</span>
 
     <span class="k">return</span> <span class="n">adjusted_pressure</span>
 </pre></div>
-
-           </div>
-          </div>
-          <footer>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2018, ACT Developers.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<div class="section">
    
+</div>
 
-</footer>
-        </div>
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              
+          </main>
+          
+
       </div>
-    </section>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2018-2022, ACT Developers.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+    </div>
+    
   </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
-
-</body>
+</footer>
+  </body>
 </html>
