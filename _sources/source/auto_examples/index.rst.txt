@@ -6,8 +6,7 @@ ACT Example Gallery
 This gallery houses examples on different use cases for act including
 downloading data from web APIs, visualization various types of data,
 and more.  If there are specific use cases you would like to see examples
-of, please head on over to the `ACT discussion page <https://github.com/ARM-DOE/ACT/discussions>`_
-on GitHub.
+of, please head on over to the `ACT discussion page <https://github.com/ARM-DOE/ACT/discussions>`_ on GitHub.
 
 
 
@@ -86,6 +85,23 @@ on GitHub.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This is a simple example for how to plot multiple columns in a TimeseriesDisplay.">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/images/thumb/sphx_glr_plot_multiple_column_thumb.png
+    :alt: Plot a timeseries of sounding data
+
+  :ref:`sphx_glr_source_auto_examples_plot_multiple_column.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Plot a timeseries of sounding data</div>
+    </div>
+
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Example of how to read in MET data and plot up daytime temperature averages using the add_solar...">
 
 .. only:: html
@@ -98,6 +114,23 @@ on GitHub.
 .. raw:: html
 
       <div class="sphx-glr-thumbnail-title">Calculate and plot daily daytime temperature averages</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to make a Skew-T plot from a sounding and calculate stability indicies.">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/images/thumb/sphx_glr_plot_skewt_thumb.png
+    :alt: Skew-T plot of a sounding
+
+  :ref:`sphx_glr_source_auto_examples_plot_skewt.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Skew-T plot of a sounding</div>
     </div>
 
 
@@ -137,23 +170,6 @@ on GitHub.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to calculate course and speed over ground of the ship and use it to corr...">
-
-.. only:: html
-
-  .. image:: /source/auto_examples/images/thumb/sphx_glr_plot_correct_ship_wind_data_thumb.png
-    :alt: Correct wind data for ship motion
-
-  :ref:`sphx_glr_source_auto_examples_plot_correct_ship_wind_data.py`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">Correct wind data for ship motion</div>
-    </div>
-
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to display wind rose and barb timeseries from multiple days worth of ...">
 
 .. only:: html
@@ -171,18 +187,18 @@ on GitHub.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to make a Skew-T plot from a sounding and calculate stability indicies. ...">
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to calculate course and speed over ground of the ship and use it to corr...">
 
 .. only:: html
 
-  .. image:: /source/auto_examples/images/thumb/sphx_glr_plot_skewt_thumb.png
-    :alt: Skew-T plot of a sounding
+  .. image:: /source/auto_examples/images/thumb/sphx_glr_plot_correct_ship_wind_data_thumb.png
+    :alt: Correct wind data for ship motion
 
-  :ref:`sphx_glr_source_auto_examples_plot_skewt.py`
+  :ref:`sphx_glr_source_auto_examples_plot_correct_ship_wind_data.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Skew-T plot of a sounding</div>
+      <div class="sphx-glr-thumbnail-title">Correct wind data for ship motion</div>
     </div>
 
 
@@ -234,6 +250,23 @@ on GitHub.
 .. raw:: html
 
       <div class="sphx-glr-thumbnail-title">Spatial contour plot</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to use some different aspects of ACT&#x27;s plotting tools as well as Xarr...">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/images/thumb/sphx_glr_plot_examples_thumb.png
+    :alt: Xarray Plotting Examples
+
+  :ref:`sphx_glr_source_auto_examples_plot_examples.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Xarray Plotting Examples</div>
     </div>
 
 
@@ -341,6 +374,23 @@ on GitHub.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to download data from NEON and ARM 2m surface meteorology stations on th...">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/images/thumb/sphx_glr_plot_neon_thumb.png
+    :alt: NEON Data
+
+  :ref:`sphx_glr_source_auto_examples_plot_neon.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">NEON Data</div>
+    </div>
+
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="This example shows the different ways to pull air quality information from EPA&#x27;s AirNow API for...">
 
 .. only:: html
@@ -409,6 +459,23 @@ on GitHub.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to use the TAR and gunzip extensions for creating or extracting data ...">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/images/thumb/sphx_glr_plot_tar_thumb.png
+    :alt: Working with TAR and gunzip files
+
+  :ref:`sphx_glr_source_auto_examples_plot_tar.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Working with TAR and gunzip files</div>
+    </div>
+
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Simple examples for plotting state variable using flag_values and flag_meanings.">
 
 .. only:: html
@@ -470,25 +537,29 @@ on GitHub.
    /source/auto_examples/plot_asos_temp
    /source/auto_examples/plot_qc
    /source/auto_examples/plot_raw_minimpl
+   /source/auto_examples/plot_multiple_column
    /source/auto_examples/plot_daytime_averages
+   /source/auto_examples/plot_skewt
    /source/auto_examples/plot_sonde
    /source/auto_examples/plot_get_stability_indices_example
-   /source/auto_examples/plot_correct_ship_wind_data
    /source/auto_examples/plot_wind_rose
-   /source/auto_examples/plot_skewt
+   /source/auto_examples/plot_correct_ship_wind_data
    /source/auto_examples/plot_dqr_qc
    /source/auto_examples/plot_ceil
    /source/auto_examples/plot_contour
+   /source/auto_examples/plot_examples
    /source/auto_examples/plot_xsection
    /source/auto_examples/plot_icartt
    /source/auto_examples/plot_force_line_qc
    /source/auto_examples/plot_noaa_fmcw_moment
    /source/auto_examples/plot_data_rose
    /source/auto_examples/plot_multiple_dataset
+   /source/auto_examples/plot_neon
    /source/auto_examples/plot_airnow
    /source/auto_examples/plot_change_units
    /source/auto_examples/plot_qc_bsrn
    /source/auto_examples/plot_weighted_average
+   /source/auto_examples/plot_tar
    /source/auto_examples/plot_state_variable
    /source/auto_examples/plot_qc_example
    /source/auto_examples/plot_arm_qc

@@ -36,6 +36,8 @@
     
     calculate_dqr_times
     
+    cleanup_files
+    
     convert_to_potential_temp
     
     convert_units
@@ -56,16 +58,34 @@
     
     get_missing_value
     
+    get_solar_azimuth_elevation
+    
+    get_sunrise_sunset_noon
+    
     height_adjusted_pressure
     
     height_adjusted_temperature
     
+    is_gunzip_file
+    
+    is_sun_visible
+    
     numpy_to_arm_date
     
+    pack_gzip
+    
+    pack_tar
+    
     planck_converter
+    
+    proc_scog
     
     reduce_time_ranges
     
     ts_weighted_average
+    
+    unpack_gzip
+    
+    unpack_tar
     
 

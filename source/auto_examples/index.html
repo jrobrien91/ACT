@@ -1,12 +1,12 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>ACT Example Gallery &#8212; Atmospheric data Community Toolkit 0.post1+g03c8043 documentation</title>
+    <title>ACT Example Gallery &#8212; Atmospheric data Community Toolkit 0.post1+g01aa0d9 documentation</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -23,8 +23,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
@@ -41,19 +40,14 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
-    <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/design-tabs.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/doc_shared.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Plot winds and relative humidity from sounding data" href="plot_rh_timeseries.html" />
-    <link rel="prev" title="act.utils.ts_weighted_average" href="../../API/generated/act.utils.ts_weighted_average.html" /> 
+    <link rel="prev" title="act.utils.unpack_tar" href="../../API/generated/act.utils.unpack_tar.html" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
+    <meta name="docsearch:language" content="en">
     
 
     <!-- Google Analytics -->
@@ -215,8 +209,18 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="plot_multiple_column.html">
+   Plot a timeseries of sounding data
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="plot_daytime_averages.html">
    Calculate and plot daily daytime temperature averages
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plot_skewt.html">
+   Skew-T plot of a sounding
   </a>
  </li>
  <li class="toctree-l1">
@@ -230,18 +234,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="plot_correct_ship_wind_data.html">
-   Correct wind data for ship motion
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="plot_wind_rose.html">
    Windrose and windbarb timeseries plot
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="plot_skewt.html">
-   Skew-T plot of a sounding
+  <a class="reference internal" href="plot_correct_ship_wind_data.html">
+   Correct wind data for ship motion
   </a>
  </li>
  <li class="toctree-l1">
@@ -257,6 +256,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="plot_contour.html">
    Spatial contour plot
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plot_examples.html">
+   Xarray Plotting Examples
   </a>
  </li>
  <li class="toctree-l1">
@@ -290,6 +294,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="plot_neon.html">
+   NEON Data
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="plot_airnow.html">
    Airnow Data
   </a>
@@ -307,6 +316,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="plot_weighted_average.html">
    Calculate and plot weighted means
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plot_tar.html">
+   Working with TAR and gunzip files
   </a>
  </li>
  <li class="toctree-l1">
@@ -367,8 +381,7 @@
 <p>This gallery houses examples on different use cases for act including
 downloading data from web APIs, visualization various types of data,
 and more.  If there are specific use cases you would like to see examples
-of, please head on over to the <a class="reference external" href="https://github.com/ARM-DOE/ACT/discussions">ACT discussion page</a>
-on GitHub.</p>
+of, please head on over to the <a class="reference external" href="https://github.com/ARM-DOE/ACT/discussions">ACT discussion page</a> on GitHub.</p>
 <div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to display wind rose and barb timeseries from multiple days worth of ..."><img alt="Plot winds and relative humidity from sounding data" src="../../_images/sphx_glr_plot_rh_timeseries_thumb.png" />
 <p><a class="reference internal" href="plot_rh_timeseries.html#sphx-glr-source-auto-examples-plot-rh-timeseries-py"><span class="std std-ref">Plot winds and relative humidity from sounding data</span></a></p>
   <div class="sphx-glr-thumbnail-title">Plot winds and relative humidity from sounding data</div>
@@ -381,24 +394,27 @@ on GitHub.</p>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Example of how to read in raw data from the mini-MPL and plot out the PPI by converting it to P..."><img alt="Read and plot a PPI from raw mini-MPL data" src="../../_images/sphx_glr_plot_raw_minimpl_thumb.png" />
 <p><a class="reference internal" href="plot_raw_minimpl.html#sphx-glr-source-auto-examples-plot-raw-minimpl-py"><span class="std std-ref">Read and plot a PPI from raw mini-MPL data</span></a></p>
   <div class="sphx-glr-thumbnail-title">Read and plot a PPI from raw mini-MPL data</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This is a simple example for how to plot multiple columns in a TimeseriesDisplay."><img alt="Plot a timeseries of sounding data" src="../../_images/sphx_glr_plot_multiple_column_thumb.png" />
+<p><a class="reference internal" href="plot_multiple_column.html#sphx-glr-source-auto-examples-plot-multiple-column-py"><span class="std std-ref">Plot a timeseries of sounding data</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Plot a timeseries of sounding data</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Example of how to read in MET data and plot up daytime temperature averages using the add_solar..."><img alt="Calculate and plot daily daytime temperature averages" src="../../_images/sphx_glr_plot_daytime_averages_thumb.png" />
 <p><a class="reference internal" href="plot_daytime_averages.html#sphx-glr-source-auto-examples-plot-daytime-averages-py"><span class="std std-ref">Calculate and plot daily daytime temperature averages</span></a></p>
   <div class="sphx-glr-thumbnail-title">Calculate and plot daily daytime temperature averages</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example shows how to make a Skew-T plot from a sounding and calculate stability indicies."><img alt="Skew-T plot of a sounding" src="../../_images/sphx_glr_plot_skewt_thumb.png" />
+<p><a class="reference internal" href="plot_skewt.html#sphx-glr-source-auto-examples-plot-skewt-py"><span class="std std-ref">Skew-T plot of a sounding</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Skew-T plot of a sounding</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="This is a simple example for how to plot a timeseries of sounding data from the ARM SGP site."><img alt="Plot a timeseries of sounding data" src="../../_images/sphx_glr_plot_sonde_thumb.png" />
 <p><a class="reference internal" href="plot_sonde.html#sphx-glr-source-auto-examples-plot-sonde-py"><span class="std std-ref">Plot a timeseries of sounding data</span></a></p>
   <div class="sphx-glr-thumbnail-title">Plot a timeseries of sounding data</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="This example shows how to retrieve CAPE, CIN, and lifted index from a sounding."><img alt="Retrieve stability indicies from a sounding" src="../../_images/sphx_glr_plot_get_stability_indices_example_thumb.png" />
 <p><a class="reference internal" href="plot_get_stability_indices_example.html#sphx-glr-source-auto-examples-plot-get-stability-indices-example-py"><span class="std std-ref">Retrieve stability indicies from a sounding</span></a></p>
   <div class="sphx-glr-thumbnail-title">Retrieve stability indicies from a sounding</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This example shows how to calculate course and speed over ground of the ship and use it to corr..."><img alt="Correct wind data for ship motion" src="../../_images/sphx_glr_plot_correct_ship_wind_data_thumb.png" />
-<p><a class="reference internal" href="plot_correct_ship_wind_data.html#sphx-glr-source-auto-examples-plot-correct-ship-wind-data-py"><span class="std std-ref">Correct wind data for ship motion</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Correct wind data for ship motion</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to display wind rose and barb timeseries from multiple days worth of ..."><img alt="Windrose and windbarb timeseries plot" src="../../_images/sphx_glr_plot_wind_rose_thumb.png" />
 <p><a class="reference internal" href="plot_wind_rose.html#sphx-glr-source-auto-examples-plot-wind-rose-py"><span class="std std-ref">Windrose and windbarb timeseries plot</span></a></p>
   <div class="sphx-glr-thumbnail-title">Windrose and windbarb timeseries plot</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This example shows how to make a Skew-T plot from a sounding and calculate stability indicies. ..."><img alt="Skew-T plot of a sounding" src="../../_images/sphx_glr_plot_skewt_thumb.png" />
-<p><a class="reference internal" href="plot_skewt.html#sphx-glr-source-auto-examples-plot-skewt-py"><span class="std std-ref">Skew-T plot of a sounding</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Skew-T plot of a sounding</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example shows how to calculate course and speed over ground of the ship and use it to corr..."><img alt="Correct wind data for ship motion" src="../../_images/sphx_glr_plot_correct_ship_wind_data_thumb.png" />
+<p><a class="reference internal" href="plot_correct_ship_wind_data.html#sphx-glr-source-auto-examples-plot-correct-ship-wind-data-py"><span class="std std-ref">Correct wind data for ship motion</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Correct wind data for ship motion</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Simple example for querying the ARM DQR webservice and plotting up the results"><img alt="Query the ARM DQR webservice" src="../../_images/sphx_glr_plot_dqr_qc_thumb.png" />
 <p><a class="reference internal" href="plot_dqr_qc.html#sphx-glr-source-auto-examples-plot-dqr-qc-py"><span class="std std-ref">Query the ARM DQR webservice</span></a></p>
   <div class="sphx-glr-thumbnail-title">Query the ARM DQR webservice</div>
@@ -408,6 +424,9 @@ on GitHub.</p>
 </div><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to prepare and plot data for a contour plot"><img alt="Spatial contour plot" src="../../_images/sphx_glr_plot_contour_thumb.png" />
 <p><a class="reference internal" href="plot_contour.html#sphx-glr-source-auto-examples-plot-contour-py"><span class="std std-ref">Spatial contour plot</span></a></p>
   <div class="sphx-glr-thumbnail-title">Spatial contour plot</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to use some different aspects of ACT&#x27;s plotting tools as well as Xarr..."><img alt="Xarray Plotting Examples" src="../../_images/sphx_glr_plot_examples_thumb.png" />
+<p><a class="reference internal" href="plot_examples.html#sphx-glr-source-auto-examples-plot-examples-py"><span class="std std-ref">Xarray Plotting Examples</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Xarray Plotting Examples</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="In this example, the VISST data are used to plot up cross-sectional slices through the multi-di..."><img alt="Multidimensional cross sections" src="../../_images/sphx_glr_plot_xsection_thumb.png" />
 <p><a class="reference internal" href="plot_xsection.html#sphx-glr-source-auto-examples-plot-xsection-py"><span class="std std-ref">Multidimensional cross sections</span></a></p>
   <div class="sphx-glr-thumbnail-title">Multidimensional cross sections</div>
@@ -426,6 +445,9 @@ on GitHub.</p>
 </div><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to download and plot multiple datasets at a time."><img alt="Plot multiple datasets" src="../../_images/sphx_glr_plot_multiple_dataset_thumb.png" />
 <p><a class="reference internal" href="plot_multiple_dataset.html#sphx-glr-source-auto-examples-plot-multiple-dataset-py"><span class="std std-ref">Plot multiple datasets</span></a></p>
   <div class="sphx-glr-thumbnail-title">Plot multiple datasets</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example shows how to download data from NEON and ARM 2m surface meteorology stations on th..."><img alt="NEON Data" src="../../_images/sphx_glr_plot_neon_thumb.png" />
+<p><a class="reference internal" href="plot_neon.html#sphx-glr-source-auto-examples-plot-neon-py"><span class="std std-ref">NEON Data</span></a></p>
+  <div class="sphx-glr-thumbnail-title">NEON Data</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="This example shows the different ways to pull air quality information from EPA&#x27;s AirNow API for..."><img alt="Airnow Data" src="../../_images/sphx_glr_plot_airnow_thumb.png" />
 <p><a class="reference internal" href="plot_airnow.html#sphx-glr-source-auto-examples-plot-airnow-py"><span class="std std-ref">Airnow Data</span></a></p>
   <div class="sphx-glr-thumbnail-title">Airnow Data</div>
@@ -438,6 +460,9 @@ on GitHub.</p>
 </div><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to calculate a weighted average from the MET TBRG, ORG and PWD.  This..."><img alt="Calculate and plot weighted means" src="../../_images/sphx_glr_plot_weighted_average_thumb.png" />
 <p><a class="reference internal" href="plot_weighted_average.html#sphx-glr-source-auto-examples-plot-weighted-average-py"><span class="std std-ref">Calculate and plot weighted means</span></a></p>
   <div class="sphx-glr-thumbnail-title">Calculate and plot weighted means</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to use the TAR and gunzip extensions for creating or extracting data ..."><img alt="Working with TAR and gunzip files" src="../../_images/sphx_glr_plot_tar_thumb.png" />
+<p><a class="reference internal" href="plot_tar.html#sphx-glr-source-auto-examples-plot-tar-py"><span class="std std-ref">Working with TAR and gunzip files</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Working with TAR and gunzip files</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Simple examples for plotting state variable using flag_values and flag_meanings."><img alt="Plotting state variables" src="../../_images/sphx_glr_plot_state_variable_thumb.png" />
 <p><a class="reference internal" href="plot_state_variable.html#sphx-glr-source-auto-examples-plot-state-variable-py"><span class="std std-ref">Plotting state variables</span></a></p>
   <div class="sphx-glr-thumbnail-title">Plotting state variables</div>
@@ -469,11 +494,11 @@ on GitHub.</p>
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../../API/generated/act.utils.ts_weighted_average.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../../API/generated/act.utils.unpack_tar.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">act.utils.ts_weighted_average</p>
+            <p class="prev-next-title">act.utils.unpack_tar</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="plot_rh_timeseries.html" title="next page">
