@@ -35,6 +35,23 @@ Examples showing different ways to visualize your data.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Plot the ARM AAF flight path using the GeographicPlotDisplay">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/plotting/images/thumb/sphx_glr_plot_aaf_track_thumb.png
+    :alt: Plot ARM AAF Flight Path
+
+  :ref:`sphx_glr_source_auto_examples_plotting_plot_aaf_track.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Plot ARM AAF Flight Path</div>
+    </div>
+
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Simple example for cleaning up a dataset and plotting the data and its QC flags">
 
 .. only:: html
@@ -115,6 +132,23 @@ Examples showing different ways to visualize your data.
 .. raw:: html
 
       <div class="sphx-glr-thumbnail-title">Plot a timeseries of sounding data</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Example of how to read in MET data and plot histograms of wind speed and temperature grouped by...">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/plotting/images/thumb/sphx_glr_plot_days_thumb.png
+    :alt: Calculate and plot wind rose plots separated by day.
+
+  :ref:`sphx_glr_source_auto_examples_plotting_plot_days.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Calculate and plot wind rose plots separated by day.</div>
     </div>
 
 
@@ -263,11 +297,13 @@ Examples showing different ways to visualize your data.
    :hidden:
 
    /source/auto_examples/plotting/plot_rh_timeseries
+   /source/auto_examples/plotting/plot_aaf_track
    /source/auto_examples/plotting/plot_qc
    /source/auto_examples/plotting/plot_multiple_column
    /source/auto_examples/plotting/plot_daytime_averages
    /source/auto_examples/plotting/plot_skewt
    /source/auto_examples/plotting/plot_sonde
+   /source/auto_examples/plotting/plot_days
    /source/auto_examples/plotting/plot_wind_rose
    /source/auto_examples/plotting/plot_contour
    /source/auto_examples/plotting/plot_ceil
