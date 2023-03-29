@@ -23,7 +23,7 @@ Examples showing different ways to read and save data.
 .. only:: html
 
   .. image:: /source/auto_examples/io/images/thumb/sphx_glr_plot_raw_minimpl_thumb.png
-    :alt: Read and plot a PPI from raw mini-MPL data
+    :alt:
 
   :ref:`sphx_glr_source_auto_examples_io_plot_raw_minimpl.py`
 
@@ -40,13 +40,30 @@ Examples showing different ways to read and save data.
 .. only:: html
 
   .. image:: /source/auto_examples/io/images/thumb/sphx_glr_plot_icartt_thumb.png
-    :alt: Plot ICARTT Formatted Files
+    :alt:
 
   :ref:`sphx_glr_source_auto_examples_io_plot_icartt.py`
 
 .. raw:: html
 
       <div class="sphx-glr-thumbnail-title">Plot ICARTT Formatted Files</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Author: Adam Theisen">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/io/images/thumb/sphx_glr_plot_create_arm_ds_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_auto_examples_io_plot_create_arm_ds.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Create a dataset to mimic ARM file formats</div>
     </div>
 
 
@@ -60,4 +77,5 @@ Examples showing different ways to read and save data.
 
    /source/auto_examples/io/plot_raw_minimpl
    /source/auto_examples/io/plot_icartt
+   /source/auto_examples/io/plot_create_arm_ds
 
