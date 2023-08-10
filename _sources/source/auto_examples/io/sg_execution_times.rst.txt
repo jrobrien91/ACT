@@ -6,16 +6,16 @@
 
 Computation times
 =================
-**00:05.517** total execution time for **source_auto_examples_io** files:
+**00:06.115** total execution time for **source_auto_examples_io** files:
 
 +-------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_source_auto_examples_io_plot_create_arm_ds.py` (``plot_create_arm_ds.py``) | 00:02.584 | 0.0 MB |
+| :ref:`sphx_glr_source_auto_examples_io_plot_create_arm_ds.py` (``plot_create_arm_ds.py``) | 00:02.668 | 0.0 MB |
 +-------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_source_auto_examples_io_plot_surfrad.py` (``plot_surfrad.py``)             | 00:01.193 | 0.0 MB |
+| :ref:`sphx_glr_source_auto_examples_io_plot_surfrad.py` (``plot_surfrad.py``)             | 00:01.433 | 0.0 MB |
 +-------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_source_auto_examples_io_plot_icartt.py` (``plot_icartt.py``)               | 00:00.783 | 0.0 MB |
+| :ref:`sphx_glr_source_auto_examples_io_plot_icartt.py` (``plot_icartt.py``)               | 00:00.932 | 0.0 MB |
 +-------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_source_auto_examples_io_plot_raw_minimpl.py` (``plot_raw_minimpl.py``)     | 00:00.631 | 0.0 MB |
+| :ref:`sphx_glr_source_auto_examples_io_plot_raw_minimpl.py` (``plot_raw_minimpl.py``)     | 00:00.715 | 0.0 MB |
 +-------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_source_auto_examples_io_plot_sodar.py` (``plot_sodar.py``)                 | 00:00.325 | 0.0 MB |
+| :ref:`sphx_glr_source_auto_examples_io_plot_sodar.py` (``plot_sodar.py``)                 | 00:00.367 | 0.0 MB |
 +-------------------------------------------------------------------------------------------+-----------+--------+
