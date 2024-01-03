@@ -20,7 +20,7 @@ class DistributionDisplay(Display):
 
     .. code-block:: python
 
-        ds = act.read_netcdf(the_file)
+        ds = act.io.read_arm_netcdf(the_file)
         disp = act.plotting.DistsributionDisplay(ds, subplot_shape=(3,), figsize=(15, 5))
 
     The DistributionDisplay constructor takes in the same keyword arguments as
@@ -89,7 +89,7 @@ class DistributionDisplay(Display):
             fields = [fields]
         return self._ds[dsname][fields].dropna('time')
 
-    def plot_stacked_bar_graph(
+    def plot_stacked_bar(
         self,
         field,
         dsname=None,
@@ -161,12 +161,15 @@ class DistributionDisplay(Display):
 
         if sortby_bins is None and sortby_field is not None:
             # We will defaut the y direction to have the same # of bins as x
-            sortby_bins = np.linspace(ydata.values.min(), ydata.values.max(), len(bins))
+            if isinstance(bins, int):
+                n_bins = bins
+            else:
+                n_bins = len(bins)
+            sortby_bins = np.linspace(ydata.values.min(), ydata.values.max(), n_bins)
 
-        # Get the current plotting axis, add day/night background and plot data
+        # Get the current plotting axis
         if self.fig is None:
             self.fig = plt.figure()
-
         if self.axes is None:
             self.axes = np.array([plt.axes()])
             self.fig.add_axes(self.axes[0])
@@ -176,18 +179,12 @@ class DistributionDisplay(Display):
                 ytitle = ''.join(['(', ydata.attrs['units'], ')'])
             else:
                 ytitle = field
-            if sortby_bins is None:
-                my_hist, x_bins, y_bins = np.histogram2d(
-                    xdata.values.flatten(), ydata.values.flatten(), density=density,
-                    bins=bins,
-                    **hist_kwargs)
-            else:
-                my_hist, x_bins, y_bins = np.histogram2d(
-                    xdata.values.flatten(),
-                    ydata.values.flatten(),
-                    density=density,
-                    bins=[bins, sortby_bins],
-                    **hist_kwargs)
+            my_hist, x_bins, y_bins = np.histogram2d(
+                xdata.values.flatten(),
+                ydata.values.flatten(),
+                density=density,
+                bins=[bins, sortby_bins],
+                **hist_kwargs)
             x_inds = (x_bins[:-1] + x_bins[1:]) / 2.0
             self.axes[subplot_index].bar(
                 x_inds,
@@ -306,10 +303,9 @@ class DistributionDisplay(Display):
                 + 'length is equal to the field length!'
             )
 
-        # Get the current plotting axis, add day/night background and plot data
+        # Get the current plotting axis
         if self.fig is None:
             self.fig = plt.figure()
-
         if self.axes is None:
             self.axes = np.array([plt.axes()])
             self.fig.add_axes(self.axes[0])
@@ -334,7 +330,7 @@ class DistributionDisplay(Display):
 
         return self.axes[subplot_index]
 
-    def plot_stairstep_graph(
+    def plot_stairstep(
         self,
         field,
         dsname=None,
@@ -404,8 +400,12 @@ class DistributionDisplay(Display):
             ydata = self._ds[dsname][sortby_field]
 
         if sortby_bins is None and sortby_field is not None:
+            if isinstance(bins, int):
+                n_bins = bins
+            else:
+                n_bins = len(bins)
             # We will defaut the y direction to have the same # of bins as x
-            sortby_bins = np.linspace(ydata.values.min(), ydata.values.max(), len(bins))
+            sortby_bins = np.linspace(ydata.values.min(), ydata.values.max(), n_bins)
 
         # Get the current plotting axis, add day/night background and plot data
         if self.fig is None:
@@ -420,18 +420,13 @@ class DistributionDisplay(Display):
                 ytitle = ''.join(['(', ydata.attrs['units'], ')'])
             else:
                 ytitle = field
-            if sortby_bins is None:
-                my_hist, x_bins, y_bins = np.histogram2d(
-                    xdata.values.flatten(), ydata.values.flatten(), bins=bins,
-                    density=density, **hist_kwargs)
-            else:
-                my_hist, x_bins, y_bins = np.histogram2d(
-                    xdata.values.flatten(),
-                    ydata.values.flatten(),
-                    density=density,
-                    bins=[bins, sortby_bins],
-                    **hist_kwargs
-                )
+            my_hist, x_bins, y_bins = np.histogram2d(
+                xdata.values.flatten(),
+                ydata.values.flatten(),
+                density=density,
+                bins=[bins, sortby_bins],
+                **hist_kwargs
+            )
             x_inds = (x_bins[:-1] + x_bins[1:]) / 2.0
             self.axes[subplot_index].step(
                 x_inds,
@@ -635,7 +630,7 @@ class DistributionDisplay(Display):
             raise RuntimeError('set_ratio_line requires the plot to be displayed.')
         # Define the xticks of the figure
         xlims = self.axes[subplot_index].get_xticks()
-        ratio = np.linspace(xlims[0], xlims[-1])
+        ratio = np.linspace(xlims, xlims[-1])
         self.axes[subplot_index].plot(ratio, ratio, 'k--')
 
     def plot_scatter(self,
@@ -717,11 +712,7 @@ class DistributionDisplay(Display):
             self.fig.add_axes(self.axes[0])
 
         # Display the scatter plot, pass keyword args for unspecified attributes
-        scc = self.axes[subplot_index].scatter(xdata,
-                                               ydata,
-                                               c=mdata,
-                                               **kwargs
-                                               )
+        scc = self.axes[subplot_index].scatter(xdata, ydata, c=mdata, **kwargs)
 
         # Set Title
         if set_title is None:

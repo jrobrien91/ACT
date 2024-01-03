@@ -43,7 +43,7 @@ class SkewTDisplay(Display):
 
     .. code-block :: python
 
-        sonde_ds = act.io.armfiles.read_netcdf(
+        sonde_ds = act.io.arm.read_arm_netcdf(
            act.tests.sample_files.EXAMPLE_SONDE1)
 
         skewt = act.plotting.SkewTDisplay(sonde_ds)
@@ -56,7 +56,8 @@ class SkewTDisplay(Display):
         # We want to use our routine to handle subplot adding, not the main
         # one
         new_kwargs = kwargs.copy()
-        super().__init__(ds, None, ds_name, subplot_kw=dict(projection='skewx'), **new_kwargs)
+        super().__init__(ds, None, ds_name, subplot_kw=dict(projection='skewx'),
+                         **new_kwargs)
 
         # Make a SkewT object for each subplot
         self.add_subplots(subplot_shape, set_fig=set_fig, subplot=subplot, **kwargs)
@@ -239,8 +240,14 @@ class SkewTDisplay(Display):
         shade_cin=True,
         set_title=None,
         smooth_p=3,
+        plot_dry_adiabats=False,
+        plot_moist_adiabats=False,
+        plot_mixing_lines=False,
         plot_barbs_kwargs=dict(),
         plot_kwargs=dict(),
+        dry_adiabats_kwargs=dict(),
+        moist_adiabats_kwargs=dict(),
+        mixing_lines_kwargs=dict(),
     ):
         """
         This function will plot a Skew-T from a sounding dataset. The wind
@@ -290,6 +297,12 @@ class SkewTDisplay(Display):
         plot_kwargs : dict
             Additional keyword arguments to pass into MetPy's
             SkewT.plot.
+        dry_adiabats_kwargs : dict
+            Additional keyword arguments to pass into MetPy's plot_dry_adiabats function
+        moist_adiabats_kwargs : dict
+            Additional keyword arguments to pass into MetPy's plot_moist_adiabats function
+        mixing_lines_kwargs : dict
+            Additional keyword arguments to pass into MetPy's plot_mixing_lines function
 
         Returns
         -------
@@ -423,6 +436,25 @@ class SkewTDisplay(Display):
         if shade_cin:
             self.SkewT[subplot_index].shade_cin(p, T, prof, linewidth=2)
 
+        # Get plot temperatures from x-axis as t0
+        t0 = self.SkewT[subplot_index].ax.get_xticks() * getattr(units, T_units)
+
+        # Add minimum pressure to pressure levels to plot
+        if np.nanmin(p.magnitude) < np.nanmin(p_levels_to_plot.magnitude):
+            plp = np.insert(p_levels_to_plot.magnitude, 0, np.nanmin(p.magnitude)) * units('hPa')
+        else:
+            plp = p_levels_to_plot
+
+        # New options for plotting dry and moist adiabats as well as the mixing lines
+        if plot_dry_adiabats:
+            self.SkewT[subplot_index].plot_dry_adiabats(pressure=plp, t0=t0, **dry_adiabats_kwargs)
+
+        if plot_moist_adiabats:
+            self.SkewT[subplot_index].plot_moist_adiabats(t0=t0, pressure=plp, **moist_adiabats_kwargs)
+
+        if plot_mixing_lines:
+            self.SkewT[subplot_index].plot_mixing_lines(pressure=plp, **mixing_lines_kwargs)
+
         # Set Title
         if set_title is None:
             if 'time' in self._ds[dsname]:
@@ -431,8 +463,7 @@ class SkewTDisplay(Display):
                 title_time = self._ds[dsname].attrs['_file_dates'][0]
             else:
                 title_time = ''
-            title_list = [dsname, 'on', title_time]
-            set_title = ' '.join(' '.join(x) for x in title_list)
+            set_title = ' '.join([dsname, 'on', title_time[0]])
 
         self.axes[subplot_index].set_title(set_title)
 

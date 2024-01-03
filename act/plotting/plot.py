@@ -71,7 +71,8 @@ class Display:
 
     """
 
-    def __init__(self, ds, subplot_shape=(1,), ds_name=None, subplot_kw=None, **kwargs):
+    def __init__(self, ds, subplot_shape=(1,), ds_name=None, subplot_kw=None,
+                 **kwargs):
         if isinstance(ds, xr.Dataset):
             if 'datastream' in ds.attrs.keys() is not None:
                 self._ds = {ds.attrs['datastream']: ds}
@@ -121,7 +122,8 @@ class Display:
         if subplot_shape is not None:
             self.add_subplots(subplot_shape, subplot_kw=subplot_kw, **kwargs)
 
-    def add_subplots(self, subplot_shape=(1,), subplot_kw=None, **kwargs):
+    def add_subplots(self, subplot_shape=(1,), secondary_y=False, subplot_kw=None,
+                     **kwargs):
         """
         Adds subplots to the Display object. The current
         figure in the object will be deleted and overwritten.
@@ -159,6 +161,7 @@ class Display:
             self.yrng = np.zeros((subplot_shape[0], 2))
         else:
             raise ValueError('subplot_shape must be a 1 or 2 dimensional' + 'tuple list, or array!')
+
         self.fig = fig
         self.axes = ax
 
@@ -186,11 +189,12 @@ class Display:
             raise RuntimeError(
                 'Only single plots can be made as subplots ' + 'of another Display object!'
             )
-
         my_projection = display.axes[0].name
+
         plt.close(display.fig)
         display.fig = self.fig
         self.fig.delaxes(self.axes[subplot_index])
+
         the_shape = self.axes.shape
         if len(the_shape) == 1:
             second_value = 1
@@ -347,6 +351,7 @@ class DisplayGroupby(object):
             raise RuntimeError("The specified string is not a function of "
                                "the Display object.")
         subplot_shape = self.display.axes.shape
+
         i = 0
         wrap_around = False
         old_ds = self.display._ds
@@ -405,11 +410,11 @@ class DisplayGroupby(object):
                 subplot_index = (int(i / subplot_shape[1]), i % subplot_shape[1])
             else:
                 subplot_index = (i % subplot_shape[0],)
+
             try:
                 self.display.axes[subplot_index].get_legend().remove()
             except AttributeError:
                 pass
-
         if self.isTimeSeriesDisplay:
             key_list = list(self.display._ds.keys())
             for k in key_list:

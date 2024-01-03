@@ -39,7 +39,7 @@ class TimeSeriesDisplay(Display):
 
     .. code-block:: python
 
-        ds = act.read_netcdf(the_file)
+        ds = act.io.read_arm_netcdf(the_file)
         disp = act.plotting.TimeSeriesDisplay(ds, subplot_shape=(3,), figsize=(15, 5))
 
     The TimeSeriesDisplay constructor takes in the same keyword arguments as
@@ -196,7 +196,7 @@ class TimeSeriesDisplay(Display):
         for ii in noon:
             ax.axvline(x=ii, linestyle='--', color='y', zorder=1)
 
-    def set_xrng(self, xrng, subplot_index=(0,)):
+    def set_xrng(self, xrng, subplot_index=(0, 0)):
         """
         Sets the x range of the plot.
 
@@ -224,7 +224,6 @@ class TimeSeriesDisplay(Display):
                       'Expanding range by 2 seconds.\n')
                 xrng[0] -= dt.timedelta(seconds=1)
                 xrng[1] += dt.timedelta(seconds=1)
-
         self.axes[subplot_index].set_xlim(xrng)
 
         # Make sure that the xrng value is a numpy array not pandas
@@ -311,7 +310,6 @@ class TimeSeriesDisplay(Display):
         labels=False,
         cbar_label=None,
         cbar_h_adjust=None,
-        secondary_y=False,
         y_axis_flag_meanings=False,
         colorbar_labels=None,
         cb_friendly=False,
@@ -391,8 +389,6 @@ class TimeSeriesDisplay(Display):
         cbar_h_adjust : float
             Option to adjust location of colorbar horizontally. Positive values
             move to right negative values move to left.
-        secondary_y : boolean
-            Option to plot on secondary y axis.
         y_axis_flag_meanings : boolean or int
             When set to True and plotting state variable with flag_values and
             flag_meanings attributes will replace y axis numerical values
@@ -486,7 +482,7 @@ class TimeSeriesDisplay(Display):
         else:
             ydata = None
 
-        # Get the current plotting axis, add day/night background and plot data
+        # Get the current plotting axis
         if self.fig is None:
             self.fig = plt.figure()
 
@@ -494,11 +490,7 @@ class TimeSeriesDisplay(Display):
             self.axes = np.array([plt.axes()])
             self.fig.add_axes(self.axes[0])
 
-        # Set up secondary y axis if requested
-        if secondary_y is False:
-            ax = self.axes[subplot_index]
-        else:
-            ax = self.axes[subplot_index].twinx()
+        ax = self.axes[subplot_index]
 
         if colorbar_labels is not None:
             flag_values = list(colorbar_labels.keys())
@@ -649,8 +641,7 @@ class TimeSeriesDisplay(Display):
                 else:
                     set_title = ' '.join([dsname, field])
 
-        if secondary_y is False:
-            ax.set_title(set_title)
+        ax.set_title(set_title)
 
         # Set YTitle
         if not y_axis_flag_meanings:
@@ -683,6 +674,12 @@ class TimeSeriesDisplay(Display):
                 our_data = ydata
 
             finite = np.isfinite(our_data)
+            # If finite is returned as DataArray or Dask array extract values.
+            try:
+                finite = finite.values
+            except AttributeError:
+                pass
+
             if finite.any():
                 our_data = our_data[finite]
                 if invert_y_axis is False:
@@ -709,12 +706,7 @@ class TimeSeriesDisplay(Display):
                 if yrng[1] > current_yrng[1]:
                     yrng[1] = current_yrng[1]
 
-            # Set y range the normal way if not secondary y
-            # If secondary, just use set_ylim
-            if secondary_y is False:
-                self.set_yrng(yrng, subplot_index)
-            else:
-                ax.set_ylim(yrng)
+            self.set_yrng(yrng, subplot_index)
 
         # Set X Format
         if len(subplot_index) == 1:
@@ -756,7 +748,6 @@ class TimeSeriesDisplay(Display):
                 self.add_colorbar(
                     mesh, title=cbar_title, subplot_index=subplot_index, pad=cbar_h_adjust
                 )
-
         return ax
 
     def plot_barbs_from_spd_dir(
@@ -800,7 +791,7 @@ class TimeSeriesDisplay(Display):
         --------
         ..code-block :: python
 
-            sonde_ds = act.io.armfiles.read_netcdf(
+            sonde_ds = act.io.arm.read_arm_netcdf(
                 act.tests.sample_files.EXAMPLE_TWP_SONDE_WILDCARD)
             BarbDisplay = act.plotting.TimeSeriesDisplay(
                 {'sonde_darwin': sonde_ds}, figsize=(10,5))
@@ -963,16 +954,19 @@ class TimeSeriesDisplay(Display):
         if self.fig is None:
             self.fig = plt.figure()
 
+        # Set up or get current axes
         if self.axes is None:
             self.axes = np.array([plt.axes()])
             self.fig.add_axes(self.axes[0])
+
+        ax = self.axes[subplot_index]
 
         if ydata is None:
             ydata = np.ones(xdata.shape)
             if 'cmap' in kwargs.keys():
                 map_color = np.sqrt(np.power(u[::barb_step_x], 2) + np.power(v[::barb_step_x], 2))
                 map_color[np.isnan(map_color)] = 0
-                ax = self.axes[subplot_index].barbs(
+                barbs = ax.barbs(
                     xdata[::barb_step_x],
                     ydata[::barb_step_x],
                     u[::barb_step_x],
@@ -981,20 +975,20 @@ class TimeSeriesDisplay(Display):
                     **kwargs,
                 )
                 plt.colorbar(
-                    ax,
-                    ax=[self.axes[subplot_index]],
+                    barbs,
+                    ax=[ax],
                     label='Wind Speed (' + self._ds[dsname][u_field].attrs['units'] + ')',
                 )
 
             else:
-                self.axes[subplot_index].barbs(
+                ax.barbs(
                     xdata[::barb_step_x],
                     ydata[::barb_step_x],
                     u[::barb_step_x],
                     v[::barb_step_x],
                     **kwargs,
                 )
-            self.axes[subplot_index].set_yticks([])
+            ax.set_yticks([])
 
         else:
             if 'cmap' in kwargs.keys():
@@ -1003,7 +997,7 @@ class TimeSeriesDisplay(Display):
                     + np.power(v[::barb_step_x, ::barb_step_y], 2)
                 )
                 map_color[np.isnan(map_color)] = 0
-                ax = self.axes[subplot_index].barbs(
+                barbs = ax.barbs(
                     xdata[::barb_step_x, ::barb_step_y],
                     ydata[::barb_step_x, ::barb_step_y],
                     u[::barb_step_x, ::barb_step_y],
@@ -1012,12 +1006,12 @@ class TimeSeriesDisplay(Display):
                     **kwargs,
                 )
                 plt.colorbar(
-                    ax,
-                    ax=[self.axes[subplot_index]],
+                    barbs,
+                    ax=[ax],
                     label='Wind Speed (' + self._ds[dsname][u_field].attrs['units'] + ')',
                 )
             else:
-                ax = self.axes[subplot_index].barbs(
+                barbs = ax.barbs(
                     xdata[::barb_step_x, ::barb_step_y],
                     ydata[::barb_step_x, ::barb_step_y],
                     u[::barb_step_x, ::barb_step_y],
@@ -1038,11 +1032,11 @@ class TimeSeriesDisplay(Display):
                 ]
             )
 
-        self.axes[subplot_index].set_title(set_title)
+        ax.set_title(set_title)
 
         # Set YTitle
         if 'ytitle' in locals():
-            self.axes[subplot_index].set_ylabel(ytitle)
+            ax.set_ylabel(ytitle)
 
         # Set X Limit - We want the same time axes for all subplots
         time_rng = [xdata.min(), xdata.max()]
@@ -1079,10 +1073,12 @@ class TimeSeriesDisplay(Display):
 
         # Put on an xlabel, but only if we are making the bottom-most plot
         if subplot_index[0] == self.axes.shape[0] - 1:
-            self.axes[subplot_index].set_xlabel('Time [UTC]')
+            ax.set_xlabel('Time [UTC]')
 
         myFmt = common.get_date_format(days)
-        self.axes[subplot_index].xaxis.set_major_formatter(myFmt)
+        ax.xaxis.set_major_formatter(myFmt)
+        self.axes[subplot_index] = ax
+
         return self.axes[subplot_index]
 
     def plot_time_height_xsection_from_1d_data(
@@ -1180,11 +1176,14 @@ class TimeSeriesDisplay(Display):
         if self.fig is None:
             self.fig = plt.figure()
 
+        # Set up or get current axes
         if self.axes is None:
             self.axes = np.array([plt.axes()])
             self.fig.add_axes(self.axes[0])
 
-        mesh = self.axes[subplot_index].pcolormesh(
+        ax = self.axes[subplot_index]
+
+        mesh = ax.pcolormesh(
             x_times, y_levels, np.transpose(data), shading=set_shading, **kwargs
         )
 
@@ -1201,11 +1200,11 @@ class TimeSeriesDisplay(Display):
                 ]
             )
 
-        self.axes[subplot_index].set_title(set_title)
+        ax.set_title(set_title)
 
         # Set YTitle
         if 'ytitle' in locals():
-            self.axes[subplot_index].set_ylabel(ytitle)
+            ax.set_ylabel(ytitle)
 
         # Set X Limit - We want the same time axes for all subplots
         time_rng = [x_times[0], x_times[-1]]
@@ -1242,7 +1241,7 @@ class TimeSeriesDisplay(Display):
 
         # Put on an xlabel, but only if we are making the bottom-most plot
         if subplot_index[0] == self.axes.shape[0] - 1:
-            self.axes[subplot_index].set_xlabel('Time [UTC]')
+            ax.set_xlabel('Time [UTC]')
 
         if ydata is not None:
             if cbar_label is None:
@@ -1250,18 +1249,23 @@ class TimeSeriesDisplay(Display):
             else:
                 self.add_colorbar(mesh, title=cbar_label, subplot_index=subplot_index)
         myFmt = common.get_date_format(days)
-        self.axes[subplot_index].xaxis.set_major_formatter(myFmt)
+        ax.xaxis.set_major_formatter(myFmt)
 
         return self.axes[subplot_index]
 
     def time_height_scatter(
         self,
         data_field=None,
+        alt_field='alt',
         dsname=None,
         cmap='rainbow',
         alt_label=None,
-        alt_field='alt',
         cb_label=None,
+        subplot_index=(0,),
+        plot_alt_field=False,
+        cb_friendly=False,
+        day_night_background=False,
+        set_title=None,
         **kwargs,
     ):
         """
@@ -1274,8 +1278,8 @@ class TimeSeriesDisplay(Display):
         ----------
         data_field : str
             Name of data field in the dataset to plot on second y-axis.
-        height_field : str
-            Name of height field in the dataset to plot on first y-axis.
+        alt_field : str
+            Variable to use for y-axis.
         dsname : str or None
             The name of the datastream to plot.
         cmap : str
@@ -1283,11 +1287,19 @@ class TimeSeriesDisplay(Display):
         alt_label : str
             Altitude first y-axis label to use. If None, will try to use
             long_name and units.
-        alt_field : str
-            Label for field in the dataset to plot on first y-axis.
         cb_label : str
             Colorbar label to use. If not set will try to use
             long_name and units.
+        subplot_index : 1 or 2D tuple, list, or array
+            The index of the subplot to set the x range of.
+        plot_alt_field : boolean
+            Set to true to plot the altitude field on the secondary y-axis
+        cb_friendly : boolean
+            If set to True will use the Homeyer colormap
+        day_night_background : boolean
+            If set to True will plot the day_night_background
+        set_title : str
+            Title to set on the plot
         **kwargs : keyword arguments
             Any other keyword arguments that will be passed
             into TimeSeriesDisplay.plot module when the figure
@@ -1302,6 +1314,20 @@ class TimeSeriesDisplay(Display):
             )
         elif dsname is None:
             dsname = list(self._ds.keys())[0]
+
+        # Set up or get current plot figure
+        if self.fig is None:
+            self.fig = plt.figure()
+
+        # Set up or get current axes
+        if self.axes is None:
+            self.axes = np.array([plt.axes()])
+            self.fig.add_axes(self.axes[0])
+
+        if cb_friendly:
+            cmap = 'HomeyerRainbow'
+
+        ax = self.axes[subplot_index]
 
         # Get data and dimensions
         data = self._ds[dsname][data_field]
@@ -1323,26 +1349,70 @@ class TimeSeriesDisplay(Display):
             except KeyError:
                 cb_label = data_field
 
-        colorbar_map = mpl.colormaps.get_cmap(cmap)
-        self.fig.subplots_adjust(left=0.1, right=0.86, bottom=0.16, top=0.91)
-        ax1 = self.plot(alt_field, color='black', **kwargs)
-        ax1.set_ylabel(alt_label)
-        ax2 = ax1.twinx()
-        sc = ax2.scatter(xdata.values, data.values, c=data.values, marker='.', cmap=colorbar_map)
-        cbaxes = self.fig.add_axes(
-            [
-                self.fig.subplotpars.right + 0.02,
-                self.fig.subplotpars.bottom,
-                0.02,
-                self.fig.subplotpars.top - self.fig.subplotpars.bottom,
-            ]
-        )
-        cbar = plt.colorbar(sc, cax=cbaxes)
-        ax2.set_ylim(cbar.mappable.get_clim())
-        cbar.ax.set_ylabel(cb_label)
-        ax2.set_yticklabels([])
+        if 'units' in data.attrs:
+            ytitle = ''.join(['(', data.attrs['units'], ')'])
+        else:
+            ytitle = data_field
 
-        return self.axes[0]
+        # Set Title
+        if set_title is None:
+            if isinstance(self._ds[dsname].time.values[0], np.datetime64):
+                set_title = ' '.join(
+                    [
+                        dsname,
+                        data_field,
+                        'on',
+                        dt_utils.numpy_to_arm_date(self._ds[dsname].time.values[0]),
+                    ]
+                )
+            else:
+                date_result = search(
+                    r'\d{4}-\d{1,2}-\d{1,2}', self._ds[dsname].time.attrs['units']
+                )
+                if date_result is not None:
+                    set_title = ' '.join([dsname, data_field, 'on', date_result.group(0)])
+                else:
+                    set_title = ' '.join([dsname, data_field])
+
+        # Plot scatter data
+        sc = ax.scatter(xdata.values, data.values, c=data.values, cmap=cmap, **kwargs)
+
+        ax.set_title(set_title)
+        if plot_alt_field:
+            self.fig.subplots_adjust(left=0.1, right=0.8, bottom=0.15, top=0.925)
+            pad = 0.02 + (0.02 * len(str(int(np.nanmax(altitude.values)))))
+            cbar = self.fig.colorbar(sc, pad=pad, cmap=cmap)
+
+            ax2 = ax.twinx()
+            ax2.set_ylabel(alt_label)
+            ax2.scatter(xdata.values, altitude.values, color='black')
+        else:
+            cbar = self.fig.colorbar(sc, cmap=cmap)
+
+        if day_night_background is True:
+            self.day_night_background(subplot_index=subplot_index, dsname=dsname)
+        cbar.ax.set_ylabel(cb_label)
+
+        # Set X Limit - We want the same time axes for all subplots
+        self.time_rng = [xdata.min().values, xdata.max().values]
+        self.set_xrng(self.time_rng, subplot_index)
+
+        # Set X Format
+        if len(subplot_index) == 1:
+            days = self.xrng[subplot_index, 1] - self.xrng[subplot_index, 0]
+        else:
+            days = (
+                self.xrng[subplot_index[0], subplot_index[1], 1]
+                - self.xrng[subplot_index[0], subplot_index[1], 0]
+            )
+        myFmt = common.get_date_format(days)
+        ax.xaxis.set_major_formatter(myFmt)
+        ax.set_xlabel('Time (UTC)')
+        ax.set_ylabel(ytitle)
+
+        self.axes[subplot_index] = ax
+
+        return self.axes[subplot_index]
 
     def qc_flag_block_plot(
         self,
@@ -1402,8 +1472,11 @@ class TimeSeriesDisplay(Display):
         if cb_friendly:
             color_lookup['Bad'] = (0.9285714285714286, 0.7130901016453677, 0.7130901016453677)
             color_lookup['Incorrect'] = (0.9285714285714286, 0.7130901016453677, 0.7130901016453677)
-            color_lookup['Not Failing'] = (0.0, 0.4240129715562796, 0.4240129715562796),
-            color_lookup['Acceptable'] = (0.0, 0.4240129715562796, 0.4240129715562796),
+            color_lookup['Not Failing'] = (0.0, 0.4240129715562796, 0.4240129715562796)
+            color_lookup['Acceptable'] = (0.0, 0.4240129715562796, 0.4240129715562796)
+            color_lookup['Indeterminate'] = (1.0, 0.6470588235294118, 0.0)
+            color_lookup['Suspect'] = (1.0, 0.6470588235294118, 0.0)
+            color_lookup['Missing'] = (0.6627450980392157, 0.6627450980392157, 0.6627450980392157)
 
         if assessment_color is not None:
             for asses, color in assessment_color.items():
@@ -1521,6 +1594,7 @@ class TimeSeriesDisplay(Display):
             yvalues = self._ds[dsname][dims[1]].values
 
             cMap = mplcolors.ListedColormap(plot_colors)
+            print(plot_colors)
             mesh = ax.pcolormesh(
                 xvalues,
                 yvalues,
@@ -1658,7 +1732,6 @@ class TimeSeriesDisplay(Display):
         dsname=None,
         subplot_index=(0,),
         set_title=None,
-        secondary_y=False,
         **kwargs,
     ):
         """
@@ -1677,8 +1750,6 @@ class TimeSeriesDisplay(Display):
             The index of the subplot to set the x range of.
         set_title : str
             The title for the plot.
-        secondary_y : boolean
-            Option to indicate if the data should be plotted on second y-axis.
         **kwargs : keyword arguments
             The keyword arguments for :func:`plt.plot` (1D timeseries) or
             :func:`plt.pcolormesh` (2D timeseries).
@@ -1717,10 +1788,7 @@ class TimeSeriesDisplay(Display):
             self.fig.add_axes(self.axes[0])
 
         # Set ax to appropriate axis
-        if secondary_y is False:
-            ax = self.axes[subplot_index]
-        else:
-            ax = self.axes[subplot_index].twinx()
+        ax = self.axes[subplot_index]
 
         ax.fill_between(xdata.values, data, **kwargs)
 
@@ -1742,7 +1810,7 @@ class TimeSeriesDisplay(Display):
 
         # Put on an xlabel, but only if we are making the bottom-most plot
         if subplot_index[0] == self.axes.shape[0] - 1:
-            self.axes[subplot_index].set_xlabel('Time [UTC]')
+            ax.set_xlabel('Time [UTC]')
 
         # Set YTitle
         ax.set_ylabel(ytitle)
@@ -1757,7 +1825,6 @@ class TimeSeriesDisplay(Display):
                     dt_utils.numpy_to_arm_date(self._ds[dsname].time.values[0]),
                 ]
             )
-        if secondary_y is False:
-            ax.set_title(set_title)
-
+        ax.set_title(set_title)
+        self.axes[subplot_index] = ax
         return self.axes[subplot_index]

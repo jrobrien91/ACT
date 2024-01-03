@@ -35,18 +35,20 @@ The Atmospheric data Community Toolkit (ACT) is an open source Python toolkit fo
 
 Please report any issues or feature requests by sumitting an `Issue <https://github.com/ARM-DOE/ACT/issues>`_.  Additionally, our `discussions boards <https://github.com/ARM-DOE/ACT/discussions>`_ are open for ideas, general discussions or questions, and show and tell!
 
-Announcements
-~~~~~~~~~~~~~
+Version 2.0
+~~~~~~~~~~~
 
-Following GitHub standards for a more open community and inclusiveness, ACT main branch will be renamed from master to main.
+ACT will soon have a version 2.0 release. This release will contain many function
+naming changes such as IO and Discovery module function naming changes. To
+prepare for this release, a `v2.0 <https://arm-doe.github.io/ACT/userguide/GUIDE_V2.html>`_
+has been provided that explains the changes and how to work with the new syntax.
 
-https://github.com/github/renaming
-https://www.git-tower.com/learn/git/faq/git-rename-master-to-main
+To test out the release candidate 2.0.0-rc.0 of ACT, use::
 
-For those using ACT with anaconda and pip, there will be no changes. If you are using a fork of ACT with GitHub under branch settings on GitHub you can rename the branch to main.
+    pip install git+https://github.com/ARM-DOE/ACT.git@v2.0.0-rc.0
 
-commands to switch naming locally can be found here:
-https://www.git-tower.com/learn/git/faq/git-rename-master-to-main
+Please report any bugs of the release candidate to the Issue Tracker mentioned in
+the Important Links section below.
 
 Important Links
 ~~~~~~~~~~~~~~~
@@ -88,6 +90,7 @@ Optional Dependencies
 * `scikit-posthocs <https://scikit-posthocs.readthedocs.io/en/latest/>`_ Using interquartile range or generalized Extreme Studentized Deviate quality control tests
 * `icartt <https://mbees.med.uni-augsburg.de/docs/icartt/2.0.0/>`_ icartt is an ICARTT file format reader and writer for Python
 * `PySP2 <https://arm-doe.github.io/PySP2/>`_ PySP2 is a python package for reading and processing Single Particle Soot Photometer (SP2) datasets.
+* `MoviePy <https://zulko.github.io/moviepy/>`_ MoviePy is a python package for creating movies from images
 
 Installation
 ~~~~~~~~~~~~
@@ -110,7 +113,7 @@ environment based on the `environment.yml <https://github.com/ARM-DOE/ACT/blob/m
 
 Or for a basic environment and downloading optional dependencies as needed::
 
-    conda create -n act_env -c conda-forge python=3.11 act-atmos
+    conda create -n act_env -c conda-forge python=3.12 act-atmos
 
 Basic command in a terminal or command prompt to install the latest version of
 ACT::
