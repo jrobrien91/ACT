@@ -26,12 +26,12 @@ which includes a Skew-T plot, hodograph, and stability indicies.
 
 Author: Adam Theisen
 
-.. GENERATED FROM PYTHON SOURCE LINES 11-29
+.. GENERATED FROM PYTHON SOURCE LINES 11-32
 
 
 
 .. image-sg:: /source/auto_examples/plotting/images/sphx_glr_plot_enhanced_skewt_001.png
-   :alt: s g p s o n d e w n p n C 1 . b 1 o n 20190101
+   :alt: sgpsondewnpnC1.b1 on 20190101
    :srcset: /source/auto_examples/plotting/images/sphx_glr_plot_enhanced_skewt_001.png
    :class: sphx-glr-single-img
 
@@ -40,8 +40,6 @@ Author: Adam Theisen
 
  .. code-block:: none
 
-    /home/runner/work/ACT/ACT/examples/plotting/plot_enhanced_skewt.py:21: DeprecationWarning: act.io.armfiles.read_netcdf will be replaced in version 2.0.0 by act.io.arm.read_arm_netcdf()
-      ds = act.io.armfiles.read_netcdf(file)
     /home/runner/work/ACT/ACT/act/retrievals/sonde.py:183: UserWarning: Interpolation point out of data bounds encountered
       lfc = mpcalc.lfc(p_sorted[0], t_sorted[0], td_sorted[0])
 
@@ -52,19 +50,22 @@ Author: Adam Theisen
 
 |
 
-.. code-block:: default
+.. code-block:: Python
 
 
     import glob
+
+    from arm_test_data import DATASETS
+    from matplotlib import pyplot as plt
     import metpy
     import numpy as np
     import xarray as xr
-    from matplotlib import pyplot as plt
+
     import act
 
     # Read data
-    file = sorted(glob.glob(act.tests.sample_files.EXAMPLE_SONDE1))
-    ds = act.io.armfiles.read_netcdf(file)
+    filename_sonde = DATASETS.fetch('sgpsondewnpnC1.b1.20190101.053200.cdf')
+    ds = act.io.arm.read_arm_netcdf(filename_sonde)
 
     # Plot enhanced Skew-T plot
     display = act.plotting.SkewTDisplay(ds)
@@ -76,7 +77,7 @@ Author: Adam Theisen
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.594 seconds)
+   **Total running time of the script:** (0 minutes 0.962 seconds)
 
 
 .. _sphx_glr_download_source_auto_examples_plotting_plot_enhanced_skewt.py:
@@ -85,16 +86,13 @@ Author: Adam Theisen
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: plot_enhanced_skewt.ipynb <plot_enhanced_skewt.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_enhanced_skewt.py <plot_enhanced_skewt.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_enhanced_skewt.ipynb <plot_enhanced_skewt.ipynb>`
 
 
 .. only:: html

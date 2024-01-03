@@ -28,7 +28,7 @@ assign_to_figure_axis.
 
 Author: Adam Theisen
 
-.. GENERATED FROM PYTHON SOURCE LINES 13-36
+.. GENERATED FROM PYTHON SOURCE LINES 13-39
 
 
 
@@ -38,29 +38,21 @@ Author: Adam Theisen
    :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- .. code-block:: none
-
-    /home/runner/work/ACT/ACT/examples/plotting/plot_size_distribution.py:19: DeprecationWarning: act.io.armfiles.read_netcdf will be replaced in version 2.0.0 by act.io.arm.read_arm_netcdf()
-      ds = act.io.armfiles.read_netcdf(act.tests.EXAMPLE_CCN)
 
 
 
+.. code-block:: Python
 
 
-
-|
-
-.. code-block:: default
-
-
-    import act
+    from arm_test_data import DATASETS
     import matplotlib.pyplot as plt
     import numpy as np
 
+    import act
+
     # Read CCN data in from the test data area
-    ds = act.io.armfiles.read_netcdf(act.tests.EXAMPLE_CCN)
+    filename_ccn = DATASETS.fetch('sgpaosccn2colaE13.b1.20170903.000000.nc')
+    ds = act.io.arm.read_arm_netcdf(filename_ccn)
 
     # Create a DistributionDisplay object
     display = act.plotting.DistributionDisplay(ds, subplot_shape=(2,), figsize=(12, 10))
@@ -90,16 +82,13 @@ Author: Adam Theisen
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: plot_size_distribution.ipynb <plot_size_distribution.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_size_distribution.py <plot_size_distribution.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_size_distribution.ipynb <plot_size_distribution.ipynb>`
 
 
 .. only:: html

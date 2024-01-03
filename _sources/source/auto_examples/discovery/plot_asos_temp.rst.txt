@@ -24,7 +24,7 @@ Query and plot ASOS data
 This example shows how to plot timeseries of ASOS data from
 Chicago O'Hare airport.
 
-.. GENERATED FROM PYTHON SOURCE LINES 9-24
+.. GENERATED FROM PYTHON SOURCE LINES 9-22
 
 
 
@@ -38,10 +38,8 @@ Chicago O'Hare airport.
 
  .. code-block:: none
 
-    /home/runner/work/ACT/ACT/examples/discovery/plot_asos_temp.py:17: DeprecationWarning: API will be changing from act.discovery.get_asos.get_asos to act.discovery.asos.get_asos_data
-      my_asoses = act.discovery.get_asos(time_window, station='ORD')
     Downloading: ORD
-    /home/runner/work/ACT/ACT/act/plotting/plot.py:81: UserWarning: Could not discern datastreamname and dict or tuple were not provided. Using defaultname of act_datastream!
+    /home/runner/work/ACT/ACT/act/plotting/plot.py:82: UserWarning: Could not discern datastreamname and dict or tuple were not provided. Using defaultname of act_datastream!
       warnings.warn(
 
 
@@ -51,17 +49,15 @@ Chicago O'Hare airport.
 
 |
 
-.. code-block:: default
+.. code-block:: Python
 
     from datetime import datetime
-
     import matplotlib.pyplot as plt
-
     import act
 
     time_window = [datetime(2020, 2, 4, 2, 0), datetime(2020, 2, 10, 10, 0)]
     station = 'KORD'
-    my_asoses = act.discovery.get_asos(time_window, station='ORD')
+    my_asoses = act.discovery.get_asos_data(time_window, station='ORD')
 
     display = act.plotting.TimeSeriesDisplay(my_asoses['ORD'], subplot_shape=(2,), figsize=(15, 10))
     display.plot('temp', subplot_index=(0,))
@@ -72,7 +68,7 @@ Chicago O'Hare airport.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 50.156 seconds)
+   **Total running time of the script:** (0 minutes 49.622 seconds)
 
 
 .. _sphx_glr_download_source_auto_examples_discovery_plot_asos_temp.py:
@@ -81,16 +77,13 @@ Chicago O'Hare airport.
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: plot_asos_temp.ipynb <plot_asos_temp.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_asos_temp.py <plot_asos_temp.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_asos_temp.ipynb <plot_asos_temp.ipynb>`
 
 
 .. only:: html

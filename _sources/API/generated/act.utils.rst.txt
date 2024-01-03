@@ -15,6 +15,8 @@
     
     ChangeUnits
     
+    DatastreamParserARM
+    
 
 
 
@@ -31,6 +33,8 @@
     add_solar_variable
     
     adjust_timestamp
+    
+    arm_site_location_search
     
     assign_coordinates
     
@@ -57,6 +61,8 @@
     destination_azimuth_distance
     
     determine_time_delta
+    
+    generate_movie
     
     get_missing_value
     

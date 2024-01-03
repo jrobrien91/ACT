@@ -32,6 +32,10 @@
     
     proc_sigma_mplv5_read
     
+    read_arm_mmcr
+    
+    read_arm_netcdf
+    
     read_csv
     
     read_gml
@@ -52,15 +56,13 @@
     
     read_mfas_sodar
     
-    read_mmcr
-    
     read_neon_csv
-    
-    read_netcdf
     
     read_psl_parsivel
     
     read_psl_radar_fmcw_moment
+    
+    read_psl_surface_met
     
     read_psl_wind_profiler
     

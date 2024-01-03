@@ -24,7 +24,7 @@ Retrieve stability indicies from a sounding
 This example shows how to retrieve CAPE, CIN, and lifted index
 from a sounding.
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-39
+.. GENERATED FROM PYTHON SOURCE LINES 8-42
 
 
 
@@ -49,10 +49,12 @@ from a sounding.
 
 |
 
-.. code-block:: default
+.. code-block:: Python
 
 
     import warnings
+
+    from arm_test_data import DATASETS
 
     import act
 
@@ -65,7 +67,8 @@ from a sounding.
         print()
 
 
-    sonde_ds = act.io.armfiles.read_netcdf(act.tests.sample_files.EXAMPLE_SONDE1)
+    filename_sonde = DATASETS.fetch('sgpsondewnpnC1.b1.20190101.053200.cdf')
+    sonde_ds = act.io.arm.read_arm_netcdf(filename_sonde)
 
     sonde_ds = act.retrievals.calculate_stability_indicies(
         sonde_ds, temp_name='tdry', td_name='dp', p_name='pres'
@@ -95,16 +98,13 @@ from a sounding.
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: plot_get_stability_indices_example.ipynb <plot_get_stability_indices_example.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_get_stability_indices_example.py <plot_get_stability_indices_example.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_get_stability_indices_example.ipynb <plot_get_stability_indices_example.ipynb>`
 
 
 .. only:: html
