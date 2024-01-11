@@ -11,6 +11,8 @@ import numpy as np
 import xarray as xr
 import datetime
 
+from ..utils.datetime_utils import adjust_timestamp
+
 try:
     import icartt
     _ICARTT_AVAILABLE = True
@@ -179,7 +181,8 @@ def write_icartt(ds,
                  prop_keywords=None,
                  special=None,
                  normal=None,
-                 normal_keywords=None):
+                 std_keywords=None,
+                 path=None):
     """
     Returns ICARTT formatted file with stored data and metadata from a 
     single datastream. Has some procedures to allow for user-defined changes to
@@ -210,7 +213,7 @@ def write_icartt(ds,
         User entered normal comments, where each indice within the entered list
         will be it's own line.
         These are separate comment lines from the required keywords.
-    normal_keywords : dict (or None)
+    std_keywords : dict (or None)
         User-defined dictionary of ICARTT standard keywords to include within 
         the ICARTT standard normal comment lines. If set to None, information
         will be taken from ACT Xarray DataSet. 
@@ -219,11 +222,15 @@ def write_icartt(ds,
             INSTRUMENT_INFO, DATA_INFO, UNCERTAINTY, ULOD_FLAG, ULOD_VALUE,
             LLOD_FLAG, LLOD_VALUE, DM_CONTACT_INFO, PROJECT_INFO,
             STIPULATIONS_ON_USE, OTHER_COMMENTS, REVISION
+    path : str (or None)
+        User-defined path to write data to. Output filename taken from input
+        dataset.
 
     Returns
     -------
     ict : icartt.Dataset
     """
+
     if not _ICARTT_AVAILABLE:
         raise ImportError(
             "ICARTT is required to use to write ICARTT files but is not installed")
@@ -283,18 +290,29 @@ def write_icartt(ds,
             if key == "DATE_OF_REVISION":
                 ict.dateOfRevision = pro_keywords[key]
     
-    # never seen this set to anything but zero    
-    ict.dataIntervalCode = [0]
+    # Data Interval Code dictates the temporal frequency of the file
+    # (or time spacing between consecutive data records).
+    # 1 Hz Data - Data Interval == 1
+    # <1Hz Data - Data Interval == 0
+    # 10 HZ Data - Data Interval == 0.1
+    dataInterval = (ds.time.data[1] - ds.time.data[0]) / np.timedelta64(1, 's')
+    print('dataInterval', dataInterval)
+    if dataInterval > 1:
+        ict.dataIntervalCode = [0]
+    elif dataInterval < 1:
+        ict.dataIntervalCode = [0.1]
+    else:
+        ict.dataIntervalCode = [1]
     
     # Define the independent variable (has to be time)
     ict.independentVariable = icartt.Variable(
         "Time",
-        "Time offset from midnight",
+        "Seconds UTC from the Start of the Date",
         "Time",
         "Time",
         vartype=icartt.VariableType.IndependentVariable,
         scale=1.0,
-        miss=-9999999,
+        miss=-9999,
     )
 
     # Define the dependent variables
@@ -306,22 +324,24 @@ def write_icartt(ds,
                     var,
                     ds[var].units,
                     ds[var].standard_name,
-                    ds[var].long_name
+                    ds[var].long_name,
+                    scale=1,
+                    miss=-9999
                 )
             else:
                 ict.dependentVariables[var] = icartt.Variable(
                     var,
                     ds[var].units,
                     ds[var].long_name,
-                    ds[var].long_name
+                    ds[var].long_name,
+                    scale=1,
+                    miss=-9999
                 )
 
     # Normal and Special Comments
     if special:
         for note in special:
             ict.specialComments.append(special[note])
-    else:
-        ict.specialComments.append("")
 
     if normal:
         for note in normal:
@@ -364,14 +384,32 @@ def write_icartt(ds,
         "R0: Initial ICARTT Created File."
     )
     # Check for user defined entries to change defaults.
-    if normal_keywords:
-        for key in normal_keywords:
+    if std_keywords:
+        for key in std_keywords:
                 ict.normalComments.keywords[key].append(
                     normal_keywords[key]
                 )
             
     # Apparently this is needed
     ict.endDefineMode()
+
+    # ICARTT v2.0 requires explicit information to define the time stamp 
+    # and use 'Time_Start', 'Time_Stop', 'Time_Mid' shortnames
+    # to describe that timestamp. 
+    
+    # ARM Standards allow for various methods to define the timestamp, however
+    # time bounds must be used to define that period. To simplify, if time bounds
+    # are present, convert time stop. Otherwise, assumption is times are stamped
+    # after data are collected. 
+    
+    # Convert times within ACT Object using `adjust_timestamp`
+    if "time_bounds" in list(ds.keys()):
+        ds = adjust_timestamp(ds, time_bounds='time_bounds', align='right')
+
+    # Calculate the Seconds in UTC From the Start Date
+    sfm = (ds.time.dt.strftime("%s").astype("int") - 
+           ds.time.dt.floor("d").dt.strftime("%s").astype('int')
+    )
 
     # Add the data, first remove unsupported qc variables and time bounds
     qc_list = ["base_time", "time_offset", "time_bounds"]
@@ -380,15 +418,39 @@ def write_icartt(ds,
             qc_list.append(var)
     # Remove the unsupported variables before conversion
     ds = ds.drop_vars(qc_list)
-    # Data are needed in csv format for writing, convert to Pandas Dataframe
-    # then convert to CSV for output
+    # Assign in the seconds in UTC from midnight to the time dimension
+    # ICARTT v2.0 requires independent variable shortnames to one of the following
+    # 'Time_Start', 'Time_Stop', 'Time_Mid'
+    ds = ds.rename({'time' : 'Time'})
+    ds["Time"] = sfm.data
+    # remove the old time
+    ##ds = ds.drop_vars('time')
+    ##ds = ds.drop_dims('time')
+    ##print(ds['Time'])
+    # Data are needed in a structured numpy array for output
+    # Convert to Pandas Dataframe then to  Structured / Record Array
     df = ds.to_dataframe()
-    csv = df.to_csv()
+    csv = df.to_records()
+    
+    # add the structured numpy array to the ICARTT Dataset
+    ict.data.add(csv)
 
-    # iterate over the csv file and add to the ICARTT Dataset
-    for line in csv.split('\n')[1:]:
-        ict.data.add(np.array(line))
-    
-    # write
-    ict.write(delimiter=',')
-    
+    # Define the output file name from the ACT Dataset
+    if path: 
+        fout = (path + '/' + ds._datastream + 
+                '.' + ds._file_dates[0] + 
+                '.' + ds._file_times[0] + 
+                '.ict'
+        )
+        # Note: icartt requires file object sent to write method
+        with open(fout, 'w') as nout:
+            ict.write(f=nout)
+    else:
+        fout = (ds._datastream + '.' + ds._file_dates[0] + 
+                '.' + ds._file_times[0] + '.ict'
+        )
+        # Note: icartt requires file object sent to write method
+        with open(fout, 'w') as nout:
+            ict.write(f=nout)
+
+    ##return ds, csv
