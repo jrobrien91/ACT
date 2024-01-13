@@ -295,14 +295,89 @@ def write_icartt(ds,
     # 1 Hz Data - Data Interval == 1
     # <1Hz Data - Data Interval == 0
     # 10 HZ Data - Data Interval == 0.1
+    # Determine temporal frequency of the file in seconds
     dataInterval = (ds.time.data[1] - ds.time.data[0]) / np.timedelta64(1, 's')
-    print('dataInterval', dataInterval)
     if dataInterval > 1:
         ict.dataIntervalCode = [0]
     elif dataInterval < 1:
         ict.dataIntervalCode = [0.1]
     else:
         ict.dataIntervalCode = [1]
+
+    # ARM Standards allow for various methods to define the timestamp, however
+    # time bounds must be used to define that period. To simplify, if time bounds
+    # are present, convert time stop. Otherwise, assumption is times are stamped
+    # after data are collected. 
+    
+    # Check for non-1Hz frequency data to ammend addition times
+    if ict.dataIntervalCode[0] < 1:
+        if "time_bounds" in list(ds.keys()):
+            # Use ARM's time bounds to define the Start/Stop times for each period
+            start_time = adjust_timestamp(ds, 
+                                          time_bounds='time_bounds', 
+                                          align='left'
+            )
+            end_time = adjust_timestamp(ds, 
+                                        time_bounds='time_bounds', 
+                                        align='right'
+            )
+
+            # Calculate the Seconds in UTC From the Start Date
+            sfm_start = (start_time.time.dt.strftime("%s").astype("int") - 
+                         start_time.time.dt.floor("d").dt.strftime("%s").astype('int')
+            )
+            sfm_end = (end_time.time.dt.strftime("%s").astype("int") - 
+                       end_time.time.dt.floor("d").dt.strftime("%s").astype('int')
+            )
+
+            timeDS = xr.Dataset({"Time_Start" : (("Time"), sfm_start.data), 
+                                 "Time_Stop" : (("Time"), sfm_end.data)
+                                }
+            )
+
+            # Add the additional times to the dependent variable list
+            time_des = "Seconds UTC from the Start of the Date"
+            start_long = "Start of Observation Record in Seconds UTC"
+            stop_long = "End of Observation Record in Seconds UTC"
+            ict.dependentVariables['Time_Start'] = icartt.Variable("Time_Start",
+                                                                   time_des,
+                                                                   "Time_Start",
+                                                                   start_long,
+                                                                   scale=1,
+                                                                   miss=-9999
+            )
+            ict.dependentVariables['Time_Stop'] = icartt.Variable("Time_Stop",
+                                                                   time_des,
+                                                                   "Time_Stop",
+                                                                   stop_long,
+                                                                   scale=1,
+                                                                   miss=-9999
+            )
+        else:
+            raise NameError('Time Bounds are Required for Measurement records' +
+                            'for intervals less than 1Hz')
+
+    # Convert times within ACT Object using `adjust_timestamp`
+    if "time_bounds" in list(ds.keys()):
+        ds = adjust_timestamp(ds, time_bounds='time_bounds', align='right')
+
+    # Calculate the Seconds in UTC From the Start Date
+    sfm = (ds.time.dt.strftime("%s").astype("int") - 
+           ds.time.dt.floor("d").dt.strftime("%s").astype('int')
+    )
+
+    # Add the data, first remove unsupported qc variables and time bounds
+    qc_list = ["base_time", "time_offset", "time_bounds"]
+    for var in ds.variables:
+        if var[0:2] == 'qc':
+            qc_list.append(var)
+    # Remove the unsupported variables before conversion
+    ds = ds.drop_vars(qc_list)
+    # Assign in the seconds in UTC from midnight to the time dimension
+    # ICARTT v2.0 requires independent variable shortnames to one of the following
+    # 'Time_Start', 'Time_Stop', 'Time_Mid'
+    ds = ds.rename({'time' : 'Time'})
+    ds["Time"] = sfm.data
     
     # Define the independent variable (has to be time)
     ict.independentVariable = icartt.Variable(
@@ -316,9 +391,10 @@ def write_icartt(ds,
     )
 
     # Define the dependent variables
-    ignore = ["time", "base_time", "time_offset", "time_bounds"]
+    ignore = ["Time", "base_time", "time_offset", "time_bounds"]
+    # Define a column list for 
     for var in ds.variables:
-        if var not in ignore and var[0:2] != 'qc':
+        if var not in ignore:
             if "standard_name" in ds[var].attrs:
                 ict.dependentVariables[var] = icartt.Variable(
                     var,
@@ -393,44 +469,25 @@ def write_icartt(ds,
     # Apparently this is needed
     ict.endDefineMode()
 
-    # ICARTT v2.0 requires explicit information to define the time stamp 
-    # and use 'Time_Start', 'Time_Stop', 'Time_Mid' shortnames
-    # to describe that timestamp. 
-    
-    # ARM Standards allow for various methods to define the timestamp, however
-    # time bounds must be used to define that period. To simplify, if time bounds
-    # are present, convert time stop. Otherwise, assumption is times are stamped
-    # after data are collected. 
-    
-    # Convert times within ACT Object using `adjust_timestamp`
-    if "time_bounds" in list(ds.keys()):
-        ds = adjust_timestamp(ds, time_bounds='time_bounds', align='right')
-
-    # Calculate the Seconds in UTC From the Start Date
-    sfm = (ds.time.dt.strftime("%s").astype("int") - 
-           ds.time.dt.floor("d").dt.strftime("%s").astype('int')
-    )
-
-    # Add the data, first remove unsupported qc variables and time bounds
-    qc_list = ["base_time", "time_offset", "time_bounds"]
-    for var in ds.variables:
-        if var[0:2] == 'qc':
-            qc_list.append(var)
-    # Remove the unsupported variables before conversion
-    ds = ds.drop_vars(qc_list)
-    # Assign in the seconds in UTC from midnight to the time dimension
-    # ICARTT v2.0 requires independent variable shortnames to one of the following
-    # 'Time_Start', 'Time_Stop', 'Time_Mid'
-    ds = ds.rename({'time' : 'Time'})
-    ds["Time"] = sfm.data
-    # remove the old time
-    ##ds = ds.drop_vars('time')
-    ##ds = ds.drop_dims('time')
-    ##print(ds['Time'])
-    # Data are needed in a structured numpy array for output
-    # Convert to Pandas Dataframe then to  Structured / Record Array
-    df = ds.to_dataframe()
-    csv = df.to_records()
+    # If data interval requires it, add additional required times
+    # to the data object for output
+    if ict.dataIntervalCode[0] < 1:
+        ds = ds.assign(timeDS)
+        # Need columns to match ICARTT dependent variables order
+        df_col = ['Time', 'Time_Start', 'Time_Stop']
+        for var in ds.variables:
+            if var not in df_col:
+                df_col.append(var)
+        # Data are needed in a structured numpy array for output
+        # Convert to Pandas Dataframe then to  Structured / Record Array
+        df = ds.to_dataframe()
+        df = df[df_col[1:]]
+        csv = df.to_records()
+    else:
+        # Data are needed in a structured numpy array for output
+        # Convert to Pandas Dataframe then to  Structured / Record Array
+        df = ds.to_dataframe()
+        csv = df.to_records()
     
     # add the structured numpy array to the ICARTT Dataset
     ict.data.add(csv)
@@ -453,4 +510,4 @@ def write_icartt(ds,
         with open(fout, 'w') as nout:
             ict.write(f=nout)
 
-    ##return ds, csv
+    return ds, csv
