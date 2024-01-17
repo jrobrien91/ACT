@@ -10,6 +10,7 @@ References:
 import numpy as np
 import xarray as xr
 import datetime
+import warnings
 
 from ..utils.datetime_utils import adjust_timestamp
 
@@ -256,6 +257,14 @@ def write_icartt(ds,
                 and exception.args[0] == 'no files to open'):
             return None
 
+    # If format is FFI1001, check for multi-dimensional arrays
+    if len(ds.dims) > 1:
+        ignore = ['Time', 'time', 'bound']
+        for key in ds.dims:
+            if key not in ignore:
+                if ds.dims[key] > 1:
+                    raise UserWarning("Multi-dimensional Arrays are not Currently Supported")
+
     # Define ICARTT file properties
     # Principle Investigator Name
     ict.PIName = ds.platform_id + " Instrument Mentors"
@@ -265,11 +274,17 @@ def write_icartt(ds,
     ict.dataSourceDescription = ds.datastream
     # Mission Name
     ict.missionName = ds.location_description
-     # Date of Collection
-    ict.dateOfCollection = (int(ds._file_dates[0][0:4]), 
-                            int(ds._file_dates[0][4:6]), 
-                            int(ds._file_dates[0][6:8])
-                            )
+    # Date of Collection
+    # Check if file dates were set; if not, assume first data point
+    # is date of collection.
+    if ds._file_dates:
+        ict.dateOfCollection = (int(ds._file_dates[0][0:4]), 
+                                int(ds._file_dates[0][4:6]), 
+                                int(ds._file_dates[0][6:8])
+        )
+    else:
+        ict.dateOfCollection = ds.time.dt.floor("d").dt.strftime("%Y%m%d")[0]
+        
     # Date of Revision
     ict.dateOfRevision = datetime.datetime.utcnow().timetuple()[:3]
     
@@ -367,10 +382,18 @@ def write_icartt(ds,
     )
 
     # Add the data, first remove unsupported qc variables and time bounds
-    qc_list = ["base_time", "time_offset", "time_bounds"]
+    qc_list = []
     for var in ds.variables:
         if var[0:2] == 'qc':
             qc_list.append(var)
+        elif var == "base_time":
+            qc_list.append(var)
+        elif var == "time_offset":
+            qc_list.append(var)
+        elif var == "time_bounds":
+            qc_list.append(var)
+        else:
+            pass
     # Remove the unsupported variables before conversion
     ds = ds.drop_vars(qc_list)
     # Assign in the seconds in UTC from midnight to the time dimension
@@ -405,14 +428,26 @@ def write_icartt(ds,
                     miss=-9999
                 )
             else:
-                ict.dependentVariables[var] = icartt.Variable(
-                    var,
-                    ds[var].units,
-                    ds[var].long_name,
-                    ds[var].long_name,
-                    scale=1,
-                    miss=-9999
-                )
+                try:
+                    ict.dependentVariables[var] = icartt.Variable(
+                        var,
+                        ds[var].units,
+                        ds[var].long_name,
+                        ds[var].long_name,
+                        scale=1,
+                        miss=-9999
+                    )
+                except AttributeError:
+                    warn_str = var + " units and/or long name not found."
+                    warnings.warn(warn_str, UserWarning)
+                    ict.dependentVariables[var] = icartt.Variable(
+                        var,
+                        'UNKNOWN',
+                        var,
+                        var,
+                        scale=1,
+                        miss=-9999
+                    )
 
     # Normal and Special Comments
     if special:
@@ -488,26 +523,35 @@ def write_icartt(ds,
         # Convert to Pandas Dataframe then to  Structured / Record Array
         df = ds.to_dataframe()
         csv = df.to_records()
-    
+
     # add the structured numpy array to the ICARTT Dataset
     ict.data.add(csv)
 
     # Define the output file name from the ACT Dataset
     if path: 
-        fout = (path + '/' + ds._datastream + 
-                '.' + ds._file_dates[0] + 
-                '.' + ds._file_times[0] + 
-                '.ict'
-        )
+        if ds._file_times:
+            fout = (path + '/' + ds._datastream + 
+                    '.' + ds._file_dates[0] + 
+                    '.' + ds._file_times[0] + 
+                    '.ict'
+            )
+        else:
+            fout = (path + '/' + ds._datastream +
+                    '.' + str(ict.dateOfCollection.data) + '.ict'
+            )
         # Note: icartt requires file object sent to write method
         with open(fout, 'w') as nout:
             ict.write(f=nout)
     else:
-        fout = (ds._datastream + '.' + ds._file_dates[0] + 
-                '.' + ds._file_times[0] + '.ict'
-        )
+        if ds._file_times:
+            fout = (ds._datastream + '.' + ds._file_dates[0] + 
+                    '.' + ds._file_times[0] + '.ict'
+            )
+        else:
+            fout = (ds._datastream +
+                    '.' + str(ict.dateOfCollection.data) +
+                    '.ict'
+            )
         # Note: icartt requires file object sent to write method
         with open(fout, 'w') as nout:
             ict.write(f=nout)
-
-    return ds, csv
