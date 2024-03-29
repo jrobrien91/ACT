@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../../../">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>act.plotting.timeseriesdisplay &#8212; Atmospheric data Community Toolkit 0.post1+g20f206c documentation</title>
+    <title>act.plotting.timeseriesdisplay &#8212; Atmospheric data Community Toolkit 0.post1+gf97a0d3 documentation</title>
     
     <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -40,9 +40,9 @@
     
     <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
   
-    <script src="../../../_static/documentation_options.js?v=8280bae9"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=3a1f6e35"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/design-tabs.js?v=36754332"></script>
@@ -228,9 +228,7 @@
 <span class="kn">from</span> <span class="nn">.plot</span> <span class="kn">import</span> <span class="n">Display</span>
 
 
-<div class="viewcode-block" id="TimeSeriesDisplay">
-<a class="viewcode-back" href="../../../API/generated/act.plotting.TimeSeriesDisplay.html#act.plotting.TimeSeriesDisplay">[docs]</a>
-<span class="k">class</span> <span class="nc">TimeSeriesDisplay</span><span class="p">(</span><span class="n">Display</span><span class="p">):</span>
+<div class="viewcode-block" id="TimeSeriesDisplay"><a class="viewcode-back" href="../../../API/generated/act.plotting.TimeSeriesDisplay.html#act.plotting.TimeSeriesDisplay">[docs]</a><span class="k">class</span> <span class="nc">TimeSeriesDisplay</span><span class="p">(</span><span class="n">Display</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This subclass contains routines that are specific to plotting</span>
 <span class="sd">    time series plots from data. It is inherited from Display and therefore</span>
@@ -258,9 +256,7 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ds</span><span class="p">,</span> <span class="n">subplot_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span> <span class="n">ds_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">subplot_shape</span><span class="p">,</span> <span class="n">ds_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<div class="viewcode-block" id="TimeSeriesDisplay.day_night_background">
-<a class="viewcode-back" href="../../../API/generated/act.plotting.TimeSeriesDisplay.day_night_background.html#act.plotting.TimeSeriesDisplay.day_night_background">[docs]</a>
-    <span class="k">def</span> <span class="nf">day_night_background</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dsname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">subplot_index</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,)):</span>
+<div class="viewcode-block" id="TimeSeriesDisplay.day_night_background"><a class="viewcode-back" href="../../../API/generated/act.plotting.TimeSeriesDisplay.day_night_background.html#act.plotting.TimeSeriesDisplay.day_night_background">[docs]</a>    <span class="k">def</span> <span class="nf">day_night_background</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dsname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">subplot_index</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,)):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Colorcodes the background according to sunrise/sunset.</span>
 
@@ -357,7 +353,9 @@
 
         <span class="k">for</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">lat_lon_list</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;Longitude&#39;</span><span class="p">]):</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
-                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> value in dataset equal to &#39;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&#39; is not finite. &quot;</span><span class="p">,</span> <span class="ne">RuntimeWarning</span><span class="p">)</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> value in dataset equal to &#39;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&#39; is not finite. &quot;</span><span class="p">,</span> <span class="ne">RuntimeWarning</span>
+                <span class="p">)</span>
                 <span class="k">return</span>
 
         <span class="n">lat</span> <span class="o">=</span> <span class="n">lat_lon_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -402,10 +400,7 @@
         <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">noon</span><span class="p">:</span>
             <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">ii</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="TimeSeriesDisplay.set_xrng">
-<a class="viewcode-back" href="../../../API/generated/act.plotting.TimeSeriesDisplay.set_xrng.html#act.plotting.TimeSeriesDisplay.set_xrng">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_xrng</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xrng</span><span class="p">,</span> <span class="n">subplot_index</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
+<div class="viewcode-block" id="TimeSeriesDisplay.set_xrng"><a class="viewcode-back" href="../../../API/generated/act.plotting.TimeSeriesDisplay.set_xrng.html#act.plotting.TimeSeriesDisplay.set_xrng">[docs]</a>    <span class="k">def</span> <span class="nf">set_xrng</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xrng</span><span class="p">,</span> <span class="n">subplot_index</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,)):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sets the x range of the plot.</span>
 
@@ -424,15 +419,20 @@
         <span class="c1"># This is to catch that and expand the range so we avoid the warning.</span>
         <span class="k">if</span> <span class="n">xrng</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">xrng</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">xrng</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">):</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Attempting to set xlim range to single value </span><span class="si">{</span><span class="n">xrng</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">. &#39;</span>
-                      <span class="s1">&#39;Expanding range by 2 seconds.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Attempting to set xlim range to single value </span><span class="si">{</span><span class="n">xrng</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">. &#39;</span>
+                    <span class="s1">&#39;Expanding range by 2 seconds.</span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="p">)</span>
                 <span class="n">xrng</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
                 <span class="n">xrng</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
             <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">xrng</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">):</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Attempting to set xlim range to single value </span><span class="si">{</span><span class="n">xrng</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">. &#39;</span>
-                      <span class="s1">&#39;Expanding range by 2 seconds.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Attempting to set xlim range to single value </span><span class="si">{</span><span class="n">xrng</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">. &#39;</span>
+                    <span class="s1">&#39;Expanding range by 2 seconds.</span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="p">)</span>
                 <span class="n">xrng</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-=</span> <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
                 <span class="n">xrng</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">subplot_index</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xrng</span><span class="p">)</span>
 
         <span class="c1"># Make sure that the xrng value is a numpy array not pandas</span>
@@ -450,10 +450,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">xrng</span><span class="p">[</span><span class="n">subplot_index</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">xrng</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;datetime64[D]&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">xrng</span><span class="p">[</span><span class="n">subplot_index</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">xrng</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;datetime64[D]&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="TimeSeriesDisplay.set_yrng">
-<a class="viewcode-back" href="../../../API/generated/act.plotting.TimeSeriesDisplay.set_yrng.html#act.plotting.TimeSeriesDisplay.set_yrng">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_yrng</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yrng</span><span class="p">,</span> <span class="n">subplot_index</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,),</span> <span class="n">match_axes_ylimits</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="TimeSeriesDisplay.set_yrng"><a class="viewcode-back" href="../../../API/generated/act.plotting.TimeSeriesDisplay.set_yrng.html#act.plotting.TimeSeriesDisplay.set_yrng">[docs]</a>    <span class="k">def</span> <span class="nf">set_yrng</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yrng</span><span class="p">,</span> <span class="n">subplot_index</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,),</span> <span class="n">match_axes_ylimits</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sets the y range of the plot.</span>
 
@@ -494,10 +491,7 @@
         <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">yrng</span><span class="p">[</span><span class="n">subplot_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">yrng</span></div>
 
-
-<div class="viewcode-block" id="TimeSeriesDisplay.plot">
-<a class="viewcode-back" href="../../../API/generated/act.plotting.TimeSeriesDisplay.plot.html#act.plotting.TimeSeriesDisplay.plot">[docs]</a>
-    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span>
+<div class="viewcode-block" id="TimeSeriesDisplay.plot"><a class="viewcode-back" href="../../../API/generated/act.plotting.TimeSeriesDisplay.plot.html#act.plotting.TimeSeriesDisplay.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">field</span><span class="p">,</span>
         <span class="n">dsname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -650,10 +644,22 @@
 
         <span class="k">if</span> <span class="n">cb_friendly</span><span class="p">:</span>
             <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;HomeyerRainbow&#39;</span>
-            <span class="n">assessment_overplot_category_color</span><span class="p">[</span><span class="s1">&#39;Bad&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.9285714285714286</span><span class="p">,</span> <span class="mf">0.7130901016453677</span><span class="p">,</span> <span class="mf">0.7130901016453677</span><span class="p">)</span>
-            <span class="n">assessment_overplot_category_color</span><span class="p">[</span><span class="s1">&#39;Incorrect&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.9285714285714286</span><span class="p">,</span> <span class="mf">0.7130901016453677</span><span class="p">,</span> <span class="mf">0.7130901016453677</span><span class="p">)</span>
-            <span class="n">assessment_overplot_category_color</span><span class="p">[</span><span class="s1">&#39;Not Failing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.4240129715562796</span><span class="p">,</span> <span class="mf">0.4240129715562796</span><span class="p">),</span>
-            <span class="n">assessment_overplot_category_color</span><span class="p">[</span><span class="s1">&#39;Acceptable&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.4240129715562796</span><span class="p">,</span> <span class="mf">0.4240129715562796</span><span class="p">),</span>
+            <span class="n">assessment_overplot_category_color</span><span class="p">[</span><span class="s1">&#39;Bad&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="mf">0.9285714285714286</span><span class="p">,</span>
+                <span class="mf">0.7130901016453677</span><span class="p">,</span>
+                <span class="mf">0.7130901016453677</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">assessment_overplot_category_color</span><span class="p">[</span><span class="s1">&#39;Incorrect&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="mf">0.9285714285714286</span><span class="p">,</span>
+                <span class="mf">0.7130901016453677</span><span class="p">,</span>
+                <span class="mf">0.7130901016453677</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">assessment_overplot_category_color</span><span class="p">[</span><span class="s1">&#39;Not Failing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.4240129715562796</span><span class="p">,</span> <span class="mf">0.4240129715562796</span><span class="p">),</span>
+            <span class="p">)</span>
+            <span class="n">assessment_overplot_category_color</span><span class="p">[</span><span class="s1">&#39;Acceptable&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.4240129715562796</span><span class="p">,</span> <span class="mf">0.4240129715562796</span><span class="p">),</span>
+            <span class="p">)</span>
 
         <span class="c1"># Get data and dimensions</span>
         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">[</span><span class="n">dsname</span><span class="p">][</span><span class="n">field</span><span class="p">]</span>
@@ -848,9 +854,7 @@
                     <span class="p">]</span>
                 <span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">date_result</span> <span class="o">=</span> <span class="n">search</span><span class="p">(</span>
-                    <span class="sa">r</span><span class="s1">&#39;\d</span><span class="si">{4}</span><span class="s1">-\d{1,2}-\d{1,2}&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">[</span><span class="n">dsname</span><span class="p">]</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span>
-                <span class="p">)</span>
+                <span class="n">date_result</span> <span class="o">=</span> <span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d</span><span class="si">{4}</span><span class="s1">-\d{1,2}-\d{1,2}&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">[</span><span class="n">dsname</span><span class="p">]</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">])</span>
                 <span class="k">if</span> <span class="n">date_result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">set_title</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">dsname</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="s1">&#39;on&#39;</span><span class="p">,</span> <span class="n">date_result</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)])</span>
                 <span class="k">else</span><span class="p">:</span>
@@ -965,10 +969,7 @@
                 <span class="p">)</span>
         <span class="k">return</span> <span class="n">ax</span></div>
 
-
-<div class="viewcode-block" id="TimeSeriesDisplay.plot_barbs_from_spd_dir">
-<a class="viewcode-back" href="../../../API/generated/act.plotting.TimeSeriesDisplay.plot_barbs_from_spd_dir.html#act.plotting.TimeSeriesDisplay.plot_barbs_from_spd_dir">[docs]</a>
-    <span class="k">def</span> <span class="nf">plot_barbs_from_spd_dir</span><span class="p">(</span>
+<div class="viewcode-block" id="TimeSeriesDisplay.plot_barbs_from_spd_dir"><a class="viewcode-back" href="../../../API/generated/act.plotting.TimeSeriesDisplay.plot_barbs_from_spd_dir.html#act.plotting.TimeSeriesDisplay.plot_barbs_from_spd_dir">[docs]</a>    <span class="k">def</span> <span class="nf">plot_barbs_from_spd_dir</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">speed_field</span><span class="p">,</span> <span class="n">direction_field</span><span class="p">,</span> <span class="n">pres_field</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dsname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1039,10 +1040,7 @@
         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">[</span><span class="n">dsname</span><span class="p">][</span><span class="s1">&#39;temp_u&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">[</span><span class="n">dsname</span><span class="p">][</span><span class="s1">&#39;temp_v&#39;</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">the_ax</span></div>
 
-
-<div class="viewcode-block" id="TimeSeriesDisplay.plot_barbs_from_u_v">
-<a class="viewcode-back" href="../../../API/generated/act.plotting.TimeSeriesDisplay.plot_barbs_from_u_v.html#act.plotting.TimeSeriesDisplay.plot_barbs_from_u_v">[docs]</a>
-    <span class="k">def</span> <span class="nf">plot_barbs_from_u_v</span><span class="p">(</span>
+<div class="viewcode-block" id="TimeSeriesDisplay.plot_barbs_from_u_v"><a class="viewcode-back" href="../../../API/generated/act.plotting.TimeSeriesDisplay.plot_barbs_from_u_v.html#act.plotting.TimeSeriesDisplay.plot_barbs_from_u_v">[docs]</a>    <span class="k">def</span> <span class="nf">plot_barbs_from_u_v</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">u_field</span><span class="p">,</span>
         <span class="n">v_field</span><span class="p">,</span>
@@ -1302,10 +1300,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">subplot_index</span><span class="p">]</span></div>
 
-
-<div class="viewcode-block" id="TimeSeriesDisplay.plot_time_height_xsection_from_1d_data">
-<a class="viewcode-back" href="../../../API/generated/act.plotting.TimeSeriesDisplay.plot_time_height_xsection_from_1d_data.html#act.plotting.TimeSeriesDisplay.plot_time_height_xsection_from_1d_data">[docs]</a>
-    <span class="k">def</span> <span class="nf">plot_time_height_xsection_from_1d_data</span><span class="p">(</span>
+<div class="viewcode-block" id="TimeSeriesDisplay.plot_time_height_xsection_from_1d_data"><a class="viewcode-back" href="../../../API/generated/act.plotting.TimeSeriesDisplay.plot_time_height_xsection_from_1d_data.html#act.plotting.TimeSeriesDisplay.plot_time_height_xsection_from_1d_data">[docs]</a>    <span class="k">def</span> <span class="nf">plot_time_height_xsection_from_1d_data</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">data_field</span><span class="p">,</span>
         <span class="n">pres_field</span><span class="p">,</span>
@@ -1407,9 +1402,7 @@
 
         <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">subplot_index</span><span class="p">]</span>
 
-        <span class="n">mesh</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span>
-            <span class="n">x_times</span><span class="p">,</span> <span class="n">y_levels</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">shading</span><span class="o">=</span><span class="n">set_shading</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-        <span class="p">)</span>
+        <span class="n">mesh</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">x_times</span><span class="p">,</span> <span class="n">y_levels</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">shading</span><span class="o">=</span><span class="n">set_shading</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">day_night_background</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">day_night_background</span><span class="p">(</span><span class="n">subplot_index</span><span class="o">=</span><span class="n">subplot_index</span><span class="p">,</span> <span class="n">dsname</span><span class="o">=</span><span class="n">dsname</span><span class="p">)</span>
@@ -1477,10 +1470,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">subplot_index</span><span class="p">]</span></div>
 
-
-<div class="viewcode-block" id="TimeSeriesDisplay.time_height_scatter">
-<a class="viewcode-back" href="../../../API/generated/act.plotting.TimeSeriesDisplay.time_height_scatter.html#act.plotting.TimeSeriesDisplay.time_height_scatter">[docs]</a>
-    <span class="k">def</span> <span class="nf">time_height_scatter</span><span class="p">(</span>
+<div class="viewcode-block" id="TimeSeriesDisplay.time_height_scatter"><a class="viewcode-back" href="../../../API/generated/act.plotting.TimeSeriesDisplay.time_height_scatter.html#act.plotting.TimeSeriesDisplay.time_height_scatter">[docs]</a>    <span class="k">def</span> <span class="nf">time_height_scatter</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">data_field</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">alt_field</span><span class="o">=</span><span class="s1">&#39;alt&#39;</span><span class="p">,</span>
@@ -1593,9 +1583,7 @@
                     <span class="p">]</span>
                 <span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">date_result</span> <span class="o">=</span> <span class="n">search</span><span class="p">(</span>
-                    <span class="sa">r</span><span class="s1">&#39;\d</span><span class="si">{4}</span><span class="s1">-\d{1,2}-\d{1,2}&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">[</span><span class="n">dsname</span><span class="p">]</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span>
-                <span class="p">)</span>
+                <span class="n">date_result</span> <span class="o">=</span> <span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d</span><span class="si">{4}</span><span class="s1">-\d{1,2}-\d{1,2}&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">[</span><span class="n">dsname</span><span class="p">]</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">])</span>
                 <span class="k">if</span> <span class="n">date_result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">set_title</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">dsname</span><span class="p">,</span> <span class="n">data_field</span><span class="p">,</span> <span class="s1">&#39;on&#39;</span><span class="p">,</span> <span class="n">date_result</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)])</span>
                 <span class="k">else</span><span class="p">:</span>
@@ -1641,10 +1629,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">subplot_index</span><span class="p">]</span></div>
 
-
-<div class="viewcode-block" id="TimeSeriesDisplay.qc_flag_block_plot">
-<a class="viewcode-back" href="../../../API/generated/act.plotting.TimeSeriesDisplay.qc_flag_block_plot.html#act.plotting.TimeSeriesDisplay.qc_flag_block_plot">[docs]</a>
-    <span class="k">def</span> <span class="nf">qc_flag_block_plot</span><span class="p">(</span>
+<div class="viewcode-block" id="TimeSeriesDisplay.qc_flag_block_plot"><a class="viewcode-back" href="../../../API/generated/act.plotting.TimeSeriesDisplay.qc_flag_block_plot.html#act.plotting.TimeSeriesDisplay.qc_flag_block_plot">[docs]</a>    <span class="k">def</span> <span class="nf">qc_flag_block_plot</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">data_field</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">dsname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -1876,7 +1861,6 @@
                 <span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
-
             <span class="n">test_nums</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="n">assess</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">flag_assessments</span><span class="p">):</span>
                 <span class="k">if</span> <span class="n">assess</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">color_lookup</span><span class="p">:</span>
@@ -1894,9 +1878,7 @@
                 <span class="c1"># Get test number from flag_mask bitpacked number</span>
                 <span class="n">test_nums</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parse_bit</span><span class="p">(</span><span class="n">flag_masks</span><span class="p">[</span><span class="n">ii</span><span class="p">]))</span>
                 <span class="c1"># Get masked array data to use mask for finding if/where test is set</span>
-                <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">[</span><span class="n">dsname</span><span class="p">]</span><span class="o">.</span><span class="n">qcfilter</span><span class="o">.</span><span class="n">get_masked_data</span><span class="p">(</span>
-                    <span class="n">data_field</span><span class="p">,</span> <span class="n">rm_tests</span><span class="o">=</span><span class="n">test_nums</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-                <span class="p">)</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">[</span><span class="n">dsname</span><span class="p">]</span><span class="o">.</span><span class="n">qcfilter</span><span class="o">.</span><span class="n">get_masked_data</span><span class="p">(</span><span class="n">data_field</span><span class="p">,</span> <span class="n">rm_tests</span><span class="o">=</span><span class="n">test_nums</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
                 <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mask</span><span class="p">):</span>
                     <span class="c1"># Get time ranges from time and masked data</span>
                     <span class="n">barh_list</span> <span class="o">=</span> <span class="n">reduce_time_ranges</span><span class="p">(</span>
@@ -1956,10 +1938,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">subplot_index</span><span class="p">]</span></div>
 
-
-<div class="viewcode-block" id="TimeSeriesDisplay.fill_between">
-<a class="viewcode-back" href="../../../API/generated/act.plotting.TimeSeriesDisplay.fill_between.html#act.plotting.TimeSeriesDisplay.fill_between">[docs]</a>
-    <span class="k">def</span> <span class="nf">fill_between</span><span class="p">(</span>
+<div class="viewcode-block" id="TimeSeriesDisplay.fill_between"><a class="viewcode-back" href="../../../API/generated/act.plotting.TimeSeriesDisplay.fill_between.html#act.plotting.TimeSeriesDisplay.fill_between">[docs]</a>    <span class="k">def</span> <span class="nf">fill_between</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">field</span><span class="p">,</span>
         <span class="n">dsname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -2060,9 +2039,7 @@
             <span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">set_title</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">subplot_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">ax</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">subplot_index</span><span class="p">]</span></div>
-</div>
-
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">subplot_index</span><span class="p">]</span></div></div>
 </pre></div>
 <div class="section ablog__blog_comments">
   
@@ -2094,7 +2071,7 @@
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br>
 </p>
     </div>
     

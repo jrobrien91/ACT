@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../../">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>act.plotting.DistributionDisplay.add_subplots &#8212; Atmospheric data Community Toolkit 0.post1+g20f206c documentation</title>
+    <title>act.plotting.DistributionDisplay.add_subplots &#8212; Atmospheric data Community Toolkit 0.post1+gf97a0d3 documentation</title>
     
     <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -41,9 +41,9 @@
     
     <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
   
-    <script src="../../_static/documentation_options.js?v=8280bae9"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=3a1f6e35"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=36754332"></script>
@@ -383,6 +383,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="act.io.read_hk_file.html">
      act.io.read_hk_file
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="act.io.read_hysplit.html">
+     act.io.read_hysplit
     </a>
    </li>
    <li class="toctree-l2">
@@ -1413,6 +1418,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="act.utils.calculate_percentages.html">
+     act.utils.calculate_percentages
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="act.utils.cleanup_files.html">
      act.utils.cleanup_files
     </a>
@@ -1603,10 +1613,10 @@
               <div>
                 
 <section id="act-plotting-distributiondisplay-add-subplots">
-<h1>act.plotting.DistributionDisplay.add_subplots<a class="headerlink" href="#act-plotting-distributiondisplay-add-subplots" title="Link to this heading">¶</a></h1>
+<h1>act.plotting.DistributionDisplay.add_subplots<a class="headerlink" href="#act-plotting-distributiondisplay-add-subplots" title="Permalink to this heading">¶</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="act.plotting.DistributionDisplay.add_subplots">
-<span class="sig-prename descclassname"><span class="pre">DistributionDisplay.</span></span><span class="sig-name descname"><span class="pre">add_subplots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subplot_shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secondary_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subplot_kw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#act.plotting.DistributionDisplay.add_subplots" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">DistributionDisplay.</span></span><span class="sig-name descname"><span class="pre">add_subplots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subplot_shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secondary_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subplot_kw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#act.plotting.DistributionDisplay.add_subplots" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds subplots to the Display object. The current
 figure in the object will be deleted and overwritten.</p>
 <dl class="field-list simple">
@@ -1615,7 +1625,7 @@ figure in the object will be deleted and overwritten.</p>
 <li><p><strong>subplot_shape</strong> (<em>1 or 2D tuple, list, or array</em>) – The structure of the subplots in (rows, cols).</p></li>
 <li><p><strong>subplot_kw</strong> (<em>dict, optional</em>) – The kwargs to pass into fig.subplots.</p></li>
 <li><p><strong>**kwargs</strong> (<em>keyword arguments</em>) – Any other keyword arguments that will be passed
-into <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html#matplotlib.pyplot.subplots" title="(in Matplotlib v3.8.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.subplots()</span></code></a>. See the matplotlib
+into <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html#matplotlib.pyplot.subplots" title="(in Matplotlib v3.8.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.subplots()</span></code></a>. See the matplotlib
 documentation for further details on what keyword
 arguments are available.</p></li>
 </ul>
@@ -1669,7 +1679,7 @@ arguments are available.</p></li>
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br>
 </p>
     </div>
     

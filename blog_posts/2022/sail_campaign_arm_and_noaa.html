@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../../">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Visualize and bring together data from the SAIL campaign and NOAA &#8212; Atmospheric data Community Toolkit 0.post1+g20f206c documentation</title>
+    <title>Visualize and bring together data from the SAIL campaign and NOAA &#8212; Atmospheric data Community Toolkit 0.post1+gf97a0d3 documentation</title>
     
     <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -41,9 +41,9 @@
     
     <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
   
-    <script src="../../_static/documentation_options.js?v=8280bae9"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=3a1f6e35"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=36754332"></script>
@@ -179,7 +179,6 @@
     
   </div>
 </nav>
-
 <div class="ablog-sidebar-item ablog__postcard">
 
 
@@ -223,13 +222,31 @@
     </span>
   
   
-  <a href="../../blog/tag/kazr.html">KAZR</a>
+  <a href="../../blog/tag/winds.html">winds</a>
   
   
   
   
   
   <a href="../../blog/tag/visualization.html">visualization</a>
+  
+  
+  
+  
+  
+  <a href="../../blog/tag/sail.html">SAIL</a>
+  
+  
+  
+  
+  
+  <a href="../../blog/tag/parsivel.html">parsivel</a>
+  
+  
+  
+  
+  
+  <a href="../../blog/tag/kazr.html">KAZR</a>
   
   
   
@@ -245,31 +262,12 @@
   
   
   
-  
-  
-  <a href="../../blog/tag/parsivel.html">parsivel</a>
-  
-  
-  
-  
-  
-  <a href="../../blog/tag/sail.html">SAIL</a>
-  
-  
-  
-  
-  
-  <a href="../../blog/tag/winds.html">winds</a>
-  
-  
-  
 </li>
 
 
 </div>
 </ul>
 </div>
-
 
 <div class="ablog-sidebar-item ablog__recentposts">
 <h3>
@@ -286,7 +284,6 @@
   
 </ul>
 </div>
-
 
 <div class="ablog-sidebar-item ablog__archive">
 <h3>
@@ -369,10 +366,10 @@
               <div>
                 
 <section id="visualize-and-bring-together-data-from-the-sail-campaign-and-noaa">
-<h1>Visualize and bring together data from the SAIL campaign and NOAA<a class="headerlink" href="#visualize-and-bring-together-data-from-the-sail-campaign-and-noaa" title="Link to this heading">¶</a></h1>
+<h1>Visualize and bring together data from the SAIL campaign and NOAA<a class="headerlink" href="#visualize-and-bring-together-data-from-the-sail-campaign-and-noaa" title="Permalink to this heading">¶</a></h1>
 <p>When reading and analyzing data, its is useful to bring together data from different organizations. This not only expands the data available for scientists and their research, but is also useful for quality controls checks. In this notebook, we look at both the datasets produce by ARM instruments in the SAIL campaign as well as instruments provided by NOAA at their KPS site near the SAIL campaign location.</p>
 <section id="imports">
-<h2>Imports<a class="headerlink" href="#imports" title="Link to this heading">¶</a></h2>
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this heading">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import our modules</span>
@@ -392,14 +389,16 @@
 </div>
 </section>
 <section id="download-and-visualize-our-data-using-act">
-<h2>Download and visualize our data using ACT<a class="headerlink" href="#download-and-visualize-our-data-using-act" title="Link to this heading">¶</a></h2>
+<h2>Download and visualize our data using ACT<a class="headerlink" href="#download-and-visualize-our-data-using-act" title="Permalink to this heading">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the NOAA KPS site files from 22:00 and 23:00</span>
 <span class="n">result_22_kps</span> <span class="o">=</span> <span class="n">act</span><span class="o">.</span><span class="n">discovery</span><span class="o">.</span><span class="n">download_noaa_psl_data</span><span class="p">(</span>
-    <span class="n">site</span><span class="o">=</span><span class="s1">&#39;kps&#39;</span><span class="p">,</span> <span class="n">instrument</span><span class="o">=</span><span class="s1">&#39;Radar FMCW Moment&#39;</span><span class="p">,</span> <span class="n">startdate</span><span class="o">=</span><span class="s1">&#39;20220801&#39;</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="s1">&#39;22&#39;</span><span class="p">)</span>
+    <span class="n">site</span><span class="o">=</span><span class="s1">&#39;kps&#39;</span><span class="p">,</span> <span class="n">instrument</span><span class="o">=</span><span class="s1">&#39;Radar FMCW Moment&#39;</span><span class="p">,</span> <span class="n">startdate</span><span class="o">=</span><span class="s1">&#39;20220801&#39;</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="s1">&#39;22&#39;</span>
+<span class="p">)</span>
 <span class="n">result_23_kps</span> <span class="o">=</span> <span class="n">act</span><span class="o">.</span><span class="n">discovery</span><span class="o">.</span><span class="n">download_noaa_psl_data</span><span class="p">(</span>
-    <span class="n">site</span><span class="o">=</span><span class="s1">&#39;kps&#39;</span><span class="p">,</span> <span class="n">instrument</span><span class="o">=</span><span class="s1">&#39;Radar FMCW Moment&#39;</span><span class="p">,</span> <span class="n">startdate</span><span class="o">=</span><span class="s1">&#39;20220801&#39;</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="s1">&#39;23&#39;</span><span class="p">)</span>
+    <span class="n">site</span><span class="o">=</span><span class="s1">&#39;kps&#39;</span><span class="p">,</span> <span class="n">instrument</span><span class="o">=</span><span class="s1">&#39;Radar FMCW Moment&#39;</span><span class="p">,</span> <span class="n">startdate</span><span class="o">=</span><span class="s1">&#39;20220801&#39;</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="s1">&#39;23&#39;</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -420,8 +419,10 @@ Downloading kps2221323.raw
 <span class="n">ds1_kps</span> <span class="o">=</span> <span class="n">act</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">noaapsl</span><span class="o">.</span><span class="n">read_psl_radar_fmcw_moment</span><span class="p">([</span><span class="n">result_22_kps</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">result_23_kps</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
 
 <span class="c1"># Read in the parsivel files from NOAA&#39;s webpage.</span>
-<span class="n">url</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://downloads.psl.noaa.gov/psd2/data/realtime/DisdrometerParsivel/Stats/kps/2022/213/kps2221322_stats.txt&#39;</span><span class="p">,</span>
-       <span class="s1">&#39;https://downloads.psl.noaa.gov/psd2/data/realtime/DisdrometerParsivel/Stats/kps/2022/213/kps2221323_stats.txt&#39;</span><span class="p">]</span>
+<span class="n">url</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;https://downloads.psl.noaa.gov/psd2/data/realtime/DisdrometerParsivel/Stats/kps/2022/213/kps2221322_stats.txt&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;https://downloads.psl.noaa.gov/psd2/data/realtime/DisdrometerParsivel/Stats/kps/2022/213/kps2221323_stats.txt&#39;</span><span class="p">,</span>
+<span class="p">]</span>
 <span class="n">ds2_kps</span> <span class="o">=</span> <span class="n">act</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">noaapsl</span><span class="o">.</span><span class="n">read_psl_parsivel</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -434,13 +435,23 @@ Downloading kps2221323.raw
 <span class="c1"># Create display object with both datasets</span>
 <span class="n">display</span> <span class="o">=</span> <span class="n">act</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">TimeSeriesDisplay</span><span class="p">(</span>
     <span class="p">{</span><span class="s2">&quot;NOAA Site KPS PSL Radar FMCW&quot;</span><span class="p">:</span> <span class="n">kps_ds1</span><span class="p">,</span> <span class="s2">&quot;NOAA Site KPS Parsivel&quot;</span><span class="p">:</span> <span class="n">kps_ds2</span><span class="p">},</span>
-    <span class="n">subplot_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">subplot_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,),</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+<span class="p">)</span>
 
 <span class="c1"># Plot the subplots</span>
-<span class="n">display</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;reflectivity_uncalibrated&#39;</span><span class="p">,</span> <span class="n">dsname</span><span class="o">=</span><span class="s1">&#39;NOAA Site KPS PSL Radar FMCW&#39;</span><span class="p">,</span>
-             <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;act_HomeyerRainbow&#39;</span><span class="p">,</span> <span class="n">subplot_index</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,))</span>
-<span class="n">display</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;number_density_drops&#39;</span><span class="p">,</span> <span class="n">dsname</span><span class="o">=</span><span class="s1">&#39;NOAA Site KPS Parsivel&#39;</span><span class="p">,</span>
-             <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;act_HomeyerRainbow&#39;</span><span class="p">,</span> <span class="n">subplot_index</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,))</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="s1">&#39;reflectivity_uncalibrated&#39;</span><span class="p">,</span>
+    <span class="n">dsname</span><span class="o">=</span><span class="s1">&#39;NOAA Site KPS PSL Radar FMCW&#39;</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;act_HomeyerRainbow&#39;</span><span class="p">,</span>
+    <span class="n">subplot_index</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,),</span>
+<span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="s1">&#39;number_density_drops&#39;</span><span class="p">,</span>
+    <span class="n">dsname</span><span class="o">=</span><span class="s1">&#39;NOAA Site KPS Parsivel&#39;</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;act_HomeyerRainbow&#39;</span><span class="p">,</span>
+    <span class="n">subplot_index</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span>
+<span class="p">)</span>
 <span class="c1"># Set limits</span>
 <span class="n">display</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -453,30 +464,30 @@ Downloading kps2221323.raw
 </div>
 </section>
 <section id="create-a-multipanel-plot-to-compare-the-kazr-and-parsivel">
-<h2>Create a Multipanel Plot to Compare the KAZR and Parsivel<a class="headerlink" href="#create-a-multipanel-plot-to-compare-the-kazr-and-parsivel" title="Link to this heading">¶</a></h2>
+<h2>Create a Multipanel Plot to Compare the KAZR and Parsivel<a class="headerlink" href="#create-a-multipanel-plot-to-compare-the-kazr-and-parsivel" title="Permalink to this heading">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use arm username and token to retrieve files.</span>
 <span class="c1"># This is commented out as the files have already been downloaded.</span>
 
-<span class="c1">#token = &#39;arm_token&#39;</span>
-<span class="c1">#username = &#39;arm_username&#39;</span>
+<span class="c1"># token = &#39;arm_token&#39;</span>
+<span class="c1"># username = &#39;arm_username&#39;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Specify datastream and date range for KAZR data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify datastream and date range for KAZR data</span>
 <span class="n">ds_kazr</span> <span class="o">=</span> <span class="s1">&#39;guckazrcfrgeM1.a1&#39;</span>
 <span class="n">startdate</span> <span class="o">=</span> <span class="s1">&#39;2022-08-01&#39;</span>
 <span class="n">enddate</span> <span class="o">=</span> <span class="s1">&#39;2022-08-01&#39;</span>
 
 <span class="c1"># Data already retrieved, but showing code below on how to download the files.</span>
-<span class="c1">#act.discovery.download_data(username, token, ds_kazr, startdate, enddate)</span>
+<span class="c1"># act.discovery.download_data(username, token, ds_kazr, startdate, enddate)</span>
 
 <span class="c1"># Index last 2 files for the 22:00 and 23:00 timeframe.</span>
-<span class="n">kazr_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;./&#39;</span><span class="p">,</span><span class="n">ds_kazr</span><span class="p">,</span><span class="s1">&#39;/*nc&#39;</span><span class="p">]))</span>
+<span class="n">kazr_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;./&#39;</span><span class="p">,</span> <span class="n">ds_kazr</span><span class="p">,</span> <span class="s1">&#39;/*nc&#39;</span><span class="p">]))</span>
 <span class="n">kazr_files</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span>
 <span class="n">kazr_ds</span> <span class="o">=</span> <span class="n">act</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">arm</span><span class="o">.</span><span class="n">read_arm_netcdf</span><span class="p">(</span><span class="n">kazr_files</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:])</span>
 </pre></div>
@@ -485,16 +496,16 @@ Downloading kps2221323.raw
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Specify datastream and date range for KAZR data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify datastream and date range for KAZR data</span>
 <span class="n">ds_ld</span> <span class="o">=</span> <span class="s1">&#39;gucldM1.b1&#39;</span>
 <span class="n">startdate</span> <span class="o">=</span> <span class="s1">&#39;2022-08-01&#39;</span>
 <span class="n">enddate</span> <span class="o">=</span> <span class="s1">&#39;2022-08-01&#39;</span>
 
 <span class="c1"># Data already retrieved, but showing code below on how to download the files.</span>
-<span class="c1">#act.discovery.download_data(username, token, ds_ld, startdate, enddate)</span>
+<span class="c1"># act.discovery.download_data(username, token, ds_ld, startdate, enddate)</span>
 
 <span class="c1"># Index last 2 files for the 22:00 and 23:00 timeframe.</span>
-<span class="n">ld_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;./&#39;</span><span class="p">,</span><span class="n">ds_ld</span><span class="p">,</span><span class="s1">&#39;/*cdf&#39;</span><span class="p">]))</span>
+<span class="n">ld_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;./&#39;</span><span class="p">,</span> <span class="n">ds_ld</span><span class="p">,</span> <span class="s1">&#39;/*cdf&#39;</span><span class="p">]))</span>
 <span class="n">ld_ds</span> <span class="o">=</span> <span class="n">act</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">arm</span><span class="o">.</span><span class="n">read_arm_netcdf</span><span class="p">(</span><span class="n">ld_files</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -506,22 +517,39 @@ Downloading kps2221323.raw
 
 <span class="c1"># Create a series display with all 4 datasets</span>
 <span class="n">display</span> <span class="o">=</span> <span class="n">act</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">TimeSeriesDisplay</span><span class="p">(</span>
-    <span class="p">{</span><span class="s2">&quot;NOAA KPS PSL Radar FMCW&quot;</span><span class="p">:</span> <span class="n">kps_ds1</span><span class="p">,</span> <span class="s2">&quot;NOAA KPS Parsivel&quot;</span><span class="p">:</span> <span class="n">kps_ds2</span><span class="p">,</span>
-     <span class="s2">&quot;guckazrcfrgeM1.a1&quot;</span><span class="p">:</span> <span class="n">kazr_ds</span><span class="p">,</span> <span class="s1">&#39;gucldM1.b1&#39;</span><span class="p">:</span> <span class="n">ld_ds</span><span class="p">},</span>
-    <span class="n">subplot_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;NOAA KPS PSL Radar FMCW&quot;</span><span class="p">:</span> <span class="n">kps_ds1</span><span class="p">,</span>
+        <span class="s2">&quot;NOAA KPS Parsivel&quot;</span><span class="p">:</span> <span class="n">kps_ds2</span><span class="p">,</span>
+        <span class="s2">&quot;guckazrcfrgeM1.a1&quot;</span><span class="p">:</span> <span class="n">kazr_ds</span><span class="p">,</span>
+        <span class="s1">&#39;gucldM1.b1&#39;</span><span class="p">:</span> <span class="n">ld_ds</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">subplot_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span>
+<span class="p">)</span>
 
 <span class="c1"># Set custom 2 line title for space</span>
 <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;NOAA KPS PSL Radar FMCW</span><span class="se">\n</span><span class="s2"> reflectivity_uncalibrated on 20220801&quot;</span>
 
 <span class="c1"># Plot the four subplots</span>
-<span class="n">display</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;reflectivity_uncalibrated&#39;</span><span class="p">,</span> <span class="n">dsname</span><span class="o">=</span><span class="s1">&#39;NOAA KPS PSL Radar FMCW&#39;</span><span class="p">,</span>
-             <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;act_HomeyerRainbow&#39;</span><span class="p">,</span> <span class="n">set_title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">subplot_index</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">display</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;number_density_drops&#39;</span><span class="p">,</span> <span class="n">dsname</span><span class="o">=</span><span class="s1">&#39;NOAA KPS Parsivel&#39;</span><span class="p">,</span>
-             <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;act_HomeyerRainbow&#39;</span><span class="p">,</span> <span class="n">subplot_index</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">display</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;reflectivity&#39;</span><span class="p">,</span> <span class="n">dsname</span><span class="o">=</span><span class="s1">&#39;guckazrcfrgeM1.a1&#39;</span><span class="p">,</span>
-             <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;act_HomeyerRainbow&#39;</span><span class="p">,</span> <span class="n">subplot_index</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-<span class="n">display</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;number_density_drops&#39;</span><span class="p">,</span> <span class="n">dsname</span><span class="o">=</span><span class="s1">&#39;gucldM1.b1&#39;</span><span class="p">,</span>
-             <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;act_HomeyerRainbow&#39;</span><span class="p">,</span> <span class="n">subplot_index</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="s1">&#39;reflectivity_uncalibrated&#39;</span><span class="p">,</span>
+    <span class="n">dsname</span><span class="o">=</span><span class="s1">&#39;NOAA KPS PSL Radar FMCW&#39;</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;act_HomeyerRainbow&#39;</span><span class="p">,</span>
+    <span class="n">set_title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+    <span class="n">subplot_index</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="s1">&#39;number_density_drops&#39;</span><span class="p">,</span>
+    <span class="n">dsname</span><span class="o">=</span><span class="s1">&#39;NOAA KPS Parsivel&#39;</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;act_HomeyerRainbow&#39;</span><span class="p">,</span>
+    <span class="n">subplot_index</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="s1">&#39;reflectivity&#39;</span><span class="p">,</span> <span class="n">dsname</span><span class="o">=</span><span class="s1">&#39;guckazrcfrgeM1.a1&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;act_HomeyerRainbow&#39;</span><span class="p">,</span> <span class="n">subplot_index</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="s1">&#39;number_density_drops&#39;</span><span class="p">,</span> <span class="n">dsname</span><span class="o">=</span><span class="s1">&#39;gucldM1.b1&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;act_HomeyerRainbow&#39;</span><span class="p">,</span> <span class="n">subplot_index</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
 
 <span class="c1"># Update limits</span>
 <span class="n">display</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
@@ -530,11 +558,11 @@ Downloading kps2221323.raw
 
 
 <span class="n">display</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">])</span>
-<span class="n">display</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span><span class="s1">&#39;6&#39;</span><span class="p">,</span> <span class="s1">&#39;8&#39;</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">])</span>
+<span class="n">display</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="s1">&#39;6&#39;</span><span class="p">,</span> <span class="s1">&#39;8&#39;</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">])</span>
 <span class="n">display</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;km&#39;</span><span class="p">)</span>
 
 <span class="n">display</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">])</span>
-<span class="n">display</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span><span class="s1">&#39;6&#39;</span><span class="p">,</span> <span class="s1">&#39;8&#39;</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">])</span>
+<span class="n">display</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="s1">&#39;6&#39;</span><span class="p">,</span> <span class="s1">&#39;8&#39;</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">])</span>
 <span class="n">display</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;km&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -553,16 +581,16 @@ C:\Users\sherm\AppData\Local\Temp\ipykernel_10268\1307396719.py:33: UserWarning:
 </div>
 </section>
 <section id="add-doppler-lidar-retrieved-winds">
-<h2>Add Doppler Lidar Retrieved Winds<a class="headerlink" href="#add-doppler-lidar-retrieved-winds" title="Link to this heading">¶</a></h2>
+<h2>Add Doppler Lidar Retrieved Winds<a class="headerlink" href="#add-doppler-lidar-retrieved-winds" title="Permalink to this heading">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Specify datastream and date range for KAZR data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify datastream and date range for KAZR data</span>
 <span class="n">ds_dl</span> <span class="o">=</span> <span class="s1">&#39;gucdlppiM1.b1&#39;</span>
 <span class="n">startdate</span> <span class="o">=</span> <span class="s1">&#39;2022-08-01&#39;</span>
 <span class="n">enddate</span> <span class="o">=</span> <span class="s1">&#39;2022-08-01&#39;</span>
 
-<span class="c1">#act.discovery.download_data(username, token, ds_dl, startdate, enddate)</span>
-<span class="n">dl_ppi_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;./&#39;</span><span class="p">,</span><span class="n">ds_dl</span><span class="p">,</span><span class="s1">&#39;/*cdf&#39;</span><span class="p">]))</span>
+<span class="c1"># act.discovery.download_data(username, token, ds_dl, startdate, enddate)</span>
+<span class="n">dl_ppi_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;./&#39;</span><span class="p">,</span> <span class="n">ds_dl</span><span class="p">,</span> <span class="s1">&#39;/*cdf&#39;</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
@@ -575,7 +603,8 @@ C:\Users\sherm\AppData\Local\Temp\ipykernel_10268\1307396719.py:33: UserWarning:
     <span class="n">ds</span> <span class="o">=</span> <span class="n">act</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">arm</span><span class="o">.</span><span class="n">read_arm_netcdf</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
     <span class="c1"># Calculate the winds for each gucdlppi dataset.</span>
     <span class="n">wind_ds</span> <span class="o">=</span> <span class="n">act</span><span class="o">.</span><span class="n">retrievals</span><span class="o">.</span><span class="n">compute_winds_from_ppi</span><span class="p">(</span>
-        <span class="n">ds</span><span class="p">,</span> <span class="n">remove_all_missing</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">snr_threshold</span><span class="o">=</span><span class="mf">0.008</span><span class="p">)</span>
+        <span class="n">ds</span><span class="p">,</span> <span class="n">remove_all_missing</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">snr_threshold</span><span class="o">=</span><span class="mf">0.008</span>
+    <span class="p">)</span>
     <span class="n">multi_ds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wind_ds</span><span class="p">)</span>
 
 <span class="n">wind_ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">multi_ds</span><span class="p">)</span>
@@ -587,15 +616,20 @@ C:\Users\sherm\AppData\Local\Temp\ipykernel_10268\1307396719.py:33: UserWarning:
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a display object.</span>
 <span class="n">display</span> <span class="o">=</span> <span class="n">act</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">TimeSeriesDisplay</span><span class="p">(</span>
-    <span class="p">{</span><span class="s2">&quot;GUC DLPPI Computed Winds over KAZR&quot;</span><span class="p">:</span> <span class="n">wind_ds</span><span class="p">,</span>
-     <span class="s2">&quot;guckazrcfrgeM1.a1&quot;</span><span class="p">:</span> <span class="n">kazr_ds</span><span class="p">,},</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;GUC DLPPI Computed Winds over KAZR&quot;</span><span class="p">:</span> <span class="n">wind_ds</span><span class="p">,</span>
+        <span class="s2">&quot;guckazrcfrgeM1.a1&quot;</span><span class="p">:</span> <span class="n">kazr_ds</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+<span class="p">)</span>
 
 <span class="c1"># Plot the wind barbs overlayed on the KAZR reflectivity</span>
-<span class="n">display</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;reflectivity&#39;</span><span class="p">,</span> <span class="n">dsname</span><span class="o">=</span><span class="s1">&#39;guckazrcfrgeM1.a1&#39;</span><span class="p">,</span>
-             <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;act_HomeyerRainbow&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">20</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-<span class="n">display</span><span class="o">.</span><span class="n">plot_barbs_from_spd_dir</span><span class="p">(</span><span class="s1">&#39;wind_speed&#39;</span><span class="p">,</span> <span class="s1">&#39;wind_direction&#39;</span><span class="p">,</span>
-                                <span class="n">dsname</span><span class="o">=</span><span class="s1">&#39;GUC DLPPI Computed Winds over KAZR&#39;</span><span class="p">,</span>
-                                <span class="n">invert_y_axis</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="s1">&#39;reflectivity&#39;</span><span class="p">,</span> <span class="n">dsname</span><span class="o">=</span><span class="s1">&#39;guckazrcfrgeM1.a1&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;act_HomeyerRainbow&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">20</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">30</span>
+<span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot_barbs_from_spd_dir</span><span class="p">(</span>
+    <span class="s1">&#39;wind_speed&#39;</span><span class="p">,</span> <span class="s1">&#39;wind_direction&#39;</span><span class="p">,</span> <span class="n">dsname</span><span class="o">=</span><span class="s1">&#39;GUC DLPPI Computed Winds over KAZR&#39;</span><span class="p">,</span> <span class="n">invert_y_axis</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
 
 <span class="c1"># Update the x-limits to make sure both wind profiles are shown</span>
 <span class="c1"># Update the y-limits to show plotted winds</span>
@@ -611,7 +645,7 @@ C:\Users\sherm\AppData\Local\Temp\ipykernel_10268\1307396719.py:33: UserWarning:
 </div>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">¶</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
 <p>By comparing these datasets, we can see similar and differences between the two datasets, but overall the structure is comparable. We can see the usefulness of ACT to not only read ARM datasets, but datasets outside of ARM. These workflows allow for scientists to have many different tools to use different datasets for their research, as well as quality control checks which increases the confidence in the quality and calibration of the instrumentation.</p>
 </section>
 </section>
@@ -668,7 +702,7 @@ C:\Users\sherm\AppData\Local\Temp\ipykernel_10268\1307396719.py:33: UserWarning:
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br>
 </p>
     </div>
     

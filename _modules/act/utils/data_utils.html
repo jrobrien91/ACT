@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../../../">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>act.utils.data_utils &#8212; Atmospheric data Community Toolkit 0.post1+g20f206c documentation</title>
+    <title>act.utils.data_utils &#8212; Atmospheric data Community Toolkit 0.post1+gf97a0d3 documentation</title>
     
     <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -40,9 +40,9 @@
     
     <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
   
-    <script src="../../../_static/documentation_options.js?v=8280bae9"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=3a1f6e35"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/design-tabs.js?v=36754332"></script>
@@ -217,6 +217,7 @@
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">PathLike</span>
 
 <span class="n">spec</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_spec</span><span class="p">(</span><span class="s1">&#39;pyart&#39;</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">spec</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -225,9 +226,7 @@
     <span class="n">PYART_AVAILABLE</span> <span class="o">=</span> <span class="kc">False</span>
 
 
-<div class="viewcode-block" id="ChangeUnits">
-<a class="viewcode-back" href="../../../API/generated/act.utils.ChangeUnits.html#act.utils.ChangeUnits">[docs]</a>
-<span class="nd">@xr</span><span class="o">.</span><span class="n">register_dataset_accessor</span><span class="p">(</span><span class="s1">&#39;utils&#39;</span><span class="p">)</span>
+<div class="viewcode-block" id="ChangeUnits"><a class="viewcode-back" href="../../../API/generated/act.utils.ChangeUnits.html#act.utils.ChangeUnits">[docs]</a><span class="nd">@xr</span><span class="o">.</span><span class="n">register_dataset_accessor</span><span class="p">(</span><span class="s1">&#39;utils&#39;</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">ChangeUnits</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class for updating units in the dataset. Data values and units attribute</span>
@@ -238,10 +237,14 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ds</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ds</span> <span class="o">=</span> <span class="n">ds</span>
 
-<div class="viewcode-block" id="ChangeUnits.change_units">
-<a class="viewcode-back" href="../../../API/generated/act.utils.ChangeUnits.change_units.html#act.utils.ChangeUnits.change_units">[docs]</a>
-    <span class="k">def</span> <span class="nf">change_units</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">desired_unit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_variables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_standard</span><span class="o">=</span><span class="kc">True</span>
+<div class="viewcode-block" id="ChangeUnits.change_units"><a class="viewcode-back" href="../../../API/generated/act.utils.ChangeUnits.change_units.html#act.utils.ChangeUnits.change_units">[docs]</a>    <span class="k">def</span> <span class="nf">change_units</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">variables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">desired_unit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">skip_variables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">skip_standard</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">raise_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
@@ -257,6 +260,13 @@
 <span class="sd">            Flag indicating the QC variables that will not need changing are</span>
 <span class="sd">            skipped. Makes the processing faster when processing all variables</span>
 <span class="sd">            in dataset.</span>
+<span class="sd">        verbose : boolean</span>
+<span class="sd">            Option to print statement when an attempted conversion fails. Set to False</span>
+<span class="sd">            as default because many units strings are not udunits complient and when</span>
+<span class="sd">            trying to convert all varialbes of a type of units (eg temperature) the code</span>
+<span class="sd">            can print a lot of unecessary information.</span>
+<span class="sd">        raise_error : boolean</span>
+<span class="sd">            Raise an error if conversion is not successful.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -308,17 +318,21 @@
                 <span class="n">pint</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">UndefinedUnitError</span><span class="p">,</span>
                 <span class="n">np</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">_exceptions</span><span class="o">.</span><span class="n">UFuncTypeError</span><span class="p">,</span>
             <span class="p">):</span>
-                <span class="k">continue</span>
+                <span class="k">if</span> <span class="n">raise_error</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Unable to convert &#39;</span><span class="si">{</span><span class="n">var_name</span><span class="si">}</span><span class="s2">&#39; to units of &#39;</span><span class="si">{</span><span class="n">desired_unit</span><span class="si">}</span><span class="s2">&#39;.&quot;</span>
+                    <span class="p">)</span>
+                <span class="k">elif</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">    Unable to convert &#39;</span><span class="si">{</span><span class="n">var_name</span><span class="si">}</span><span class="s2">&#39; to units of &#39;</span><span class="si">{</span><span class="n">desired_unit</span><span class="si">}</span><span class="s2">&#39;. &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;Skipping unit converstion for &#39;</span><span class="si">{</span><span class="n">var_name</span><span class="si">}</span><span class="s2">&#39;.</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ds</span></div>
-</div>
-
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ds</span></div></div>
 
 
 <span class="c1"># @xr.register_dataset_accessor(&#39;utils&#39;)</span>
-<div class="viewcode-block" id="DatastreamParserARM">
-<a class="viewcode-back" href="../../../API/generated/act.utils.DatastreamParserARM.html#act.utils.DatastreamParserARM">[docs]</a>
-<span class="k">class</span> <span class="nc">DatastreamParserARM</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="DatastreamParserARM"><a class="viewcode-back" href="../../../API/generated/act.utils.DatastreamParserARM.html#act.utils.DatastreamParserARM">[docs]</a><span class="k">class</span> <span class="nc">DatastreamParserARM</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Class to parse ARM datastream names or filenames into its components.</span>
 <span class="sd">    Will return None for each attribute if not extracted from the filename.</span>
@@ -354,6 +368,7 @@
 
 
 <span class="sd">    &#39;&#39;&#39;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ds</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Constructor that initializes datastream data member and runs</span>
@@ -364,11 +379,10 @@
 <span class="sd">            The datastream or filename to parse</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
-
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">PathLike</span><span class="p">)):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__datastream</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span><span class="o">.</span><span class="n">name</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Datastream or filename name must be a string&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Datastream or filename name must be a string or pathlib.PosixPath.&#39;</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__parse_datastream</span><span class="p">()</span>
@@ -425,29 +439,28 @@
             <span class="n">match</span> <span class="o">=</span> <span class="kc">True</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
-            <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(^[a-z]</span><span class="si">{3}</span><span class="s1">)(\w+)$&#39;</span><span class="p">,</span> <span class="n">tempstring</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(^[a-z]</span><span class="si">{3}</span><span class="s1">)([^A-Z]+)$&#39;</span><span class="p">,</span> <span class="n">tempstring</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
             <span class="k">if</span> <span class="n">m</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">__site</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">__class</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
                 <span class="n">match</span> <span class="o">=</span> <span class="kc">True</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">tempstring</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">__site</span> <span class="o">=</span> <span class="n">tempstring</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">match</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(^[a-z]</span><span class="si">{3}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">tempstring</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">m</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__site</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">match</span> <span class="o">=</span> <span class="kc">True</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__datastream</span><span class="p">)</span>
 
-<div class="viewcode-block" id="DatastreamParserARM.set_datastream">
-<a class="viewcode-back" href="../../../API/generated/act.utils.DatastreamParserARM.set_datastream.html#act.utils.DatastreamParserARM.set_datastream">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_datastream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ds</span><span class="p">):</span>
+<div class="viewcode-block" id="DatastreamParserARM.set_datastream"><a class="viewcode-back" href="../../../API/generated/act.utils.DatastreamParserARM.set_datastream.html#act.utils.DatastreamParserARM.set_datastream">[docs]</a>    <span class="k">def</span> <span class="nf">set_datastream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ds</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Method used to set or reset object by passing a new datastream name.</span>
 
 <span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span></div>
-
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">datastream</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -459,8 +472,7 @@
 <span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">__site</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__facility</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">__level</span><span class="p">))</span>
+            <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">__site</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__facility</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__level</span><span class="p">))</span>
         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
 
@@ -516,8 +528,7 @@
 <span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">site</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">datastream_class</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">facility</span><span class="p">,</span>
-                            <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">level</span><span class="p">))</span>
+            <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">site</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">datastream_class</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">facility</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">level</span><span class="p">))</span>
 
         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
@@ -547,10 +558,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ext</span></div>
 
 
-
-<div class="viewcode-block" id="assign_coordinates">
-<a class="viewcode-back" href="../../../API/generated/act.utils.assign_coordinates.html#act.utils.assign_coordinates">[docs]</a>
-<span class="k">def</span> <span class="nf">assign_coordinates</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">coord_list</span><span class="p">):</span>
+<div class="viewcode-block" id="assign_coordinates"><a class="viewcode-back" href="../../../API/generated/act.utils.assign_coordinates.html#act.utils.assign_coordinates">[docs]</a><span class="k">def</span> <span class="nf">assign_coordinates</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">coord_list</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This procedure will create a new ACT dataset whose coordinates are</span>
 <span class="sd">    designated to be the variables in a given list. This helps make data</span>
@@ -600,10 +608,7 @@
     <span class="k">return</span> <span class="n">new_ds</span></div>
 
 
-
-<div class="viewcode-block" id="add_in_nan">
-<a class="viewcode-back" href="../../../API/generated/act.utils.add_in_nan.html#act.utils.add_in_nan">[docs]</a>
-<span class="k">def</span> <span class="nf">add_in_nan</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<div class="viewcode-block" id="add_in_nan"><a class="viewcode-back" href="../../../API/generated/act.utils.add_in_nan.html#act.utils.add_in_nan">[docs]</a><span class="k">def</span> <span class="nf">add_in_nan</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This procedure adds in NaNs when there is a larger than expected time step.</span>
 <span class="sd">    This is useful for timeseries where there is a gap in data and need a</span>
@@ -685,10 +690,7 @@
     <span class="k">return</span> <span class="n">time</span><span class="p">,</span> <span class="n">data</span></div>
 
 
-
-<div class="viewcode-block" id="get_missing_value">
-<a class="viewcode-back" href="../../../API/generated/act.utils.get_missing_value.html#act.utils.get_missing_value">[docs]</a>
-<span class="k">def</span> <span class="nf">get_missing_value</span><span class="p">(</span>
+<div class="viewcode-block" id="get_missing_value"><a class="viewcode-back" href="../../../API/generated/act.utils.get_missing_value.html#act.utils.get_missing_value">[docs]</a><span class="k">def</span> <span class="nf">get_missing_value</span><span class="p">(</span>
     <span class="n">ds</span><span class="p">,</span>
     <span class="n">variable</span><span class="p">,</span>
     <span class="n">default</span><span class="o">=-</span><span class="mi">9999</span><span class="p">,</span>
@@ -786,10 +788,7 @@
     <span class="k">return</span> <span class="n">missing</span></div>
 
 
-
-<div class="viewcode-block" id="convert_units">
-<a class="viewcode-back" href="../../../API/generated/act.utils.convert_units.html#act.utils.convert_units">[docs]</a>
-<span class="k">def</span> <span class="nf">convert_units</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">in_units</span><span class="p">,</span> <span class="n">out_units</span><span class="p">):</span>
+<div class="viewcode-block" id="convert_units"><a class="viewcode-back" href="../../../API/generated/act.utils.convert_units.html#act.utils.convert_units">[docs]</a><span class="k">def</span> <span class="nf">convert_units</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">in_units</span><span class="p">,</span> <span class="n">out_units</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Wrapper function around library to convert data using unit strings.</span>
 <span class="sd">    Currently using pint units library. Will attempt to preserve numpy</span>
@@ -869,10 +868,7 @@
     <span class="k">return</span> <span class="n">data</span></div>
 
 
-
-<div class="viewcode-block" id="ts_weighted_average">
-<a class="viewcode-back" href="../../../API/generated/act.utils.ts_weighted_average.html#act.utils.ts_weighted_average">[docs]</a>
-<span class="k">def</span> <span class="nf">ts_weighted_average</span><span class="p">(</span><span class="n">ts_dict</span><span class="p">):</span>
+<div class="viewcode-block" id="ts_weighted_average"><a class="viewcode-back" href="../../../API/generated/act.utils.ts_weighted_average.html#act.utils.ts_weighted_average">[docs]</a><span class="k">def</span> <span class="nf">ts_weighted_average</span><span class="p">(</span><span class="n">ts_dict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Program to take in multiple difference time-series and average them</span>
 <span class="sd">    using the weights provided. This assumes that the variables passed in</span>
@@ -948,10 +944,7 @@
     <span class="k">return</span> <span class="n">da_xr</span></div>
 
 
-
-<div class="viewcode-block" id="accumulate_precip">
-<a class="viewcode-back" href="../../../API/generated/act.utils.accumulate_precip.html#act.utils.accumulate_precip">[docs]</a>
-<span class="k">def</span> <span class="nf">accumulate_precip</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">time_delta</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="accumulate_precip"><a class="viewcode-back" href="../../../API/generated/act.utils.accumulate_precip.html#act.utils.accumulate_precip">[docs]</a><span class="k">def</span> <span class="nf">accumulate_precip</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">time_delta</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Program to accumulate rain rates from an act xarray dataset and insert</span>
 <span class="sd">    variable back into an act xarray dataset with &quot;_accumulated&quot; appended to</span>
@@ -1006,10 +999,7 @@
     <span class="k">return</span> <span class="n">ds</span></div>
 
 
-
-<div class="viewcode-block" id="create_pyart_obj">
-<a class="viewcode-back" href="../../../API/generated/act.utils.create_pyart_obj.html#act.utils.create_pyart_obj">[docs]</a>
-<span class="k">def</span> <span class="nf">create_pyart_obj</span><span class="p">(</span>
+<div class="viewcode-block" id="create_pyart_obj"><a class="viewcode-back" href="../../../API/generated/act.utils.create_pyart_obj.html#act.utils.create_pyart_obj">[docs]</a><span class="k">def</span> <span class="nf">create_pyart_obj</span><span class="p">(</span>
     <span class="n">ds</span><span class="p">,</span>
     <span class="n">variables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">sweep</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -1212,10 +1202,7 @@
     <span class="k">return</span> <span class="n">radar</span></div>
 
 
-
-<div class="viewcode-block" id="convert_to_potential_temp">
-<a class="viewcode-back" href="../../../API/generated/act.utils.convert_to_potential_temp.html#act.utils.convert_to_potential_temp">[docs]</a>
-<span class="k">def</span> <span class="nf">convert_to_potential_temp</span><span class="p">(</span>
+<div class="viewcode-block" id="convert_to_potential_temp"><a class="viewcode-back" href="../../../API/generated/act.utils.convert_to_potential_temp.html#act.utils.convert_to_potential_temp">[docs]</a><span class="k">def</span> <span class="nf">convert_to_potential_temp</span><span class="p">(</span>
     <span class="n">ds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">temp_var_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">press_var_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -1224,7 +1211,6 @@
     <span class="n">temp_var_units</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">press_var_units</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="p">):</span>
-
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Converts temperature to potential temperature.</span>
 
@@ -1297,10 +1283,7 @@
     <span class="k">return</span> <span class="n">potential_temp</span></div>
 
 
-
-<div class="viewcode-block" id="height_adjusted_temperature">
-<a class="viewcode-back" href="../../../API/generated/act.utils.height_adjusted_temperature.html#act.utils.height_adjusted_temperature">[docs]</a>
-<span class="k">def</span> <span class="nf">height_adjusted_temperature</span><span class="p">(</span>
+<div class="viewcode-block" id="height_adjusted_temperature"><a class="viewcode-back" href="../../../API/generated/act.utils.height_adjusted_temperature.html#act.utils.height_adjusted_temperature">[docs]</a><span class="k">def</span> <span class="nf">height_adjusted_temperature</span><span class="p">(</span>
     <span class="n">ds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">temp_var_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">height_difference</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
@@ -1394,10 +1377,7 @@
     <span class="k">return</span> <span class="n">adjusted_temperature</span></div>
 
 
-
-<div class="viewcode-block" id="height_adjusted_pressure">
-<a class="viewcode-back" href="../../../API/generated/act.utils.height_adjusted_pressure.html#act.utils.height_adjusted_pressure">[docs]</a>
-<span class="k">def</span> <span class="nf">height_adjusted_pressure</span><span class="p">(</span>
+<div class="viewcode-block" id="height_adjusted_pressure"><a class="viewcode-back" href="../../../API/generated/act.utils.height_adjusted_pressure.html#act.utils.height_adjusted_pressure">[docs]</a><span class="k">def</span> <span class="nf">height_adjusted_pressure</span><span class="p">(</span>
     <span class="n">ds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">press_var_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">height_difference</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
@@ -1466,10 +1446,7 @@
     <span class="k">return</span> <span class="n">adjusted_pressure</span></div>
 
 
-
-<div class="viewcode-block" id="arm_site_location_search">
-<a class="viewcode-back" href="../../../API/generated/act.utils.arm_site_location_search.html#act.utils.arm_site_location_search">[docs]</a>
-<span class="k">def</span> <span class="nf">arm_site_location_search</span><span class="p">(</span><span class="n">site_code</span><span class="o">=</span><span class="s1">&#39;sgp&#39;</span><span class="p">,</span> <span class="n">facility_code</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="arm_site_location_search"><a class="viewcode-back" href="../../../API/generated/act.utils.arm_site_location_search.html#act.utils.arm_site_location_search">[docs]</a><span class="k">def</span> <span class="nf">arm_site_location_search</span><span class="p">(</span><span class="n">site_code</span><span class="o">=</span><span class="s1">&#39;sgp&#39;</span><span class="p">,</span> <span class="n">facility_code</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1503,9 +1480,7 @@
             <span class="s2">&quot;distinct_facility_code&quot;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s2">&quot;terms&quot;</span><span class="p">:</span> <span class="p">{</span>
                     <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;facility_code.keyword&quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;order&quot;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="s2">&quot;_key&quot;</span><span class="p">:</span> <span class="s2">&quot;asc&quot;</span>
-                    <span class="p">},</span>
+                    <span class="s2">&quot;order&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;_key&quot;</span><span class="p">:</span> <span class="s2">&quot;asc&quot;</span><span class="p">},</span>
                     <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">7000</span><span class="p">,</span>
                 <span class="p">},</span>
                 <span class="s2">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -1517,7 +1492,7 @@
                                 <span class="s2">&quot;facility_code&quot;</span><span class="p">,</span>
                                 <span class="s2">&quot;location&quot;</span><span class="p">,</span>
                             <span class="p">],</span>
-                            <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">1</span>
+                            <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
                         <span class="p">},</span>
                     <span class="p">},</span>
                 <span class="p">},</span>
@@ -1532,7 +1507,9 @@
     <span class="p">}</span>
 
     <span class="c1"># Uses requests to grab metadata from arm.gov.</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://adc.arm.gov/elastic/metadata/_search&#39;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">json_data</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+        <span class="s1">&#39;https://adc.arm.gov/elastic/metadata/_search&#39;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">json_data</span>
+    <span class="p">)</span>
     <span class="c1"># Loads the text to a dictionary</span>
     <span class="n">response_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 
@@ -1540,23 +1517,95 @@
     <span class="n">coord_dict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="c1"># Loop through each facility.</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">response_dict</span><span class="p">[</span><span class="s1">&#39;aggregations&#39;</span><span class="p">][</span><span class="s1">&#39;distinct_facility_code&#39;</span><span class="p">][</span><span class="s1">&#39;buckets&#39;</span><span class="p">])):</span>
-        <span class="n">site_info</span> <span class="o">=</span> <span class="n">response_dict</span><span class="p">[</span><span class="s1">&#39;aggregations&#39;</span><span class="p">][</span><span class="s1">&#39;distinct_facility_code&#39;</span><span class="p">][</span><span class="s1">&#39;buckets&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;hits&#39;</span><span class="p">][</span><span class="s1">&#39;hits&#39;</span><span class="p">][</span><span class="s1">&#39;hits&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;_source&#39;</span><span class="p">]</span>
+        <span class="n">site_info</span> <span class="o">=</span> <span class="n">response_dict</span><span class="p">[</span><span class="s1">&#39;aggregations&#39;</span><span class="p">][</span><span class="s1">&#39;distinct_facility_code&#39;</span><span class="p">][</span><span class="s1">&#39;buckets&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;hits&#39;</span><span class="p">][</span>
+            <span class="s1">&#39;hits&#39;</span>
+        <span class="p">][</span><span class="s1">&#39;hits&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;_source&#39;</span><span class="p">]</span>
         <span class="n">site</span> <span class="o">=</span> <span class="n">site_info</span><span class="p">[</span><span class="s1">&#39;site_code&#39;</span><span class="p">]</span>
         <span class="n">facility</span> <span class="o">=</span> <span class="n">site_info</span><span class="p">[</span><span class="s1">&#39;facility_code&#39;</span><span class="p">]</span>
         <span class="c1"># Some sites do not contain coordinate information, return None if that is the case.</span>
         <span class="k">if</span> <span class="n">site_info</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">coords</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                      <span class="s1">&#39;longitude&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+            <span class="n">coords</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span> <span class="o">=</span> <span class="n">site_info</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
             <span class="n">lat</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span>
             <span class="n">lon</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">lon</span><span class="p">)</span>
-            <span class="n">coords</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="n">lat</span><span class="p">,</span>
-                      <span class="s1">&#39;longitude&#39;</span><span class="p">:</span> <span class="n">lon</span><span class="p">}</span>
+            <span class="n">coords</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="n">lat</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">:</span> <span class="n">lon</span><span class="p">}</span>
         <span class="n">coord_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">site</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">facility</span><span class="p">,</span> <span class="n">coords</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">coord_dict</span></div>
 
+
+<div class="viewcode-block" id="calculate_percentages"><a class="viewcode-back" href="../../../API/generated/act.utils.calculate_percentages.html#act.utils.calculate_percentages">[docs]</a><span class="k">def</span> <span class="nf">calculate_percentages</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_slice</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function calculates percentages of different fields of a dataset.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ds : ACT Dataset</span>
+<span class="sd">        The ACT dataset to calculate the percentages on.</span>
+<span class="sd">    fields : list</span>
+<span class="sd">        A list of all the fields to use in the percentage calculations.</span>
+<span class="sd">    time : datetime</span>
+<span class="sd">        A single datetime to calculate percentages on if desired. Default</span>
+<span class="sd">        is None and all data will be included.</span>
+<span class="sd">    time_slice : tuple</span>
+<span class="sd">        A tuple of two datetimes to grab all data between those two datatimes.</span>
+<span class="sd">        Default is None and all data will be included.</span>
+<span class="sd">    threshold : float</span>
+<span class="sd">        Threshold in which anything below will be considered invalid.</span>
+<span class="sd">        Default is None.</span>
+<span class="sd">    fill_value : float</span>
+<span class="sd">        Fill value for invalid data. Only used if a threshold is provided.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    percentages : dict</span>
+<span class="sd">        A dictionary containing the fields provided and their corresponding</span>
+<span class="sd">        percentage that was calculated.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Copy Dataset so we are not overriding the data.</span>
+    <span class="n">ds_percent</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># Check if any incorrect values based on a threshold and replace with a fill</span>
+    <span class="c1"># value.</span>
+    <span class="k">if</span> <span class="n">threshold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+            <span class="n">ds_percent</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="n">ds_percent</span><span class="p">[</span><span class="n">field</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">ds_percent</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">fill_value</span><span class="p">)</span>
+
+    <span class="c1"># Raise warning if negative values present in a field.</span>
+    <span class="k">if</span> <span class="n">threshold</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">ds_percent</span><span class="p">[</span><span class="n">field</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">&gt;=</span> <span class="mf">0.0</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">res</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2"> contains negatives values, consider using a threshold.&quot;</span><span class="p">,</span>
+                    <span class="ne">UserWarning</span><span class="p">,</span>
+                <span class="p">)</span>
+
+    <span class="c1"># Select the data based on time, multiple times within a slice, or</span>
+    <span class="c1"># a sample of times per a timestep.</span>
+    <span class="k">if</span> <span class="n">time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ds_percent</span> <span class="o">=</span> <span class="n">ds_percent</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">time_slice</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ds_percent</span> <span class="o">=</span> <span class="n">ds_percent</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="n">time_slice</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">time_slice</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="s2">&quot;No time parameter used, calculating a mean for each field for the whole dataset.&quot;</span><span class="p">,</span>
+            <span class="ne">UserWarning</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Calculate concentration percentage of each field in the air.</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">ds_percent</span><span class="p">[</span><span class="n">field</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">skipna</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">values</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">]</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">percent_values</span> <span class="o">=</span> <span class="p">[(</span><span class="n">value</span> <span class="o">/</span> <span class="n">total</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">]</span>
+
+    <span class="c1"># Create a dictionary of the fields and their percentages.</span>
+    <span class="n">percentages</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">percent_values</span><span class="p">):</span>
+        <span class="n">percentages</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span>
+    <span class="n">ds_percent</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">percentages</span></div>
 </pre></div>
 <div class="section ablog__blog_comments">
   
@@ -1588,7 +1637,7 @@
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br>
 </p>
     </div>
     

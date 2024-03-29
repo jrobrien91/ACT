@@ -158,6 +158,23 @@ Examples showing different ways to read and save data.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to read and plot a backtrajectory calculated by the NOAA HYSPLIT model o...">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/io/images/thumb/sphx_glr_plot_hysplit_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_auto_examples_io_plot_hysplit.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Read and plot a HYSPLIT trajectory file from a HYSPlIT run.</div>
+    </div>
+
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Example of how to read in raw data from the mini-MPL and plot out the PPI by converting it to P...">
 
 .. only:: html
@@ -379,23 +396,6 @@ Examples showing different ways to visualize your data.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to make a Skew-T plot from a sounding and calculate stability indicies.">
-
-.. only:: html
-
-  .. image:: /source/auto_examples/plotting/images/thumb/sphx_glr_plot_skewt_thumb.png
-    :alt:
-
-  :ref:`sphx_glr_source_auto_examples_plotting_plot_skewt.py`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">Skew-T plot of a sounding</div>
-    </div>
-
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="Investigate Temperature Quantiles using DistributionDisplay Violin Plots">
 
 .. only:: html
@@ -408,40 +408,6 @@ Examples showing different ways to visualize your data.
 .. raw:: html
 
       <div class="sphx-glr-thumbnail-title">Investigate Temperature Quantiles</div>
-    </div>
-
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to plot on the secondary y-axis using Matplotlib functionality.  The sec...">
-
-.. only:: html
-
-  .. image:: /source/auto_examples/plotting/images/thumb/sphx_glr_plot_secondary_y_thumb.png
-    :alt:
-
-  :ref:`sphx_glr_source_auto_examples_plotting_plot_secondary_y.py`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">Secondary Y-Axis Plotting</div>
-    </div>
-
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="This is a simple example for how to plot multiple columns in a TimeseriesDisplay.">
-
-.. only:: html
-
-  .. image:: /source/auto_examples/plotting/images/thumb/sphx_glr_plot_multiple_column_thumb.png
-    :alt:
-
-  :ref:`sphx_glr_source_auto_examples_plotting_plot_multiple_column.py`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">Plot a timeseries of sounding data</div>
     </div>
 
 
@@ -464,18 +430,35 @@ Examples showing different ways to visualize your data.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to download and plot ceiliometer data from the SGP site over Oklahoma...">
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to make a Skew-T plot from a sounding and calculate stability indicies.">
 
 .. only:: html
 
-  .. image:: /source/auto_examples/plotting/images/thumb/sphx_glr_plot_ceil_thumb.png
+  .. image:: /source/auto_examples/plotting/images/thumb/sphx_glr_plot_skewt_thumb.png
     :alt:
 
-  :ref:`sphx_glr_source_auto_examples_plotting_plot_ceil.py`
+  :ref:`sphx_glr_source_auto_examples_plotting_plot_skewt.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Simple plot of 2D data</div>
+      <div class="sphx-glr-thumbnail-title">Skew-T plot of a sounding</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This is a simple example for how to plot multiple columns in a TimeseriesDisplay.">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/plotting/images/thumb/sphx_glr_plot_multiple_column_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_auto_examples_plotting_plot_multiple_column.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Plot a timeseries of sounding data</div>
     </div>
 
 
@@ -493,6 +476,23 @@ Examples showing different ways to visualize your data.
 .. raw:: html
 
       <div class="sphx-glr-thumbnail-title">Calculate and plot wind rose plots separated by day.</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to plot on the secondary y-axis using Matplotlib functionality.  The sec...">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/plotting/images/thumb/sphx_glr_plot_secondary_y_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_auto_examples_plotting_plot_secondary_y.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Secondary Y-Axis Plotting</div>
     </div>
 
 
@@ -527,6 +527,23 @@ Examples showing different ways to visualize your data.
 .. raw:: html
 
       <div class="sphx-glr-thumbnail-title">Multidimensional cross sections</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to download and plot ceiliometer data from the SGP site over Oklahoma...">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/plotting/images/thumb/sphx_glr_plot_ceil_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_auto_examples_plotting_plot_ceil.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Simple plot of 2D data</div>
     </div>
 
 
@@ -600,6 +617,23 @@ Examples showing different ways to visualize your data.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to display wind rose and barb timeseries from multiple days worth of ...">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/plotting/images/thumb/sphx_glr_plot_rh_timeseries_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_auto_examples_plotting_plot_rh_timeseries.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Plot winds and relative humidity from sounding data</div>
+    </div>
+
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to display a data rose. As can be seen in the final plot, there are t...">
 
 .. only:: html
@@ -621,14 +655,14 @@ Examples showing different ways to visualize your data.
 
 .. only:: html
 
-  .. image:: /source/auto_examples/plotting/images/thumb/sphx_glr_plot_rh_timeseries_thumb.png
+  .. image:: /source/auto_examples/plotting/images/thumb/sphx_glr_plot_wind_rose_thumb.png
     :alt:
 
-  :ref:`sphx_glr_source_auto_examples_plotting_plot_rh_timeseries.py`
+  :ref:`sphx_glr_source_auto_examples_plotting_plot_wind_rose.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Plot winds and relative humidity from sounding data</div>
+      <div class="sphx-glr-thumbnail-title">Windrose and windbarb timeseries plot</div>
     </div>
 
 
@@ -646,23 +680,6 @@ Examples showing different ways to visualize your data.
 .. raw:: html
 
       <div class="sphx-glr-thumbnail-title">Plot Present Weather Code</div>
-    </div>
-
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to display wind rose and barb timeseries from multiple days worth of ...">
-
-.. only:: html
-
-  .. image:: /source/auto_examples/plotting/images/thumb/sphx_glr_plot_wind_rose_thumb.png
-    :alt:
-
-  :ref:`sphx_glr_source_auto_examples_plotting_plot_wind_rose.py`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">Windrose and windbarb timeseries plot</div>
     </div>
 
 
@@ -855,6 +872,23 @@ Examples showing different helpful utilies in ACT.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Example on how to plot a Pie Chart of the composition of aerosols in a volume of air by obtaini...">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/utils/images/thumb/sphx_glr_plot_calculated_percentages_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_auto_examples_utils_plot_calculated_percentages.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Calculate and plot aerosol percentages.</div>
+    </div>
+
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to parse the datastream filename into its constituent parts.">
 
 .. only:: html
@@ -974,23 +1008,6 @@ Examples showing full workflows, including reading, applying corrections, and vi
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Example to merge multiple data products into one using ACT. Shows how to adjust the timestamp i...">
-
-.. only:: html
-
-  .. image:: /source/auto_examples/workflows/images/thumb/sphx_glr_plot_merged_product_thumb.png
-    :alt:
-
-  :ref:`sphx_glr_source_auto_examples_workflows_plot_merged_product.py`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">Merge multiple datasets</div>
-    </div>
-
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to calculate a weighted average from the MET TBRG, ORG and PWD.  This...">
 
 .. only:: html
@@ -1003,6 +1020,23 @@ Examples showing full workflows, including reading, applying corrections, and vi
 .. raw:: html
 
       <div class="sphx-glr-thumbnail-title">Calculate and plot weighted means</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Example to merge multiple data products into one using ACT. Shows how to adjust the timestamp i...">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/workflows/images/thumb/sphx_glr_plot_merged_product_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_auto_examples_workflows_plot_merged_product.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Merge multiple datasets</div>
     </div>
 
 

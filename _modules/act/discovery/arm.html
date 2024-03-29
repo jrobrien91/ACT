@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../../../">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>act.discovery.arm &#8212; Atmospheric data Community Toolkit 0.post1+g20f206c documentation</title>
+    <title>act.discovery.arm &#8212; Atmospheric data Community Toolkit 0.post1+gf97a0d3 documentation</title>
     
     <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -40,9 +40,9 @@
     
     <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
   
-    <script src="../../../_static/documentation_options.js?v=8280bae9"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=3a1f6e35"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/design-tabs.js?v=36754332"></script>
@@ -205,14 +205,11 @@
 
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">import</span> <span class="nn">textwrap</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
@@ -222,9 +219,7 @@
 <span class="kn">from</span> <span class="nn">act.utils</span> <span class="kn">import</span> <span class="n">date_parser</span>
 
 
-<div class="viewcode-block" id="download_arm_data">
-<a class="viewcode-back" href="../../../API/generated/act.discovery.download_arm_data.html#act.discovery.download_arm_data">[docs]</a>
-<span class="k">def</span> <span class="nf">download_arm_data</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">datastream</span><span class="p">,</span> <span class="n">startdate</span><span class="p">,</span> <span class="n">enddate</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="download_arm_data"><a class="viewcode-back" href="../../../API/generated/act.discovery.download_arm_data.html#act.discovery.download_arm_data">[docs]</a><span class="k">def</span> <span class="nf">download_arm_data</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">datastream</span><span class="p">,</span> <span class="n">startdate</span><span class="p">,</span> <span class="n">enddate</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This tool will help users utilize the ARM Live Data Webservice to download</span>
 <span class="sd">    ARM data.</span>
@@ -367,7 +362,9 @@
                     <span class="n">open_bytes_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
             <span class="n">file_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
         <span class="c1"># Get ARM DOI and print it out</span>
-        <span class="n">doi</span> <span class="o">=</span> <span class="n">get_arm_doi</span><span class="p">(</span><span class="n">datastream</span><span class="p">,</span> <span class="n">start_datetime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">),</span> <span class="n">end_datetime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">))</span>
+        <span class="n">doi</span> <span class="o">=</span> <span class="n">get_arm_doi</span><span class="p">(</span>
+            <span class="n">datastream</span><span class="p">,</span> <span class="n">start_datetime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">),</span> <span class="n">end_datetime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">If you use these data to prepare a publication, please cite:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">doi</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">80</span><span class="p">))</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
@@ -379,10 +376,7 @@
     <span class="k">return</span> <span class="n">file_names</span></div>
 
 
-
-<div class="viewcode-block" id="get_arm_doi">
-<a class="viewcode-back" href="../../../API/generated/act.discovery.get_arm_doi.html#act.discovery.get_arm_doi">[docs]</a>
-<span class="k">def</span> <span class="nf">get_arm_doi</span><span class="p">(</span><span class="n">datastream</span><span class="p">,</span> <span class="n">startdate</span><span class="p">,</span> <span class="n">enddate</span><span class="p">):</span>
+<div class="viewcode-block" id="get_arm_doi"><a class="viewcode-back" href="../../../API/generated/act.discovery.get_arm_doi.html#act.discovery.get_arm_doi">[docs]</a><span class="k">def</span> <span class="nf">get_arm_doi</span><span class="p">(</span><span class="n">datastream</span><span class="p">,</span> <span class="n">startdate</span><span class="p">,</span> <span class="n">enddate</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This function will return a citation with DOI, if available, for specified</span>
 <span class="sd">    datastream and date range</span>
@@ -404,7 +398,11 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Get the DOI information</span>
-    <span class="n">doi_url</span> <span class="o">=</span> <span class="s1">&#39;https://adc.arm.gov/citationservice/citation/datastream?id=&#39;</span> <span class="o">+</span> <span class="n">datastream</span> <span class="o">+</span> <span class="s1">&#39;&amp;citationType=apa&#39;</span>
+    <span class="n">doi_url</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;https://adc.arm.gov/citationservice/citation/datastream?id=&#39;</span>
+        <span class="o">+</span> <span class="n">datastream</span>
+        <span class="o">+</span> <span class="s1">&#39;&amp;citationType=apa&#39;</span>
+    <span class="p">)</span>
     <span class="n">doi_url</span> <span class="o">+=</span> <span class="s1">&#39;&amp;startDate=&#39;</span> <span class="o">+</span> <span class="n">startdate</span>
     <span class="n">doi_url</span> <span class="o">+=</span> <span class="s1">&#39;&amp;endDate=&#39;</span> <span class="o">+</span> <span class="n">enddate</span>
     <span class="k">try</span><span class="p">:</span>
@@ -418,7 +416,6 @@
         <span class="n">doi</span> <span class="o">=</span> <span class="s1">&#39;Please check your arguments. No DOI Found&#39;</span>
 
     <span class="k">return</span> <span class="n">doi</span></div>
-
 </pre></div>
 <div class="section ablog__blog_comments">
   
@@ -450,7 +447,7 @@
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.1.2.<br>
 </p>
     </div>
     
