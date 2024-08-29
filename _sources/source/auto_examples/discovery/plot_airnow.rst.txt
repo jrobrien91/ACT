@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_auto_examples_discovery_plot_airnow.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -99,6 +99,10 @@ a station near to SGP
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_airnow.py <plot_airnow.py>`
+
+    .. container:: sphx-glr-download sphx-glr-download-zip
+
+      :download:`Download zipped: plot_airnow.zip <plot_airnow.zip>`
 
 
 .. only:: html

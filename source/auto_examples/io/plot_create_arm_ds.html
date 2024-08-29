@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Create a dataset to mimic ARM file formats &#8212; Atmospheric data Community Toolkit 0.post1+ga32dde4 documentation</title>
+    <title>Create a dataset to mimic ARM file formats &#8212; Atmospheric data Community Toolkit 0.post1+geed7afd documentation</title>
     
     <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -32,27 +32,26 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/act-theme.css?v=dec1520a" />
     
     <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
   
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=625446ed"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=96986021"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script src="../../../_static/doc_shared.js?v=4c9803b4"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Plotting examples" href="../plotting/index.html" />
-    <link rel="prev" title="Plot ICARTT Formatted Files" href="plot_icartt.html" />
-
+    <link rel="next" title="Convert Data to AmeriFlux Format" href="plot_convert_ameriflux.html" />
+    <link rel="prev" title="Plot ICARTT Formatted Files" href="plot_icartt.html" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -66,17 +65,14 @@
                     gtag('js', new Date());
                     gtag('config', 'G-8YN80YZDD8');
                 </script>
-
-
+ 
 <link
   rel="alternate"
   type="application/atom+xml"
   href="../../../blog/atom.xml"
   title="ACT Blog"
 />
-
-
-
+  
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
@@ -212,6 +208,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../discovery/plot_improve.html">
+     IMPROVE Data
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../discovery/plot_noaa_fmcw_moment.html">
      NOAA FMCW and parsivel plot
     </a>
@@ -266,6 +267,11 @@
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Create a dataset to mimic ARM file formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot_convert_ameriflux.html">
+     Convert Data to AmeriFlux Format
     </a>
    </li>
   </ul>
@@ -343,6 +349,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../plotting/plot_secondary_y.html">
      Secondary Y-Axis Plotting
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../plotting/plot_pie_chart.html">
+     Calculate and View Aerosol Percentages
     </a>
    </li>
    <li class="toctree-l2">
@@ -573,11 +584,10 @@
           <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
               
               <div>
-                
-<div class="sphx-glr-download-link-note admonition note">
+                 <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
 <p><a class="reference internal" href="#sphx-glr-download-source-auto-examples-io-plot-create-arm-ds-py"><span class="std std-ref">Go to the end</span></a>
-to download the full example code</p>
+to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="create-a-dataset-to-mimic-arm-file-formats">
 <span id="sphx-glr-source-auto-examples-io-plot-create-arm-ds-py"></span><h1>Create a dataset to mimic ARM file formats<a class="headerlink" href="#create-a-dataset-to-mimic-arm-file-formats" title="Permalink to this heading">¶</a></h1>
@@ -677,7 +687,7 @@ random 1234253sdgfadf
 <span class="n">ds</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">write_netcdf</span><span class="p">(</span><span class="n">cf_compliant</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s1">&#39;./sgpvdisX1.b1.20230101.000000.cf&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.789 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.722 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-source-auto-examples-io-plot-create-arm-ds-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/7bdcd44eee3c41f252a0d29c37901bac/plot_create_arm_ds.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_create_arm_ds.ipynb</span></code></a></p>
@@ -685,13 +695,15 @@ random 1234253sdgfadf
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/6f290f75776cd36096095bc2a2d5806e/plot_create_arm_ds.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_create_arm_ds.py</span></code></a></p>
 </div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/d546398eef365474be7c19168b6dcc42/plot_create_arm_ds.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_create_arm_ds.zip</span></code></a></p>
+</div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
 </section>
 
 <div class="section ablog__blog_comments">
-  
-  
+   
 </div>
 
               </div>
@@ -706,10 +718,10 @@ random 1234253sdgfadf
             <p class="prev-next-title">Plot ICARTT Formatted Files</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../plotting/index.html" title="next page">
+    <a class='right-next' id="next-link" href="plot_convert_ameriflux.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Plotting examples</p>
+        <p class="prev-next-title">Convert Data to AmeriFlux Format</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

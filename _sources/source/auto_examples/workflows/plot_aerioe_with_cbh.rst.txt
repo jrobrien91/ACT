@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_auto_examples_workflows_plot_aerioe_with_cbh.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -138,6 +138,10 @@ ceilometer cloud base height(cbh).
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_aerioe_with_cbh.py <plot_aerioe_with_cbh.py>`
+
+    .. container:: sphx-glr-download sphx-glr-download-zip
+
+      :download:`Download zipped: plot_aerioe_with_cbh.zip <plot_aerioe_with_cbh.zip>`
 
 
 .. only:: html

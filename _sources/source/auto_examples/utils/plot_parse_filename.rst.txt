@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_auto_examples_utils_plot_parse_filename.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -114,6 +114,10 @@ the datastream filename into its constituent parts.
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_parse_filename.py <plot_parse_filename.py>`
+
+    .. container:: sphx-glr-download sphx-glr-download-zip
+
+      :download:`Download zipped: plot_parse_filename.zip <plot_parse_filename.zip>`
 
 
 .. only:: html

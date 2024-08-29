@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Plotting examples &#8212; Atmospheric data Community Toolkit 0.post1+ga32dde4 documentation</title>
+    <title>Plotting examples &#8212; Atmospheric data Community Toolkit 0.post1+geed7afd documentation</title>
     
     <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -32,27 +32,26 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/act-theme.css?v=dec1520a" />
     
     <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
   
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=625446ed"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=96986021"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script src="../../../_static/doc_shared.js?v=4c9803b4"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Enhanced plot of a sounding" href="plot_enhanced_skewt.html" />
-    <link rel="prev" title="Create a dataset to mimic ARM file formats" href="../io/plot_create_arm_ds.html" />
-
+    <link rel="prev" title="Convert Data to AmeriFlux Format" href="../io/plot_convert_ameriflux.html" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -66,17 +65,14 @@
                     gtag('js', new Date());
                     gtag('config', 'G-8YN80YZDD8');
                 </script>
-
-
+ 
 <link
   rel="alternate"
   type="application/atom+xml"
   href="../../../blog/atom.xml"
   title="ACT Blog"
 />
-
-
-
+  
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
@@ -212,6 +208,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../discovery/plot_improve.html">
+     IMPROVE Data
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../discovery/plot_noaa_fmcw_moment.html">
      NOAA FMCW and parsivel plot
     </a>
@@ -266,6 +267,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../io/plot_create_arm_ds.html">
      Create a dataset to mimic ARM file formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../io/plot_convert_ameriflux.html">
+     Convert Data to AmeriFlux Format
     </a>
    </li>
   </ul>
@@ -343,6 +349,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="plot_secondary_y.html">
      Secondary Y-Axis Plotting
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot_pie_chart.html">
+     Calculate and View Aerosol Percentages
     </a>
    </li>
    <li class="toctree-l2">
@@ -573,14 +584,13 @@
           <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
               
               <div>
-                
-<section id="plotting-examples">
+                 <section id="plotting-examples">
 <span id="sphx-glr-source-auto-examples-plotting"></span><span id="id1"></span><h1>Plotting examples<a class="headerlink" href="#plotting-examples" title="Permalink to this heading">¶</a></h1>
 <p>Examples showing different ways to visualize your data.</p>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This example shows how to make an enhance plot for sounding data which includes a Skew-T plot, ..."><img alt="" src="../../../_images/sphx_glr_plot_enhanced_skewt_thumb.png" />
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This example shows how to make an enhance plot for sounding data which includes a Skew-T plot, hodograph, and stability indicies."><img alt="" src="../../../_images/sphx_glr_plot_enhanced_skewt_thumb.png" />
 <p><a class="reference internal" href="plot_enhanced_skewt.html#sphx-glr-source-auto-examples-plotting-plot-enhanced-skewt-py"><span class="std std-ref">Enhanced plot of a sounding</span></a></p>
   <div class="sphx-glr-thumbnail-title">Enhanced plot of a sounding</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This is a simple example for how to plot a histogram of Meteorological data, while using hist_k..."><img alt="" src="../../../_images/sphx_glr_plot_hist_kwargs_thumb.png" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="This is a simple example for how to plot a histogram of Meteorological data, while using hist_kwargs parameter."><img alt="" src="../../../_images/sphx_glr_plot_hist_kwargs_thumb.png" />
 <p><a class="reference internal" href="plot_hist_kwargs.html#sphx-glr-source-auto-examples-plotting-plot-hist-kwargs-py"><span class="std std-ref">Plot a histogram of Met data.</span></a></p>
   <div class="sphx-glr-thumbnail-title">Plot a histogram of Met data.</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="This is a simple example for how to plot a timeseries of sounding data from the ARM SGP site."><img alt="" src="../../../_images/sphx_glr_plot_sonde_thumb.png" />
@@ -595,13 +605,13 @@
 </div><div class="sphx-glr-thumbcontainer" tooltip="Simple example for cleaning up a dataset and plotting the data and its QC flags"><img alt="" src="../../../_images/sphx_glr_plot_qc_thumb.png" />
 <p><a class="reference internal" href="plot_qc.html#sphx-glr-source-auto-examples-plotting-plot-qc-py"><span class="std std-ref">Plotting QC Flags</span></a></p>
   <div class="sphx-glr-thumbnail-title">Plotting QC Flags</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Example shows how to plot up CCN droplet count in a size distribution plot.  Also shows how to ..."><img alt="" src="../../../_images/sphx_glr_plot_size_distribution_thumb.png" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="Example shows how to plot up CCN droplet count in a size distribution plot.  Also shows how to add different plot types together using assign_to_figure_axis."><img alt="" src="../../../_images/sphx_glr_plot_size_distribution_thumb.png" />
 <p><a class="reference internal" href="plot_size_distribution.html#sphx-glr-source-auto-examples-plotting-plot-size-distribution-py"><span class="std std-ref">Example Size Distribution Plots</span></a></p>
   <div class="sphx-glr-thumbnail-title">Example Size Distribution Plots</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Investigate Temperature Quantiles using DistributionDisplay Violin Plots"><img alt="" src="../../../_images/sphx_glr_plot_violin_thumb.png" />
 <p><a class="reference internal" href="plot_violin.html#sphx-glr-source-auto-examples-plotting-plot-violin-py"><span class="std std-ref">Investigate Temperature Quantiles</span></a></p>
   <div class="sphx-glr-thumbnail-title">Investigate Temperature Quantiles</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Example of how to read in MET data and plot up daytime temperature averages using the add_solar..."><img alt="" src="../../../_images/sphx_glr_plot_daytime_averages_thumb.png" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="Example of how to read in MET data and plot up daytime temperature averages using the add_solar_variable function"><img alt="" src="../../../_images/sphx_glr_plot_daytime_averages_thumb.png" />
 <p><a class="reference internal" href="plot_daytime_averages.html#sphx-glr-source-auto-examples-plotting-plot-daytime-averages-py"><span class="std std-ref">Calculate and plot daily daytime temperature averages</span></a></p>
   <div class="sphx-glr-thumbnail-title">Calculate and plot daily daytime temperature averages</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="This example shows how to make a Skew-T plot from a sounding and calculate stability indicies."><img alt="" src="../../../_images/sphx_glr_plot_skewt_thumb.png" />
@@ -610,19 +620,22 @@
 </div><div class="sphx-glr-thumbcontainer" tooltip="This is a simple example for how to plot multiple columns in a TimeseriesDisplay."><img alt="" src="../../../_images/sphx_glr_plot_multiple_column_thumb.png" />
 <p><a class="reference internal" href="plot_multiple_column.html#sphx-glr-source-auto-examples-plotting-plot-multiple-column-py"><span class="std std-ref">Plot a timeseries of sounding data</span></a></p>
   <div class="sphx-glr-thumbnail-title">Plot a timeseries of sounding data</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Example of how to read in MET data and plot histograms of wind speed and temperature grouped by..."><img alt="" src="../../../_images/sphx_glr_plot_days_thumb.png" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="Example of how to read in MET data and plot histograms of wind speed and temperature grouped by day."><img alt="" src="../../../_images/sphx_glr_plot_days_thumb.png" />
 <p><a class="reference internal" href="plot_days.html#sphx-glr-source-auto-examples-plotting-plot-days-py"><span class="std std-ref">Calculate and plot wind rose plots separated by day.</span></a></p>
   <div class="sphx-glr-thumbnail-title">Calculate and plot wind rose plots separated by day.</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This example shows how to plot on the secondary y-axis using Matplotlib functionality.  The sec..."><img alt="" src="../../../_images/sphx_glr_plot_secondary_y_thumb.png" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example shows how to plot on the secondary y-axis using Matplotlib functionality.  The secondary_y functionality has been removed from ACT."><img alt="" src="../../../_images/sphx_glr_plot_secondary_y_thumb.png" />
 <p><a class="reference internal" href="plot_secondary_y.html#sphx-glr-source-auto-examples-plotting-plot-secondary-y-py"><span class="std std-ref">Secondary Y-Axis Plotting</span></a></p>
   <div class="sphx-glr-thumbnail-title">Secondary Y-Axis Plotting</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to use some different aspects of ACT&#x27;s plotting tools as well as Xarr..."><img alt="" src="../../../_images/sphx_glr_plot_examples_thumb.png" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="Calculate the percentages of different aerosols in a Aerosol Chemical Speciation (AOS) monitor dataset and view the percentages in a pie chart."><img alt="" src="../../../_images/sphx_glr_plot_pie_chart_thumb.png" />
+<p><a class="reference internal" href="plot_pie_chart.html#sphx-glr-source-auto-examples-plotting-plot-pie-chart-py"><span class="std std-ref">Calculate and View Aerosol Percentages</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Calculate and View Aerosol Percentages</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to use some different aspects of ACT&#x27;s plotting tools as well as Xarray&#x27;s tools."><img alt="" src="../../../_images/sphx_glr_plot_examples_thumb.png" />
 <p><a class="reference internal" href="plot_examples.html#sphx-glr-source-auto-examples-plotting-plot-examples-py"><span class="std std-ref">Xarray Plotting Examples</span></a></p>
   <div class="sphx-glr-thumbnail-title">Xarray Plotting Examples</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="In this example, the VISST data are used to plot up cross-sectional slices through the multi-di..."><img alt="" src="../../../_images/sphx_glr_plot_xsection_thumb.png" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="In this example, the VISST data are used to plot up cross-sectional slices through the multi-dimensional dataset"><img alt="" src="../../../_images/sphx_glr_plot_xsection_thumb.png" />
 <p><a class="reference internal" href="plot_xsection.html#sphx-glr-source-auto-examples-plotting-plot-xsection-py"><span class="std std-ref">Multidimensional cross sections</span></a></p>
   <div class="sphx-glr-thumbnail-title">Multidimensional cross sections</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to download and plot ceiliometer data from the SGP site over Oklahoma..."><img alt="" src="../../../_images/sphx_glr_plot_ceil_thumb.png" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to download and plot ceiliometer data from the SGP site over Oklahoma."><img alt="" src="../../../_images/sphx_glr_plot_ceil_thumb.png" />
 <p><a class="reference internal" href="plot_ceil.html#sphx-glr-source-auto-examples-plotting-plot-ceil-py"><span class="std std-ref">Simple plot of 2D data</span></a></p>
   <div class="sphx-glr-thumbnail-title">Simple plot of 2D data</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Compare MET temperature and RH using a heatmap and scatter plot."><img alt="" src="../../../_images/sphx_glr_plot_heatmap_thumb.png" />
@@ -637,13 +650,13 @@
 </div><div class="sphx-glr-thumbcontainer" tooltip="Compare Aircraft Airspeeds via the DistributionDisplay Scatter Plot"><img alt="" src="../../../_images/sphx_glr_plot_scatter_thumb.png" />
 <p><a class="reference internal" href="plot_scatter.html#sphx-glr-source-auto-examples-plotting-plot-scatter-py"><span class="std std-ref">Compare Aircraft Airspeeds</span></a></p>
   <div class="sphx-glr-thumbnail-title">Compare Aircraft Airspeeds</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to display wind rose and barb timeseries from multiple days worth of ..."><img alt="" src="../../../_images/sphx_glr_plot_rh_timeseries_thumb.png" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to display wind rose and barb timeseries from multiple days worth of sounding data."><img alt="" src="../../../_images/sphx_glr_plot_rh_timeseries_thumb.png" />
 <p><a class="reference internal" href="plot_rh_timeseries.html#sphx-glr-source-auto-examples-plotting-plot-rh-timeseries-py"><span class="std std-ref">Plot winds and relative humidity from sounding data</span></a></p>
   <div class="sphx-glr-thumbnail-title">Plot winds and relative humidity from sounding data</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to display a data rose. As can be seen in the final plot, there are t..."><img alt="" src="../../../_images/sphx_glr_plot_data_rose_thumb.png" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to display a data rose. As can be seen in the final plot, there are two major bullseyes of data, one around 0ºC to the Northeast and another around 15ºC to the South. This tells us that we get lower temperatures when winds are out of the N/NE as would be expected at this location.  This can be extended to easily review other types of data as well like aerosols and fluxes."><img alt="" src="../../../_images/sphx_glr_plot_data_rose_thumb.png" />
 <p><a class="reference internal" href="plot_data_rose.html#sphx-glr-source-auto-examples-plotting-plot-data-rose-py"><span class="std std-ref">Data rose plot</span></a></p>
   <div class="sphx-glr-thumbnail-title">Data rose plot</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to display wind rose and barb timeseries from multiple days worth of ..."><img alt="" src="../../../_images/sphx_glr_plot_wind_rose_thumb.png" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to display wind rose and barb timeseries from multiple days worth of sounding data."><img alt="" src="../../../_images/sphx_glr_plot_wind_rose_thumb.png" />
 <p><a class="reference internal" href="plot_wind_rose.html#sphx-glr-source-auto-examples-plotting-plot-wind-rose-py"><span class="std std-ref">Windrose and windbarb timeseries plot</span></a></p>
   <div class="sphx-glr-thumbnail-title">Windrose and windbarb timeseries plot</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Plot the Present Weather Code on Precipitation Accumulation"><img alt="" src="../../../_images/sphx_glr_plot_presentweathercode_thumb.png" />
@@ -657,8 +670,7 @@
 </section>
 
 <div class="section ablog__blog_comments">
-  
-  
+   
 </div>
 
               </div>
@@ -666,11 +678,11 @@
               
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../io/plot_create_arm_ds.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../io/plot_convert_ameriflux.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Create a dataset to mimic ARM file formats</p>
+            <p class="prev-next-title">Convert Data to AmeriFlux Format</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="plot_enhanced_skewt.html" title="next page">

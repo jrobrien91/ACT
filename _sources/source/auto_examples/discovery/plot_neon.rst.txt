@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_source_auto_examples_discovery_plot_neon.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -109,6 +109,10 @@ on the North Slope and plot them
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_neon.py <plot_neon.py>`
+
+    .. container:: sphx-glr-download sphx-glr-download-zip
+
+      :download:`Download zipped: plot_neon.zip <plot_neon.zip>`
 
 
 .. only:: html

@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Calculate and plot daily daytime temperature averages &#8212; Atmospheric data Community Toolkit 0.post1+ga32dde4 documentation</title>
+    <title>Calculate and plot daily daytime temperature averages &#8212; Atmospheric data Community Toolkit 0.post1+geed7afd documentation</title>
     
     <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -32,27 +32,26 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/act-theme.css?v=dec1520a" />
     
     <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
   
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=625446ed"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=96986021"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script src="../../../_static/doc_shared.js?v=4c9803b4"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Skew-T plot of a sounding" href="plot_skewt.html" />
-    <link rel="prev" title="Investigate Temperature Quantiles" href="plot_violin.html" />
-
+    <link rel="prev" title="Investigate Temperature Quantiles" href="plot_violin.html" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -66,17 +65,14 @@
                     gtag('js', new Date());
                     gtag('config', 'G-8YN80YZDD8');
                 </script>
-
-
+ 
 <link
   rel="alternate"
   type="application/atom+xml"
   href="../../../blog/atom.xml"
   title="ACT Blog"
 />
-
-
-
+  
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
@@ -212,6 +208,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../discovery/plot_improve.html">
+     IMPROVE Data
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../discovery/plot_noaa_fmcw_moment.html">
      NOAA FMCW and parsivel plot
     </a>
@@ -266,6 +267,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../io/plot_create_arm_ds.html">
      Create a dataset to mimic ARM file formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../io/plot_convert_ameriflux.html">
+     Convert Data to AmeriFlux Format
     </a>
    </li>
   </ul>
@@ -343,6 +349,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="plot_secondary_y.html">
      Secondary Y-Axis Plotting
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plot_pie_chart.html">
+     Calculate and View Aerosol Percentages
     </a>
    </li>
    <li class="toctree-l2">
@@ -573,11 +584,10 @@
           <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
               
               <div>
-                
-<div class="sphx-glr-download-link-note admonition note">
+                 <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
 <p><a class="reference internal" href="#sphx-glr-download-source-auto-examples-plotting-plot-daytime-averages-py"><span class="std std-ref">Go to the end</span></a>
-to download the full example code</p>
+to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="calculate-and-plot-daily-daytime-temperature-averages">
 <span id="sphx-glr-source-auto-examples-plotting-plot-daytime-averages-py"></span><h1>Calculate and plot daily daytime temperature averages<a class="headerlink" href="#calculate-and-plot-daily-daytime-temperature-averages" title="Permalink to this heading">¶</a></h1>
@@ -620,7 +630,7 @@ temperature averages using the add_solar_variable function</p>
 <span class="n">ds</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.288 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.371 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-source-auto-examples-plotting-plot-daytime-averages-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/dac2eae8a7a7db43ece6c90e44e4439f/plot_daytime_averages.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_daytime_averages.ipynb</span></code></a></p>
@@ -628,13 +638,15 @@ temperature averages using the add_solar_variable function</p>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/dd5d0daed448d9e7a29c7cd4c95f3849/plot_daytime_averages.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_daytime_averages.py</span></code></a></p>
 </div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/d4b443ce5ec970fc28b8d2c28c1c9eaa/plot_daytime_averages.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_daytime_averages.zip</span></code></a></p>
+</div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
 </section>
 
 <div class="section ablog__blog_comments">
-  
-  
+   
 </div>
 
               </div>

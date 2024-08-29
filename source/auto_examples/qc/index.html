@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Quality Control Examples &#8212; Atmospheric data Community Toolkit 0.post1+ga32dde4 documentation</title>
+    <title>Quality Control Examples &#8212; Atmospheric data Community Toolkit 0.post1+geed7afd documentation</title>
     
     <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -32,27 +32,26 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/act-theme.css?v=dec1520a" />
     
     <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
   
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=625446ed"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=96986021"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script src="../../../_static/doc_shared.js?v=4c9803b4"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Query the ARM DQR webservice" href="plot_dqr_qc.html" />
-    <link rel="prev" title="Plotting state variables" href="../plotting/plot_state_variable.html" />
-
+    <link rel="prev" title="Plotting state variables" href="../plotting/plot_state_variable.html" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -66,17 +65,14 @@
                     gtag('js', new Date());
                     gtag('config', 'G-8YN80YZDD8');
                 </script>
-
-
+ 
 <link
   rel="alternate"
   type="application/atom+xml"
   href="../../../blog/atom.xml"
   title="ACT Blog"
 />
-
-
-
+  
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
@@ -212,6 +208,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../discovery/plot_improve.html">
+     IMPROVE Data
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../discovery/plot_noaa_fmcw_moment.html">
      NOAA FMCW and parsivel plot
     </a>
@@ -266,6 +267,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../io/plot_create_arm_ds.html">
      Create a dataset to mimic ARM file formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../io/plot_convert_ameriflux.html">
+     Convert Data to AmeriFlux Format
     </a>
    </li>
   </ul>
@@ -343,6 +349,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../plotting/plot_secondary_y.html">
      Secondary Y-Axis Plotting
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../plotting/plot_pie_chart.html">
+     Calculate and View Aerosol Percentages
     </a>
    </li>
    <li class="toctree-l2">
@@ -573,23 +584,22 @@
           <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
               
               <div>
-                
-<section id="quality-control-examples">
+                 <section id="quality-control-examples">
 <span id="qc-examples"></span><span id="sphx-glr-source-auto-examples-qc"></span><h1>Quality Control Examples<a class="headerlink" href="#quality-control-examples" title="Permalink to this heading">¶</a></h1>
 <p>Examples showing different ways to apply quality control to your data.</p>
 <div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Simple example for querying the ARM DQR webservice and plotting up the results"><img alt="" src="../../../_images/sphx_glr_plot_dqr_qc_thumb.png" />
 <p><a class="reference internal" href="plot_dqr_qc.html#sphx-glr-source-auto-examples-qc-plot-dqr-qc-py"><span class="std std-ref">Query the ARM DQR webservice</span></a></p>
   <div class="sphx-glr-thumbnail-title">Query the ARM DQR webservice</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to use 2 dimentional DataArrays containing multiple 1 dimentional dat..."><img alt="" src="../../../_images/sphx_glr_plot_force_line_qc_thumb.png" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to use 2 dimentional DataArrays containing multiple 1 dimentional data, including a summary quality control plot showing the tests for each 1 dimentional data slice. This example uses the force_line_plot keyword which will force multiple 1 dimentional plots for each element along the second dimention of the non-time dimention."><img alt="" src="../../../_images/sphx_glr_plot_force_line_qc_thumb.png" />
 <p><a class="reference internal" href="plot_force_line_qc.html#sphx-glr-source-auto-examples-qc-plot-force-line-qc-py"><span class="std std-ref">Forcing line plots with 2D data and QC</span></a></p>
   <div class="sphx-glr-thumbnail-title">Forcing line plots with 2D data and QC</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Simple example for applying BSRN QC and plotting the data and the corresponding QC flags using ..."><img alt="" src="../../../_images/sphx_glr_plot_qc_bsrn_thumb.png" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="Simple example for applying BSRN QC and plotting the data and the corresponding QC flags using colorblind friendly colors. https://bsrn.awi.de/data/quality-checks/"><img alt="" src="../../../_images/sphx_glr_plot_qc_bsrn_thumb.png" />
 <p><a class="reference internal" href="plot_qc_bsrn.html#sphx-glr-source-auto-examples-qc-plot-qc-bsrn-py"><span class="std std-ref">Plotting Baseline Surface Radiation Network (BSRN) QC Flags</span></a></p>
   <div class="sphx-glr-thumbnail-title">Plotting Baseline Surface Radiation Network (BSRN) QC Flags</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to use existing or create new quality control varibles. All the tests..."><img alt="" src="../../../_images/sphx_glr_plot_qc_example_thumb.png" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to use existing or create new quality control varibles. All the tests are located in act/qc/qctests.py file but called under the qcfilter method."><img alt="" src="../../../_images/sphx_glr_plot_qc_example_thumb.png" />
 <p><a class="reference internal" href="plot_qc_example.html#sphx-glr-source-auto-examples-qc-plot-qc-example-py"><span class="std std-ref">Working with embedded quality control variables</span></a></p>
   <div class="sphx-glr-thumbnail-title">Working with embedded quality control variables</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to use existing or create new quality control varibles and extend the..."><img alt="" src="../../../_images/sphx_glr_plot_arm_qc_thumb.png" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to use existing or create new quality control varibles and extend the quality control flagging. The anicllary quality control variable can be expanded by integrating external Data Quality Reports, adding additional generic ACT tests, instrument specific ACT tests, or reading a configuraiton file of known failures to clean up the data variable."><img alt="" src="../../../_images/sphx_glr_plot_arm_qc_thumb.png" />
 <p><a class="reference internal" href="plot_arm_qc.html#sphx-glr-source-auto-examples-qc-plot-arm-qc-py"><span class="std std-ref">Working with and expanding embedded quality control variables</span></a></p>
   <div class="sphx-glr-thumbnail-title">Working with and expanding embedded quality control variables</div>
 </div></div><div class="toctree-wrapper compound">
@@ -597,8 +607,7 @@
 </section>
 
 <div class="section ablog__blog_comments">
-  
-  
+   
 </div>
 
               </div>
