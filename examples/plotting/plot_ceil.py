@@ -25,14 +25,16 @@ if username is None or token is None or len(username) == 0 or len(token) == 0:
     ceil_ds = act.io.arm.read_arm_netcdf(filename_ceil, engine='netcdf4')
 else:
     # Example to show how easy it is to download ARM data if a username/token are set
-    results = act.discovery.download_arm_data(username, token, 'sgpceilC1.b1', '2022-01-14', '2022-01-19')
+    results = act.discovery.download_arm_data(
+        username, token, 'sgpceilC1.b1', '2022-01-14', '2022-01-19'
+    )
     ceil_ds = act.io.arm.read_arm_netcdf(results)
 
 # Adjust ceilometer data for plotting
 ceil_ds = act.corrections.ceil.correct_ceil(ceil_ds, -9999.0)
 
-# Plot up ceilometer backscatter using HomeyerRainbow cb friendly colormap
+# Plot up ceilometer backscatter using HomeyerRainbow CVD friendly colormap
 # The same could be done with keyword 'cmap='HomeyerRainbow'
 display = act.plotting.TimeSeriesDisplay(ceil_ds, subplot_shape=(1,), figsize=(15, 5))
-display.plot('backscatter', subplot_index=(0,), cb_friendly=True)
+display.plot('backscatter', subplot_index=(0,), cvd_friendly=True)
 plt.show()

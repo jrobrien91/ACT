@@ -151,7 +151,9 @@ class TimeSeriesDisplay(Display):
 
         for value, name in zip(lat_lon_list, ['Latitude', 'Longitude']):
             if not np.isfinite(value):
-                warnings.warn(f"{name} value in dataset equal to '{value}' is not finite. ", RuntimeWarning)
+                warnings.warn(
+                    f"{name} value in dataset equal to '{value}' is not finite. ", RuntimeWarning
+                )
                 return
 
         lat = lat_lon_list[0]
@@ -196,7 +198,7 @@ class TimeSeriesDisplay(Display):
         for ii in noon:
             ax.axvline(x=ii, linestyle='--', color='y', zorder=1)
 
-    def set_xrng(self, xrng, subplot_index=(0, 0)):
+    def set_xrng(self, xrng, subplot_index=(0,)):
         """
         Sets the x range of the plot.
 
@@ -215,15 +217,20 @@ class TimeSeriesDisplay(Display):
         # This is to catch that and expand the range so we avoid the warning.
         if xrng[0] == xrng[1]:
             if isinstance(xrng[0], np.datetime64):
-                print(f'\nAttempting to set xlim range to single value {xrng[0]}. '
-                      'Expanding range by 2 seconds.\n')
+                print(
+                    f'\nAttempting to set xlim range to single value {xrng[0]}. '
+                    'Expanding range by 2 seconds.\n'
+                )
                 xrng[0] -= np.timedelta64(1, 's')
                 xrng[1] += np.timedelta64(1, 's')
             elif isinstance(xrng[0], dt.datetime):
-                print(f'\nAttempting to set xlim range to single value {xrng[0]}. '
-                      'Expanding range by 2 seconds.\n')
+                print(
+                    f'\nAttempting to set xlim range to single value {xrng[0]}. '
+                    'Expanding range by 2 seconds.\n'
+                )
                 xrng[0] -= dt.timedelta(seconds=1)
                 xrng[1] += dt.timedelta(seconds=1)
+
         self.axes[subplot_index].set_xlim(xrng)
 
         # Make sure that the xrng value is a numpy array not pandas
@@ -312,7 +319,7 @@ class TimeSeriesDisplay(Display):
         cbar_h_adjust=None,
         y_axis_flag_meanings=False,
         colorbar_labels=None,
-        cb_friendly=False,
+        cvd_friendly=False,
         match_line_label_color=False,
         **kwargs,
     ):
@@ -405,8 +412,8 @@ class TimeSeriesDisplay(Display):
                 1: {'text': 'Liquid', 'color': 'green'},
                 2: {'text': 'Ice', 'color': 'blue'},
                 3: {'text': 'Mixed phase', 'color': 'purple'}}
-        cb_friendly : boolean
-            Set to true if you want to use the integrated colorblind friendly
+        cvd_friendly : boolean
+            Set to true if you want to use the integrated color vision deficiency (CVD) friendly
             colors for green/red based on the Homeyer colormap.
         match_line_label_color : boolean
             Will set the y label to match the line color in the plot. This
@@ -433,12 +440,24 @@ class TimeSeriesDisplay(Display):
         if y_axis_flag_meanings:
             kwargs['linestyle'] = ''
 
-        if cb_friendly:
+        if cvd_friendly:
             cmap = 'HomeyerRainbow'
-            assessment_overplot_category_color['Bad'] = (0.9285714285714286, 0.7130901016453677, 0.7130901016453677)
-            assessment_overplot_category_color['Incorrect'] = (0.9285714285714286, 0.7130901016453677, 0.7130901016453677)
-            assessment_overplot_category_color['Not Failing'] = (0.0, 0.4240129715562796, 0.4240129715562796),
-            assessment_overplot_category_color['Acceptable'] = (0.0, 0.4240129715562796, 0.4240129715562796),
+            assessment_overplot_category_color['Bad'] = (
+                0.9285714285714286,
+                0.7130901016453677,
+                0.7130901016453677,
+            )
+            assessment_overplot_category_color['Incorrect'] = (
+                0.9285714285714286,
+                0.7130901016453677,
+                0.7130901016453677,
+            )
+            assessment_overplot_category_color['Not Failing'] = (
+                (0.0, 0.4240129715562796, 0.4240129715562796),
+            )
+            assessment_overplot_category_color['Acceptable'] = (
+                (0.0, 0.4240129715562796, 0.4240129715562796),
+            )
 
         # Get data and dimensions
         data = self._ds[dsname][field]
@@ -633,9 +652,7 @@ class TimeSeriesDisplay(Display):
                     ]
                 )
             else:
-                date_result = search(
-                    r'\d{4}-\d{1,2}-\d{1,2}', self._ds[dsname].time.attrs['units']
-                )
+                date_result = search(r'\d{4}-\d{1,2}-\d{1,2}', self._ds[dsname].time.attrs['units'])
                 if date_result is not None:
                     set_title = ' '.join([dsname, field, 'on', date_result.group(0)])
                 else:
@@ -833,6 +850,8 @@ class TimeSeriesDisplay(Display):
         invert_y_axis=True,
         num_barbs_x=20,
         num_barbs_y=20,
+        barb_step_x=None,
+        barb_step_y=None,
         use_var_for_y=None,
         **kwargs,
     ):
@@ -866,6 +885,12 @@ class TimeSeriesDisplay(Display):
             The number of wind barbs to plot in the x axis.
         num_barbs_y : int
             The number of wind barbs to plot in the y axis.
+        barb_step_x : int
+            Step between each wind barb to plot.  If set, will override
+            values given for num_barbs_x
+        barb_step_y : int
+            Step between each wind barb to plot.  If set, will override
+            values given for num_barbs_y
         cmap : matplotlib.colors.LinearSegmentedColormap
             A color map to use with wind barbs. If this is set the plt.barbs
             routine will be passed the C parameter scaled as sqrt of sum of the
@@ -902,8 +927,9 @@ class TimeSeriesDisplay(Display):
         v = self._ds[dsname][v_field].values
         dim = list(self._ds[dsname][u_field].dims)
         xdata = self._ds[dsname][dim[0]].values
-        num_x = xdata.shape[-1]
-        barb_step_x = round(num_x / num_barbs_x)
+        if barb_step_x is None:
+            num_x = xdata.shape[-1]
+            barb_step_x = round(num_x / num_barbs_x)
         if barb_step_x == 0:
             barb_step_x = 1
 
@@ -920,8 +946,9 @@ class TimeSeriesDisplay(Display):
             else:
                 units = ''
             ytitle = ''.join(['(', units, ')'])
-            num_y = ydata.shape[0]
-            barb_step_y = round(num_y / num_barbs_y)
+            if barb_step_y is None:
+                num_y = ydata.shape[0]
+                barb_step_y = round(num_y / num_barbs_y)
             if barb_step_y == 0:
                 barb_step_y = 1
 
@@ -1183,9 +1210,7 @@ class TimeSeriesDisplay(Display):
 
         ax = self.axes[subplot_index]
 
-        mesh = ax.pcolormesh(
-            x_times, y_levels, np.transpose(data), shading=set_shading, **kwargs
-        )
+        mesh = ax.pcolormesh(x_times, y_levels, np.transpose(data), shading=set_shading, **kwargs)
 
         if day_night_background is True:
             self.day_night_background(subplot_index=subplot_index, dsname=dsname)
@@ -1263,7 +1288,7 @@ class TimeSeriesDisplay(Display):
         cb_label=None,
         subplot_index=(0,),
         plot_alt_field=False,
-        cb_friendly=False,
+        cvd_friendly=False,
         day_night_background=False,
         set_title=None,
         **kwargs,
@@ -1294,7 +1319,7 @@ class TimeSeriesDisplay(Display):
             The index of the subplot to set the x range of.
         plot_alt_field : boolean
             Set to true to plot the altitude field on the secondary y-axis
-        cb_friendly : boolean
+        cvd_friendly : boolean
             If set to True will use the Homeyer colormap
         day_night_background : boolean
             If set to True will plot the day_night_background
@@ -1324,7 +1349,7 @@ class TimeSeriesDisplay(Display):
             self.axes = np.array([plt.axes()])
             self.fig.add_axes(self.axes[0])
 
-        if cb_friendly:
+        if cvd_friendly:
             cmap = 'HomeyerRainbow'
 
         ax = self.axes[subplot_index]
@@ -1366,9 +1391,7 @@ class TimeSeriesDisplay(Display):
                     ]
                 )
             else:
-                date_result = search(
-                    r'\d{4}-\d{1,2}-\d{1,2}', self._ds[dsname].time.attrs['units']
-                )
+                date_result = search(r'\d{4}-\d{1,2}-\d{1,2}', self._ds[dsname].time.attrs['units'])
                 if date_result is not None:
                     set_title = ' '.join([dsname, data_field, 'on', date_result.group(0)])
                 else:
@@ -1423,7 +1446,7 @@ class TimeSeriesDisplay(Display):
         assessment_color=None,
         edgecolor='face',
         set_shading='auto',
-        cb_friendly=False,
+        cvd_friendly=False,
         **kwargs,
     ):
         """
@@ -1452,8 +1475,8 @@ class TimeSeriesDisplay(Display):
         set_shading : string
             Option to to set the matplotlib.pcolormesh shading parameter.
             Default to 'auto'
-        cb_friendly : boolean
-            Set to true if you want to use the integrated colorblind friendly
+        cvd_friendly : boolean
+            Set to true if you want to use the integrated color vision deficiency (CVD) friendly
             colors for green/red based on the Homeyer colormap
         **kwargs : keyword arguments
             The keyword arguments for :func:`plt.broken_barh`.
@@ -1469,7 +1492,7 @@ class TimeSeriesDisplay(Display):
             'Not Failing': 'green',
             'Acceptable': 'green',
         }
-        if cb_friendly:
+        if cvd_friendly:
             color_lookup['Bad'] = (0.9285714285714286, 0.7130901016453677, 0.7130901016453677)
             color_lookup['Incorrect'] = (0.9285714285714286, 0.7130901016453677, 0.7130901016453677)
             color_lookup['Not Failing'] = (0.0, 0.4240129715562796, 0.4240129715562796)
@@ -1594,7 +1617,6 @@ class TimeSeriesDisplay(Display):
             yvalues = self._ds[dsname][dims[1]].values
 
             cMap = mplcolors.ListedColormap(plot_colors)
-            print(plot_colors)
             mesh = ax.pcolormesh(
                 xvalues,
                 yvalues,
@@ -1646,7 +1668,6 @@ class TimeSeriesDisplay(Display):
                 )
 
         else:
-
             test_nums = []
             for ii, assess in enumerate(flag_assessments):
                 if assess not in color_lookup:
@@ -1664,9 +1685,7 @@ class TimeSeriesDisplay(Display):
                 # Get test number from flag_mask bitpacked number
                 test_nums.append(parse_bit(flag_masks[ii]))
                 # Get masked array data to use mask for finding if/where test is set
-                data = self._ds[dsname].qcfilter.get_masked_data(
-                    data_field, rm_tests=test_nums[-1]
-                )
+                data = self._ds[dsname].qcfilter.get_masked_data(data_field, rm_tests=test_nums[-1])
                 if np.any(data.mask):
                     # Get time ranges from time and masked data
                     barh_list = reduce_time_ranges(

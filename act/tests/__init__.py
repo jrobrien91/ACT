@@ -55,12 +55,14 @@ __getattr__, __dir__, __all__ = lazy.attach(
             'EXAMPLE_INI',
             'EXAMPLE_SP2B',
             'EXAMPLE_MET_YAML',
-            'EXAMPLE_CLOUDPHASE'
-            'EXAMPLE_ECOR',
+            'EXAMPLE_CLOUDPHASE' 'EXAMPLE_ECOR',
             'EXAMPLE_SEBS',
             'EXAMPLE_ENA_MET',
             'EXAMPLE_CCN',
             'EXAMPLE_OLD_QC',
+            'EXAMPLE_AOSACSM',
+            'EXAMPLE_SIRS_SIRI_QC',
+            'EXAMPLE_SWATS',
         ]
     },
 )

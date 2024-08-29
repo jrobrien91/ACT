@@ -7,7 +7,6 @@ References:
     - https://www.earthdata.nasa.gov/s3fs-public/imported/ESDS-RFC-029v2.pdf
 
 """
-import numpy as np
 import xarray as xr
 import datetime
 import warnings
@@ -16,6 +15,7 @@ from ..utils.datetime_utils import adjust_timestamp
 
 try:
     import icartt
+
     _ICARTT_AVAILABLE = True
     _format = icartt.Formats.FFI1001
 except ImportError:
@@ -23,8 +23,7 @@ except ImportError:
     _format = None
 
 
-def read_icartt(filename, format=_format,
-                return_None=False, **kwargs):
+def read_icartt(filename, format=_format, return_None=False, **kwargs):
     """
 
     Returns `xarray.Dataset` with stored data and metadata from a user-defined
@@ -60,8 +59,7 @@ def read_icartt(filename, format=_format,
 
     """
     if not _ICARTT_AVAILABLE:
-        raise ImportError(
-            "ICARTT is required to use to read ICARTT files but is not installed")
+        raise ImportError("ICARTT is required to use to read ICARTT files but is not installed")
 
     ds = None
 
@@ -82,8 +80,7 @@ def read_icartt(filename, format=_format,
             return None
 
         # If requested return None for File not found error
-        if (type(exception).__name__ == 'OSError'
-                and exception.args[0] == 'no files to open'):
+        if type(exception).__name__ == 'OSError' and exception.args[0] == 'no files to open':
             return None
 
     # Define the Uncertainty for each variable. Note it may not be calculated.
@@ -110,9 +107,7 @@ def read_icartt(filename, format=_format,
                 key2 = 'quality_flag'
             else:
                 key2 = key
-            da = xr.DataArray(ict.data[key],
-                              coords=dict(time=ict.times),
-                              name=key2, dims=['time'])
+            da = xr.DataArray(ict.data[key], coords=dict(time=ict.times), name=key2, dims=['time'])
             # Assume if Uncertainity does not match the number of variables,
             # values were not set within the file. Needs to be string!
             if len(uncertainty) != len(ict.variables):

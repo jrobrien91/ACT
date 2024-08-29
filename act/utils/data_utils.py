@@ -15,6 +15,7 @@ import xarray as xr
 from pathlib import Path
 import re
 import requests
+from os import PathLike
 
 spec = importlib.util.find_spec('pyart')
 if spec is not None:
@@ -35,7 +36,13 @@ class ChangeUnits:
         self._ds = ds
 
     def change_units(
-        self, variables=None, desired_unit=None, skip_variables=None, skip_standard=True
+        self,
+        variables=None,
+        desired_unit=None,
+        skip_variables=None,
+        skip_standard=True,
+        verbose=False,
+        raise_error=False,
     ):
         """
         Parameters
@@ -51,6 +58,13 @@ class ChangeUnits:
             Flag indicating the QC variables that will not need changing are
             skipped. Makes the processing faster when processing all variables
             in dataset.
+        verbose : boolean
+            Option to print statement when an attempted conversion fails. Set to False
+            as default because many units strings are not udunits complient and when
+            trying to convert all varialbes of a type of units (eg temperature) the code
+            can print a lot of unecessary information.
+        raise_error : boolean
+            Raise an error if conversion is not successful.
 
         Returns
         -------
@@ -102,13 +116,21 @@ class ChangeUnits:
                 pint.errors.UndefinedUnitError,
                 np.core._exceptions.UFuncTypeError,
             ):
-                continue
+                if raise_error:
+                    raise ValueError(
+                        f"Unable to convert '{var_name}' to units of '{desired_unit}'."
+                    )
+                elif verbose:
+                    print(
+                        f"\n    Unable to convert '{var_name}' to units of '{desired_unit}'. "
+                        f"Skipping unit converstion for '{var_name}'.\n"
+                    )
 
         return self._ds
 
 
 # @xr.register_dataset_accessor('utils')
-class DatastreamParserARM(object):
+class DatastreamParserARM:
     '''
     Class to parse ARM datastream names or filenames into its components.
     Will return None for each attribute if not extracted from the filename.
@@ -144,6 +166,7 @@ class DatastreamParserARM(object):
 
 
     '''
+
     def __init__(self, ds=''):
         '''
         Constructor that initializes datastream data member and runs
@@ -154,11 +177,10 @@ class DatastreamParserARM(object):
             The datastream or filename to parse
 
         '''
-
-        if isinstance(ds, str):
+        if isinstance(ds, (str, PathLike)):
             self.__datastream = Path(ds).name
         else:
-            raise ValueError('Datastream or filename name must be a string')
+            raise ValueError('Datastream or filename name must be a string or pathlib.PosixPath.')
 
         try:
             self.__parse_datastream()
@@ -215,15 +237,17 @@ class DatastreamParserARM(object):
             match = True
 
         if not match:
-            m = re.search(r'(^[a-z]{3})(\w+)$', tempstring[0])
+            m = re.search(r'(^[a-z]{3})([^A-Z]+)$', tempstring[0])
             if m is not None:
                 self.__site = m.group(1)
                 self.__class = m.group(2)
                 match = True
 
         if not match and len(tempstring[0]) == 3:
-            self.__site = tempstring[0]
-            match = True
+            m = re.search(r'(^[a-z]{3})', tempstring[0])
+            if m is not None:
+                self.__site = m.group(1)
+                match = True
 
         if not match:
             raise ValueError(self.__datastream)
@@ -246,8 +270,7 @@ class DatastreamParserARM(object):
         '''
 
         try:
-            return ''.join((self.__site, self.__class, self.__facility, '.',
-                            self.__level))
+            return ''.join((self.__site, self.__class, self.__facility, '.', self.__level))
         except TypeError:
             return None
 
@@ -303,8 +326,7 @@ class DatastreamParserARM(object):
         '''
 
         try:
-            return ''.join((self.site, self.datastream_class, self.facility,
-                            '.', self.level))
+            return ''.join((self.site, self.datastream_class, self.facility, '.', self.level))
 
         except TypeError:
             return None
@@ -361,7 +383,7 @@ def assign_coordinates(ds, coord_list):
         if coord not in ds.variables.keys():
             raise KeyError(coord + ' is not a variable in the Dataset.')
 
-        if ds.dims[coord_list[coord]] != len(ds.variables[coord]):
+        if ds.sizes[coord_list[coord]] != len(ds.variables[coord]):
             raise IndexError(
                 coord + ' must have the same ' + 'value as length of ' + coord_list[coord]
             )
@@ -433,7 +455,13 @@ def add_in_nan(time, data):
             mode = stats.mode(diff, keepdims=True).mode[0]
         except TypeError:
             mode = stats.mode(diff).mode[0]
+
         index = np.where(diff > (2.0 * mode))
+
+        # If the data is not float time and we try to insert a NaN it will
+        # not auto upconvert the data. Need to convert before inserting NaN.
+        if len(index) > 0 and np.issubdtype(data.dtype, np.integer):
+            data = data.astype('float32')
 
         offset = 0
         for i in index[0]:
@@ -987,7 +1015,6 @@ def convert_to_potential_temp(
     temp_var_units=None,
     press_var_units=None,
 ):
-
     """
     Converts temperature to potential temperature.
 
@@ -1257,9 +1284,7 @@ def arm_site_location_search(site_code='sgp', facility_code=None):
             "distinct_facility_code": {
                 "terms": {
                     "field": "facility_code.keyword",
-                    "order": {
-                        "_key": "asc"
-                    },
+                    "order": {"_key": "asc"},
                     "size": 7000,
                 },
                 "aggs": {
@@ -1271,7 +1296,7 @@ def arm_site_location_search(site_code='sgp', facility_code=None):
                                 "facility_code",
                                 "location",
                             ],
-                            "size": 1
+                            "size": 1,
                         },
                     },
                 },
@@ -1286,7 +1311,9 @@ def arm_site_location_search(site_code='sgp', facility_code=None):
     }
 
     # Uses requests to grab metadata from arm.gov.
-    response = requests.get('https://adc.arm.gov/elastic/metadata/_search', headers=headers, json=json_data)
+    response = requests.get(
+        'https://adc.arm.gov/elastic/metadata/_search', headers=headers, json=json_data
+    )
     # Loads the text to a dictionary
     response_dict = json.loads(response.text)
 
@@ -1294,19 +1321,203 @@ def arm_site_location_search(site_code='sgp', facility_code=None):
     coord_dict = {}
     # Loop through each facility.
     for i in range(len(response_dict['aggregations']['distinct_facility_code']['buckets'])):
-        site_info = response_dict['aggregations']['distinct_facility_code']['buckets'][i]['hits']['hits']['hits'][0]['_source']
+        site_info = response_dict['aggregations']['distinct_facility_code']['buckets'][i]['hits'][
+            'hits'
+        ]['hits'][0]['_source']
         site = site_info['site_code']
         facility = site_info['facility_code']
         # Some sites do not contain coordinate information, return None if that is the case.
         if site_info['location'] is None:
-            coords = {'latitude': None,
-                      'longitude': None}
+            coords = {'latitude': None, 'longitude': None}
         else:
             lat, lon = site_info['location'].split(',')
             lat = float(lat)
             lon = float(lon)
-            coords = {'latitude': lat,
-                      'longitude': lon}
+            coords = {'latitude': lat, 'longitude': lon}
         coord_dict.setdefault(site + ' ' + facility, coords)
 
     return coord_dict
+
+
+def calculate_percentages(ds, fields, time=None, time_slice=None, threshold=None, fill_value=0.0):
+    """
+    This function calculates percentages of different fields of a dataset.
+
+    Parameters
+    ----------
+    ds : ACT Dataset
+        The ACT dataset to calculate the percentages on.
+    fields : list
+        A list of all the fields to use in the percentage calculations.
+    time : datetime
+        A single datetime to calculate percentages on if desired. Default
+        is None and all data will be included.
+    time_slice : tuple
+        A tuple of two datetimes to grab all data between those two datatimes.
+        Default is None and all data will be included.
+    threshold : float
+        Threshold in which anything below will be considered invalid.
+        Default is None.
+    fill_value : float
+        Fill value for invalid data. Only used if a threshold is provided.
+
+    Returns
+    -------
+    percentages : dict
+        A dictionary containing the fields provided and their corresponding
+        percentage that was calculated.
+
+    """
+    # Copy Dataset so we are not overriding the data.
+    ds_percent = ds.copy()
+
+    # Check if any incorrect values based on a threshold and replace with a fill
+    # value.
+    if threshold is not None:
+        for field in fields:
+            ds_percent[field] = ds_percent[field].where(ds_percent[field] > threshold, fill_value)
+
+    # Raise warning if negative values present in a field.
+    if threshold is None:
+        for field in fields:
+            res = np.all(ds_percent[field].values >= 0.0)
+            if not res:
+                warnings.warn(
+                    f"{field} contains negatives values, consider using a threshold.",
+                    UserWarning,
+                )
+
+    # Select the data based on time, multiple times within a slice, or
+    # a sample of times per a timestep.
+    if time is not None:
+        ds_percent = ds_percent.sel(time=time)
+    elif time_slice is not None:
+        ds_percent = ds_percent.sel(time=slice(time_slice[0], time_slice[1]))
+    else:
+        warnings.warn(
+            "No time parameter used, calculating a mean for each field for the whole dataset.",
+            UserWarning,
+        )
+
+    # Calculate concentration percentage of each field in the air.
+    values = [ds_percent[field].mean(skipna=True).values for field in fields]
+    total = sum(values)
+    percent_values = [(value / total) * 100 for value in values]
+
+    # Create a dictionary of the fields and their percentages.
+    percentages = {}
+    for i, j in zip(fields, percent_values):
+        percentages[i] = j
+    ds_percent.close()
+    return percentages
+
+
+def convert_2d_to_1d(
+    ds,
+    parse=None,
+    variables=None,
+    keep_name_if_one=False,
+    use_dim_value_in_name=False,
+    dim_labels=None,
+):
+    """
+    Function to  convert a single 2D variable into multiple 1D
+    variables using the second dimension in the new variable name.
+
+    Parameters
+    ----------
+    ds: xarray.dataset
+        Object containing 2D variable to be converted
+    parse: str or None
+        Coordinate dimension name to parse along. If set to None will
+        guess the non-time dimension is the parse dimension.
+    variables: str or list of str
+        Variable name or names to parse. If not provided will attempt to
+        parse all two dimensional variables with the parse coordinate
+        dimension.
+    keep_name_if_one: boolean
+        Option to not modify the variable name if the coordinate dimension
+        has only one value. Essentially converting a 2D (i.e. (100,1)
+        variable into a 1D variable (i.e. (100)).
+    use_dim_value_in_name: boolean
+        Option to use value from the coordinate dimension in new variable
+        name instead of indexing number. Will use the value prepended
+        to the units of the dimension.
+    dim_labels: str or list of str
+        Allows for use of custom label to append to end of variable names
+
+    Returns
+    -------
+        A new object copied from input object with the multi-dimensional
+        variable split into multiple single-dimensional variables.
+
+    Example
+    -------
+    # This will get the name of the coordinate dimension so it does not need to
+    # be hard coded.
+    >>> parse_dim = (list(set(list(ds.dims)) - set(['time'])))[0]
+
+    # Now use the parse_dim name to parse the variable and return new object.
+    >>> new_ds = convert_2d_to_1d(ds, parse=parse_dim)
+
+    """
+    # If no parse dimension name given assume it is the one not equal to 'time'
+    if parse is None:
+        parse = (list(set(list(ds.dims)) - {'time'}))[0]
+
+    new_ds = ds.copy()
+
+    if variables is not None and isinstance(variables, str):
+        variables = [variables]
+
+    if variables is None:
+        variables = list(new_ds.variables)
+
+    if dim_labels is not None and isinstance(dim_labels, (str,)):
+        dim_labels = [dim_labels]
+
+    # Check if we want to keep the names the same if the second dimension
+    # is of size one.
+    num_dims = 1
+    if keep_name_if_one:
+        num_dims = 2
+
+    parse_values = ds[parse].values
+    for var in variables:
+        if var == parse:
+            continue
+        # Check if the parse dimension is in the dimension tuple
+        if parse in new_ds[var].dims:
+            if len(new_ds[parse]) >= num_dims:
+                for i in range(0, new_ds.sizes[parse]):
+                    if dim_labels is not None:
+                        new_var_name = '_'.join([var, dim_labels[i]])
+                    elif use_dim_value_in_name:
+                        level = str(parse_values[i]) + ds[parse].attrs['units']
+                        new_var_name = '_'.join([var, parse, level])
+                    else:
+                        new_var_name = '_'.join([var, parse, str(i)])
+                    new_var = new_ds[var].copy()
+                    new_ds[new_var_name] = new_var.isel(indexers={parse: i})
+
+                    try:
+                        ancillary_variables = new_ds[new_var_name].attrs['ancillary_variables']
+                        current_qc_var_name = ds.qcfilter.check_for_ancillary_qc(
+                            var, add_if_missing=False
+                        )
+                        if current_qc_var_name is not None:
+                            ancillary_variables = ancillary_variables.replace(
+                                current_qc_var_name, 'qc_' + new_var_name
+                            )
+                            new_ds[new_var_name].attrs['ancillary_variables'] = ancillary_variables
+                    except KeyError:
+                        pass
+
+                # Remove the old 2D variable after extracting
+                del new_ds[var]
+
+            else:
+                # Keep the same name but remove the dimension equal to size 1
+                new_ds[var] = new_ds[var].squeeze(dim=parse)
+
+    return new_ds

@@ -55,13 +55,15 @@ def numpy_to_arm_date(_date, returnTime=False):
 
     """
     from dateutil.parser._parser import ParserError
+    from pandas._libs.tslibs.parsing import DateParseError
+
     try:
         date = pd.to_datetime(str(_date))
         if returnTime is False:
             date = date.strftime('%Y%m%d')
         else:
             date = date.strftime('%H%M%S')
-    except ParserError:
+    except (ParserError, DateParseError):
         date = None
 
     return date
@@ -261,9 +263,12 @@ def adjust_timestamp(ds, time_bounds='time_bounds', align='left', offset=None):
         elif align == 'right':
             time_start = [np.datetime64(t[1]) for t in time_bounds]
         elif align == 'center':
-            time_start = [np.datetime64(t[0]) + (np.datetime64(t[0]) - np.datetime64(t[1])) / 2. for t in time_bounds]
+            time_start = [
+                np.datetime64(t[0]) + (np.datetime64(t[0]) - np.datetime64(t[1])) / 2.0
+                for t in time_bounds
+            ]
         else:
-            raise ValueError('Align should be set to one of [left, right, middle]')
+            raise ValueError('Align should be set to one of [left, right, center]')
 
     elif offset is not None:
         time = ds['time'].values
@@ -271,6 +276,7 @@ def adjust_timestamp(ds, time_bounds='time_bounds', align='left', offset=None):
     else:
         raise ValueError('time_bounds variable is not available')
 
+    time_start = np.array(time_start).astype('datetime64[ns]')
     ds = ds.assign_coords({'time': time_start})
 
     return ds

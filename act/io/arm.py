@@ -248,7 +248,7 @@ def read_arm_netcdf(
             file_dates.append(pts[2])
             file_times.append(pts[3])
         else:
-            if ds['time'].size > 1:
+            if len(ds['time'].shape) > 0:
                 dummy = ds['time'].values[0]
             else:
                 dummy = ds['time'].values
@@ -766,6 +766,9 @@ class WriteDataset:
                     ' act.io.write.write_netcdf',
                 ]
             )
+
+        if 'time_bounds' in encoding.keys():
+            encoding['time_bounds']['dtype'] = 'float64'
 
         if hasattr(write_ds, 'time_bounds') and not write_ds.time.encoding:
             write_ds.time.encoding.update(write_ds.time_bounds.encoding)

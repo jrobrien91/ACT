@@ -4,9 +4,13 @@ import numpy as np
 import pytest
 import xarray as xr
 from numpy.testing import assert_almost_equal
+from contextlib import redirect_stdout
+from io import StringIO
+from pathlib import Path
 
 import act
 from act.utils.data_utils import DatastreamParserARM as DatastreamParser
+from act.utils.data_utils import convert_2d_to_1d
 
 spec = importlib.util.find_spec('pyart')
 if spec is not None:
@@ -18,7 +22,7 @@ else:
 def test_add_in_nan():
     # Make a 1D array of 10 minute data
     time = np.arange('2019-01-01T01:00', '2019-01-01T01:10', dtype='datetime64[m]')
-    time = time.astype('datetime64[us]')
+    time = time.astype('datetime64[ns]')
     time = np.delete(time, range(3, 8))
     data = np.linspace(0.0, 8.0, time.size)
 
@@ -93,10 +97,8 @@ def test_convert_units():
     data = act.utils.data_utils.convert_units(r_data, 'K', 'C')
     assert np.ceil(data[0]) == 12
 
-    try:
+    with np.testing.assert_raises(ValueError):
         ds.utils.change_units()
-    except ValueError as error:
-        assert str(error) == "Need to provide 'desired_unit' keyword for .change_units() method"
 
     desired_unit = 'degF'
     skip_vars = [ii for ii in ds.data_vars if ii.startswith('qc_')]
@@ -135,6 +137,27 @@ def test_convert_units():
     assert ds[var_name].attrs['units'] == desired_unit
     assert np.isclose(np.sum(ds[var_name].values), 952.56, atol=0.01)
 
+    ds.close()
+    del ds
+
+    # Test if exception or print statement is issued when an error occurs with units string
+    ds = act.io.arm.read_arm_netcdf(act.tests.sample_files.EXAMPLE_EBBR1)
+    with np.testing.assert_raises(ValueError):
+        ds.utils.change_units('home_signal_15', 'not_a_real_unit_string', raise_error=True)
+
+    with np.testing.assert_raises(ValueError):
+        ds.utils.change_units('not_a_real_variable_name', 'degC', raise_error=True)
+
+    f = StringIO()
+    var_name = 'home_signal_15'
+    unit = 'not_a_real_unit_string'
+    with redirect_stdout(f):
+        ds.utils.change_units('home_signal_15', 'not_a_real_unit_string', verbose=True)
+    s = f.getvalue()
+    assert (
+        s.strip()
+        == f"Unable to convert '{var_name}' to units of '{unit}'. Skipping unit converstion for '{var_name}'."
+    )
     ds.close()
     del ds
 
@@ -326,10 +349,12 @@ def test_height_adjusted_pressure():
 
 
 def test_datastreamparser():
-    pytest.raises(ValueError, DatastreamParser, 123)
+    test_values = [1234, 4321.0, True, ['sgpmetE13.b1'], ('sgpmetE13.b1',)]
+    for test_value in test_values:
+        pytest.raises(ValueError, DatastreamParser, test_value)
 
-    fn_obj = DatastreamParser()
-    pytest.raises(ValueError, fn_obj.set_datastream, None)
+        fn_obj = DatastreamParser()
+        pytest.raises(ValueError, fn_obj.set_datastream, test_values)
 
     fn_obj = DatastreamParser()
     assert fn_obj.site is None
@@ -343,6 +368,16 @@ def test_datastreamparser():
     del fn_obj
 
     fn_obj = DatastreamParser('/data/sgp/sgpmetE13.b1/sgpmetE13.b1.20190501.024254.nc')
+    assert fn_obj.site == 'sgp'
+    assert fn_obj.datastream_class == 'met'
+    assert fn_obj.facility == 'E13'
+    assert fn_obj.level == 'b1'
+    assert fn_obj.datastream == 'sgpmetE13.b1'
+    assert fn_obj.date == '20190501'
+    assert fn_obj.time == '024254'
+    assert fn_obj.ext == 'nc'
+
+    fn_obj = DatastreamParser(Path('/data/sgp/sgpmetE13.b1/sgpmetE13.b1.20190501.024254.nc'))
     assert fn_obj.site == 'sgp'
     assert fn_obj.datastream_class == 'met'
     assert fn_obj.facility == 'E13'
@@ -382,6 +417,16 @@ def test_datastreamparser():
     assert fn_obj.time is None
     assert fn_obj.ext is None
 
+    fn_obj = DatastreamParser(Path('sgpmetE13.b1'))
+    assert fn_obj.site == 'sgp'
+    assert fn_obj.datastream_class == 'met'
+    assert fn_obj.facility == 'E13'
+    assert fn_obj.level == 'b1'
+    assert fn_obj.datastream == 'sgpmetE13.b1'
+    assert fn_obj.date is None
+    assert fn_obj.time is None
+    assert fn_obj.ext is None
+
     fn_obj = DatastreamParser('sgpmetE13')
     assert fn_obj.site == 'sgp'
     assert fn_obj.datastream_class == 'met'
@@ -412,16 +457,37 @@ def test_datastreamparser():
     assert fn_obj.time is None
     assert fn_obj.ext is None
 
-    fn_obj = DatastreamParser('sg')
-    assert fn_obj.site is None
-    assert fn_obj.datastream_class is None
-    assert fn_obj.facility is None
-    assert fn_obj.level is None
-    assert fn_obj.datastream is None
-    assert fn_obj.date is None
-    assert fn_obj.time is None
-    assert fn_obj.ext is None
-    del fn_obj
+    fn_obj = DatastreamParser(Path('zzzasoinfaoianasdfkansfaiZ99.s9.123456789.987654321.superlong'))
+    assert fn_obj.site == 'zzz'
+    assert fn_obj.datastream_class == 'asoinfaoianasdfkansfai'
+    assert fn_obj.facility == 'Z99'
+    assert fn_obj.level == 's9'
+    assert fn_obj.datastream == 'zzzasoinfaoianasdfkansfaiZ99.s9'
+    assert fn_obj.date == '123456789'
+    assert fn_obj.time == '987654321'
+    assert fn_obj.ext == 'superlong'
+
+    values = [
+        '',
+        ' ',
+        'sg',
+        'SGP',
+        'SGPMETE13.B1',
+        Path('zzzasoinfaoianasdfkansfaiZ999.z1.123456789.987654321.superlong'),
+        Path('/data/not/a/real/path/AsgpmetE13.b1.20190501.024254.nc'),
+        '/data/not/a/real/path/AsgpmetE13.b1.20190501.024254.nc',
+        'zzzasoinfaoianasdfkansfaiZ999.z1.123456789.987654321.superlong',
+    ]
+    for value in values:
+        fn_obj = DatastreamParser(value)
+        assert fn_obj.site is None
+        assert fn_obj.datastream_class is None
+        assert fn_obj.facility is None
+        assert fn_obj.level is None
+        assert fn_obj.datastream is None
+        assert fn_obj.date is None
+        assert fn_obj.time is None
+        assert fn_obj.ext is None
 
 
 def test_arm_site_location_search():
@@ -455,3 +521,87 @@ def test_arm_site_location_search():
     assert list(test_dict_nsa)[0] == 'nsa C1'
     assert test_dict_nsa[list(test_dict_nsa)[0]]['latitude'] == 71.323
     assert test_dict_nsa[list(test_dict_nsa)[0]]['longitude'] == -156.615
+
+
+def test_calculate_percentages():
+    ds = act.io.arm.read_arm_netcdf(act.tests.sample_files.EXAMPLE_AOSACSM)
+    fields = ['sulfate', 'ammonium', 'nitrate', 'chloride']
+    time = '2023-04-20T03:49:45.000000000'
+    time_slice = ('2023-04-20T17:38:20.000000000', '2023-04-20T20:29:47.000000000')
+    threshold = 0.0
+
+    # Without threshold, chloride has invalid negative values so
+    # percentages will be incorrect. Check if warning is created
+    with pytest.warns(UserWarning) as record:
+        act.utils.calculate_percentages(
+            ds, fields, time='2023-04-20T03:49:45.000000000', threshold=None
+        )
+        if not record:
+            pytest.fail("Expected a warning for invalid data.")
+
+    # Test with threshold and singular time
+    percentages = act.utils.calculate_percentages(ds, fields, time=time, threshold=threshold)
+    assert 'sulfate' in percentages.keys()
+    assert 'chloride' in percentages.keys()
+    assert np.round(percentages["sulfate"], 3) == 66.125
+    assert np.round(percentages["chloride"], 3) == 0.539
+
+    # Test with sliced time
+    percentages = act.utils.calculate_percentages(ds, fields, time_slice=time_slice, threshold=0.0)
+    assert np.round(percentages["sulfate"], 3) == 68.342
+    assert np.round(percentages["chloride"], 3) == 1.042
+
+    # Run on all times and check if warning exists.
+    with pytest.warns(UserWarning) as record:
+        percentages = act.utils.calculate_percentages(ds, fields, threshold=0.0)
+        assert np.round(percentages["sulfate"], 3) == 66.373
+        assert np.round(percentages["chloride"], 3) == 0.915
+        if not record:
+            pytest.fail("Expected a warning for using all times.")
+
+
+def test_convert_2d_to_1d():
+    # Create a  sample dataset
+    data = np.array([[1, 2], [3, 4], [5, 6]])
+    ds = xr.Dataset(
+        {'var': (('time', 'level'), data)}, coords={'time': [0, 1, 2], 'level': [10, 20]}
+    )
+    ds['level'].attrs['units'] = 'm'
+
+    # Run the function
+    result = convert_2d_to_1d(ds, parse='level')
+
+    # Check the results
+    assert 'var_level_0' in result
+    assert 'var_level_1' in result
+    np.testing.assert_array_equal(result['var_level_0'].values, [1, 3, 5])
+    np.testing.assert_array_equal(result['var_level_1'].values, [2, 4, 6])
+
+    # Run the function with use_dim_value_in_name=True
+    result = convert_2d_to_1d(ds, parse='level', use_dim_value_in_name=True)
+
+    # Check the results
+    assert 'var_level_10m' in result
+    assert 'var_level_20m' in result
+    np.testing.assert_array_equal(result['var_level_10m'].values, [1, 3, 5])
+    np.testing.assert_array_equal(result['var_level_20m'].values, [2, 4, 6])
+
+    # Run the function with custom labels
+    result = convert_2d_to_1d(ds, parse='level', dim_labels=['low', 'high'])
+
+    # Check the results
+    assert 'var_low' in result
+    assert 'var_high' in result
+    np.testing.assert_array_equal(result['var_low'].values, [1, 3, 5])
+    np.testing.assert_array_equal(result['var_high'].values, [2, 4, 6])
+
+    # Create a sample dataset
+    data = np.array([[1], [3], [5]])
+    ds = xr.Dataset({'var': (('time', 'level'), data)}, coords={'time': [0, 1, 2], 'level': [10]})
+
+    # Run the function with keep_name_if_one=True
+    result = convert_2d_to_1d(ds, parse='level', keep_name_if_one=True)
+
+    # Check the results
+    assert 'var' in result
+    np.testing.assert_array_equal(result['var'].values, [1, 3, 5])

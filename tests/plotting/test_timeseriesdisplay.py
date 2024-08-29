@@ -14,7 +14,7 @@ from act.utils.data_utils import accumulate_precip
 matplotlib.use('Agg')
 
 
-@pytest.mark.mpl_image_compare(tolerance=30)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_plot():
     # Process MET data to get simple LCL
     files = sample_files.EXAMPLE_MET_WILDCARD
@@ -130,7 +130,7 @@ def test_errors():
     matplotlib.pyplot.close(fig=display.fig)
 
 
-@pytest.mark.mpl_image_compare(tolerance=30)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_multidataset_plot_tuple():
     ds = act.io.arm.read_arm_netcdf(sample_files.EXAMPLE_MET1)
     ds2 = act.io.arm.read_arm_netcdf(sample_files.EXAMPLE_SIRS)
@@ -158,7 +158,7 @@ def test_multidataset_plot_tuple():
         matplotlib.pyplot.close(display.fig)
 
 
-@pytest.mark.mpl_image_compare(tolerance=30)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_multidataset_plot_dict():
     ds = act.io.arm.read_arm_netcdf(sample_files.EXAMPLE_MET1)
     ds2 = act.io.arm.read_arm_netcdf(sample_files.EXAMPLE_SIRS)
@@ -179,7 +179,7 @@ def test_multidataset_plot_dict():
         matplotlib.pyplot.close(display.fig)
 
 
-@pytest.mark.mpl_image_compare(tolerance=30)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_barb_sounding_plot():
     sonde_ds = act.io.arm.read_arm_netcdf(sample_files.EXAMPLE_TWP_SONDE_WILDCARD)
     BarbDisplay = TimeSeriesDisplay({'sonde_darwin': sonde_ds})
@@ -196,11 +196,11 @@ def test_barb_sounding_plot():
 
 
 # Due to issues with pytest-mpl, for now we just test to see if it runs
-@pytest.mark.mpl_image_compare(tolerance=30)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_time_height_scatter():
     sonde_ds = act.io.arm.read_arm_netcdf(sample_files.EXAMPLE_SONDE1)
 
-    display = TimeSeriesDisplay({'sgpsondewnpnC1.b1': sonde_ds}, figsize=(7, 3))
+    display = TimeSeriesDisplay({'sgpsondewnpnC1.b1': sonde_ds}, figsize=(10, 6))
     display.time_height_scatter('tdry', plot_alt_field=True)
 
     sonde_ds.close()
@@ -212,16 +212,22 @@ def test_time_height_scatter():
 
 
 # Due to issues with pytest-mpl, for now we just test to see if it runs
-@pytest.mark.mpl_image_compare(tolerance=30)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_time_height_scatter2():
     sonde_ds = act.io.arm.read_arm_netcdf(sample_files.EXAMPLE_SONDE1)
 
-    display = TimeSeriesDisplay({'sgpsondewnpnC1.b1': sonde_ds}, figsize=(7, 6), subplot_shape=(2,))
-    display.time_height_scatter(
-        'tdry', day_night_background=True, subplot_index=(0,), cb_friendly=True, plot_alt_field=True
+    display = TimeSeriesDisplay(
+        {'sgpsondewnpnC1.b1': sonde_ds}, figsize=(8, 10), subplot_shape=(2,)
     )
     display.time_height_scatter(
-        'rh', day_night_background=True, subplot_index=(1,), cb_friendly=True
+        'tdry',
+        day_night_background=True,
+        subplot_index=(0,),
+        cvd_friendly=True,
+        plot_alt_field=True,
+    )
+    display.time_height_scatter(
+        'rh', day_night_background=True, subplot_index=(1,), cvd_friendly=True
     )
 
     sonde_ds.close()
@@ -232,7 +238,7 @@ def test_time_height_scatter2():
         matplotlib.pyplot.close(display.fig)
 
 
-@pytest.mark.mpl_image_compare(tolerance=30)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_qc_bar_plot():
     ds = act.io.arm.read_arm_netcdf(sample_files.EXAMPLE_MET1)
     ds.clean.cleanup()
@@ -265,7 +271,7 @@ def test_qc_bar_plot():
         matplotlib.pyplot.close(display.fig)
 
 
-@pytest.mark.mpl_image_compare(tolerance=30)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_2d_as_1d():
     ds = act.io.arm.read_arm_netcdf(sample_files.EXAMPLE_CEIL1)
 
@@ -281,7 +287,7 @@ def test_2d_as_1d():
         matplotlib.pyplot.close(display.fig)
 
 
-@pytest.mark.mpl_image_compare(tolerance=30)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_fill_between():
     ds = act.io.arm.read_arm_netcdf(sample_files.EXAMPLE_MET_WILDCARD)
 
@@ -299,16 +305,16 @@ def test_fill_between():
         matplotlib.pyplot.close(display.fig)
 
 
-@pytest.mark.mpl_image_compare(tolerance=30)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_qc_flag_block_plot():
     ds = act.io.arm.read_arm_netcdf(sample_files.EXAMPLE_SURFSPECALB1MLAWER)
 
-    display = TimeSeriesDisplay(ds, subplot_shape=(2,), figsize=(8, 2 * 4))
+    display = TimeSeriesDisplay(ds, subplot_shape=(2,), figsize=(10, 8))
 
     display.plot('surface_albedo_mfr_narrowband_10m', force_line_plot=True, labels=True)
 
     display.qc_flag_block_plot(
-        'surface_albedo_mfr_narrowband_10m', subplot_index=(1,), cb_friendly=True
+        'surface_albedo_mfr_narrowband_10m', subplot_index=(1,), cvd_friendly=True
     )
 
     ds.close()
@@ -320,7 +326,7 @@ def test_qc_flag_block_plot():
         matplotlib.pyplot.close(display.fig)
 
 
-@pytest.mark.mpl_image_compare(tolerance=30)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_assessment_overplot():
     var_name = 'temp_mean'
     files = sample_files.EXAMPLE_MET1
@@ -344,7 +350,7 @@ def test_assessment_overplot():
         matplotlib.pyplot.close(display.fig)
 
 
-@pytest.mark.mpl_image_compare(tolerance=30)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_assessment_overplot_multi():
     var_name1, var_name2 = 'wspd_arith_mean', 'wspd_vec_mean'
     files = sample_files.EXAMPLE_MET1
@@ -377,7 +383,7 @@ def test_assessment_overplot_multi():
         matplotlib.pyplot.close(display.fig)
 
 
-@pytest.mark.mpl_image_compare(tolerance=30)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_plot_barbs_from_u_v():
     sonde_ds = act.io.arm.read_arm_netcdf(sample_files.EXAMPLE_TWP_SONDE_WILDCARD)
     BarbDisplay = TimeSeriesDisplay({'sonde_darwin': sonde_ds})
@@ -389,7 +395,7 @@ def test_plot_barbs_from_u_v():
         matplotlib.pyplot.close(BarbDisplay.fig)
 
 
-@pytest.mark.mpl_image_compare(tolerance=30)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_plot_barbs_from_u_v2():
     bins = list(np.linspace(0, 1, 10))
     xbins = list(pd.date_range(pd.to_datetime('2020-01-01'), pd.to_datetime('2020-01-02'), 12))
@@ -417,6 +423,7 @@ def test_plot_barbs_from_u_v2():
         matplotlib.pyplot.close(BarbDisplay.fig)
 
 
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_plot_barbs_from_u_v3():
     bins = list(np.linspace(0, 1, 10))
     xbins = list(pd.date_range(pd.to_datetime('2020-01-01'), pd.to_datetime('2020-01-02'), 12))
@@ -440,6 +447,7 @@ def test_plot_barbs_from_u_v3():
         matplotlib.pyplot.close(BarbDisplay.fig)
 
 
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_plot_barbs_from_u_v4():
     bins = list(np.linspace(0, 1, 10))
     xbins = [pd.to_datetime('2020-01-01')]
@@ -465,6 +473,7 @@ def test_plot_barbs_from_u_v4():
         matplotlib.pyplot.close(BarbDisplay.fig)
 
 
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_plot_barbs_from_u_v5():
     bins = list(np.linspace(0, 1, 10))
     xbins = [pd.to_datetime('2020-01-01')]
@@ -494,7 +503,7 @@ def test_plot_barbs_from_u_v5():
         matplotlib.pyplot.close(BarbDisplay.fig)
 
 
-@pytest.mark.mpl_image_compare(tolerance=30)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_2D_timeseries_plot():
     ds = act.io.arm.read_arm_netcdf(sample_files.EXAMPLE_CEIL1)
     display = TimeSeriesDisplay(ds)
@@ -505,7 +514,7 @@ def test_2D_timeseries_plot():
         matplotlib.pyplot.close(display.fig)
 
 
-@pytest.mark.mpl_image_compare(tolerance=30)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_time_plot():
     files = sample_files.EXAMPLE_MET1
     ds = act.io.arm.read_arm_netcdf(files)
@@ -514,7 +523,7 @@ def test_time_plot():
     return display.fig
 
 
-@pytest.mark.mpl_image_compare(tolerance=30)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_time_plot_match_color_ylabel():
     files = sample_files.EXAMPLE_MET1
     ds = act.io.arm.read_arm_netcdf(files)
@@ -523,7 +532,7 @@ def test_time_plot_match_color_ylabel():
     return display.fig
 
 
-@pytest.mark.mpl_image_compare(tolerance=40)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_time_plot2():
     files = sample_files.EXAMPLE_MET1
     ds = act.io.arm.read_arm_netcdf(files, decode_times=False, use_cftime=False)
@@ -532,7 +541,7 @@ def test_time_plot2():
     return display.fig
 
 
-@pytest.mark.mpl_image_compare(tolerance=30)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_y_axis_flag_meanings():
     variable = 'detection_status'
     ds = act.io.arm.read_arm_netcdf(
@@ -547,7 +556,7 @@ def test_y_axis_flag_meanings():
     return display.fig
 
 
-@pytest.mark.mpl_image_compare(tolerance=35)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_colorbar_labels():
     variable = 'cloud_phase_hsrl'
     ds = act.io.arm.read_arm_netcdf(sample_files.EXAMPLE_CLOUDPHASE)
@@ -568,7 +577,7 @@ def test_colorbar_labels():
     return display.fig
 
 
-@pytest.mark.mpl_image_compare(tolerance=30)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_add_nan_line():
     ds = act.io.arm.read_arm_netcdf(sample_files.EXAMPLE_MET1)
 
@@ -597,7 +606,35 @@ def test_add_nan_line():
         matplotlib.pyplot.close(display.fig)
 
 
-@pytest.mark.mpl_image_compare(tolerance=30)
+@pytest.mark.mpl_image_compare(tolerance=10)
+def test_add_nan_line_integer():
+    data = np.arange(100, dtype=np.int32)
+    time = np.array('2019-11-01T00:00:00', dtype='datetime64[m]') + np.arange(data.size)
+    time = time.astype('datetime64[ns]')  # Only done to stop a warning appearing
+
+    # Remove data to produce a gap
+    data = np.delete(data, np.arange(50, 60), axis=0)
+    time = np.delete(time, np.arange(50, 60), axis=0)
+    data = np.delete(data, np.arange(70, 75), axis=0)
+    time = np.delete(time, np.arange(70, 75), axis=0)
+
+    ds = xr.Dataset(
+        data_vars={'data': ('time', data, {'long_name': 'Data values', 'units': 'degC'})},
+        coords={'time': ('time', time, {'long_name': 'Time in UTC'})},
+    )
+
+    display = TimeSeriesDisplay({'test_datastream': ds}, figsize=(15, 10), subplot_shape=(1,))
+    display.plot('data', subplot_index=(0,), add_nan=True, marker='.', markersize=20, linewidth=5)
+
+    assert np.issubdtype(ds['data'].dtype, np.integer)
+
+    try:
+        return display.fig
+    finally:
+        matplotlib.pyplot.close(display.fig)
+
+
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_timeseries_invert():
     ds = act.io.arm.read_arm_netcdf(sample_files.EXAMPLE_IRT25m20s)
     display = TimeSeriesDisplay(ds, figsize=(10, 8))
@@ -622,11 +659,11 @@ def test_plot_time_rng():
     display.plot('temp_mean', time_rng=xrng)
 
 
-@pytest.mark.mpl_image_compare(tolerance=30)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_match_ylimits_plot():
     files = sample_files.EXAMPLE_MET_WILDCARD
     ds = act.io.arm.read_arm_netcdf(files)
-    display = act.plotting.TimeSeriesDisplay(ds, figsize=(10, 8), subplot_shape=(2, 2))
+    display = act.plotting.TimeSeriesDisplay(ds, figsize=(14, 8), subplot_shape=(2, 2))
     groupby = display.group_by('day')
     groupby.plot_group('plot', None, field='temp_mean', marker=' ')
     groupby.display.set_yrng([-20, 20], match_axes_ylimits=True)
@@ -634,7 +671,7 @@ def test_match_ylimits_plot():
     return display.fig
 
 
-@pytest.mark.mpl_image_compare(tolerance=30)
+@pytest.mark.mpl_image_compare(tolerance=10)
 def test_xlim_correction_plot():
     ds = act.io.arm.read_arm_netcdf(sample_files.EXAMPLE_MET1)
 

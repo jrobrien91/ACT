@@ -3,7 +3,6 @@ Stores the class for GeographicPlotDisplay.
 
 """
 
-import warnings
 
 import matplotlib
 import matplotlib.pyplot as plt
@@ -121,6 +120,11 @@ class GeographicPlotDisplay(Display):
             into :func:`matplotlib.pyplot.scatter` when the figure
             is made. See the matplotlib documentation for further details
             on what keyword arguments are available.
+
+        Returns
+        -------
+        ax : matplotlib axis handle
+            The matplotlib axis handle of the plot.
 
         """
         if dsname is None and len(self._ds.keys()) > 1:

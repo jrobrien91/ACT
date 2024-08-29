@@ -1,6 +1,9 @@
 name: Run Unit Tests CI
 
 on:
+  schedule:
+  # Runs at 09Z (2am CDT)
+    - cron: "0 9 * * *"
   push:
     branches: [ main ]
   pull_request:
@@ -38,7 +41,7 @@ jobs:
             platform: [x64]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup Conda Environment
         uses: mamba-org/setup-micromamba@v1
@@ -64,10 +67,12 @@ jobs:
           python -m pytest -v --mpl --cov=./ --cov-report=xml
 
       - name: Upload code coverage to Codecov
-        uses: codecov/codecov-action@v2.1.0
+        uses: codecov/codecov-action@v4
         with:
           file: ./coverage.xml
           flags: unittests
           env_vars: OS,PYTHON
           name: codecov-umbrella
           fail_ci_if_error: false
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

@@ -91,7 +91,7 @@ author = 'ACT Developers'
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
-import act
+import act  # noqa
 
 # The short X.Y version.
 version = act.__version__
@@ -160,16 +160,16 @@ html_sidebars = {
     'blog': [
         'search-field.html',
         'sidebar-nav-bs.html',
-        'postcard.html',
-        'recentposts.html',
-        'archives.html',
+        'ablog/postcard.html',
+        'ablog/recentposts.html',
+        'ablog/archives.html',
     ],
     'blog_posts/*/*': [
         'search-field.html',
         'sidebar-nav-bs.html',
-        'postcard.html',
-        'recentposts.html',
-        'archives.html',
+        'ablog/postcard.html',
+        'ablog/recentposts.html',
+        'ablog/archives.html',
     ],
 }
 
