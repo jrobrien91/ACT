@@ -80,6 +80,23 @@ Examples showing different ways to discover data.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to download data from NASA&#x27;s MicroPulsed Lidar Network">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/discovery/images/thumb/sphx_glr_download_mplnet_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_auto_examples_discovery_download_mplnet.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">NASA MPLNET</div>
+    </div>
+
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to plot timeseries of ASOS data from Chicago O&#x27;Hare airport.">
 
 .. only:: html
@@ -426,6 +443,23 @@ Examples showing different ways to visualize your data.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Plot up climate stripes plots from already existing climatologies from ARM data. Author: Adam Theisen">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/plotting/images/thumb/sphx_glr_plot_stripes_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_auto_examples_plotting_plot_stripes.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Example plot using stripes</div>
+    </div>
+
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Example shows how to plot up CCN droplet count in a size distribution plot.  Also shows how to add different plot types together using assign_to_figure_axis.">
 
 .. only:: html
@@ -630,6 +664,23 @@ Examples showing different ways to visualize your data.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Simple example for working with satellite data. It is recommended that users explore other satellite specific libraries suchas SatPy.">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/plotting/images/thumb/sphx_glr_plot_satellite_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_auto_examples_plotting_plot_satellite.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Using ACT for Satellite data</div>
+    </div>
+
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to make a Skew-T plot from a sounding and calculate stability indicies.">
 
 .. only:: html
@@ -764,6 +815,23 @@ Examples showing different ways to visualize your data.
     </div>
 
 
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This is an example about how to work with netCDF groups. Xarray does not natively read netCDF group files, but it does have the ability to read the data with a few independent calls.">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/plotting/images/thumb/sphx_glr_plot_groups_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_auto_examples_plotting_plot_groups.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Working with netCDF groups</div>
+    </div>
+
+
 .. thumbnail-parent-div-close
 
 .. raw:: html
@@ -786,7 +854,24 @@ Examples showing different ways to apply quality control to your data.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Simple example for querying the ARM DQR webservice and plotting up the results">
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to query the ARM Data Quality Report (DQR) webservice, to retrieve the machine readable DQR information and print it out to screen.">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/qc/images/thumb/sphx_glr_plot_dqr_print_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_auto_examples_qc_plot_dqr_print.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Query the ARM DQR webservice</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to query the ARM Data Quality Report (DQR) webservice, to retrieve the machine readable DQR information.  This function adds the DQR information to corresponding QC variables (qc_[variablename]) in the dataset.  The example then shows how to visualize this information as we do with the normal QC variables.">
 
 .. only:: html
 
@@ -815,6 +900,23 @@ Examples showing different ways to apply quality control to your data.
 .. raw:: html
 
       <div class="sphx-glr-thumbnail-title">Forcing line plots with 2D data and QC</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This is an example for how to use the step change detection test. The test uses the cumulative sum control chart to detect when a sudden shift in values occurs. It has an option to insert NaN value when there is a data gap to not have those periods returned as a data shift. This example produces two plots, one with the data gap flagged and one without.">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/qc/images/thumb/sphx_glr_plot_qc_step_change_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_auto_examples_qc_plot_qc_step_change.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Plotting flagged data gaps with a step change test</div>
     </div>
 
 
@@ -854,7 +956,7 @@ Examples showing different ways to apply quality control to your data.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to use existing or create new quality control varibles and extend the quality control flagging. The anicllary quality control variable can be expanded by integrating external Data Quality Reports, adding additional generic ACT tests, instrument specific ACT tests, or reading a configuraiton file of known failures to clean up the data variable.">
+    <div class="sphx-glr-thumbcontainer" tooltip="This is an example of how to use existing or create new quality control variables and extend the quality control flagging. The anicllary quality control variable can be expanded by integrating external Data Quality Reports, adding additional generic ACT tests, instrument specific ACT tests, or reading a configuration file of known failures to clean up the data variable.">
 
 .. only:: html
 
@@ -1113,6 +1215,40 @@ Examples showing full workflows, including reading, applying corrections, and vi
 .. raw:: html
 
       <div class="sphx-glr-thumbnail-title">Merge multiple datasets</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use ACT to combine multiple datasets to support ARM&#x27;s CoURAGE deployment in Baltimore, MD.  Example uses ARM, EPA, and ASOS data.">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/workflows/images/thumb/sphx_glr_plot_courage_comparison_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_auto_examples_workflows_plot_courage_comparison.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Consolidation of CoURAGE Data Sources</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use ACT to combine multiple datasets to support ARM&#x27;s AMF3.">
+
+.. only:: html
+
+  .. image:: /source/auto_examples/workflows/images/thumb/sphx_glr_plot_amf3_comparisons_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_source_auto_examples_workflows_plot_amf3_comparisons.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Consolidation of Data Sources</div>
     </div>
 
 
